@@ -21,4 +21,10 @@ class AuthController extends Controller
 
 
     }
+
+    public function logout(): JsonResponse
+    {
+        auth()->user()->token()->revoke();
+        return response()->json(['message' => 'User logged out successfully'], 200);
+    }
 }
