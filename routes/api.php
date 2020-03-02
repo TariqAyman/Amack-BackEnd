@@ -16,3 +16,4 @@ use Illuminate\Http\Request;
 Route::post('/login', 'Api\Auth\AuthController@login');
 
 Route::post('/logout', 'Api\Auth\AuthController@logout')->middleware('auth:api');
+Route::post('/register', 'Api\Auth\UsersController@register');
