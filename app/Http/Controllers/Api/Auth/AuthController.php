@@ -15,7 +15,7 @@ class AuthController extends Controller
     {
 
         if (!auth()->attempt(['mobile' => $request->get('mobile'), 'password' => $request->get('password')])) {
-            return response()->json(['error' => 'UnAuthorised'], 401);
+            return response()->json(['errors' => 'Wrong Credentials'], 401);
         }
         return new UserResource(auth()->user());
 
