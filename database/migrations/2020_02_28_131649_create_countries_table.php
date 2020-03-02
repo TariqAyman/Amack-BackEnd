@@ -16,8 +16,11 @@ class CreateCountriesTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->boolean('enabled');
-            $table->timestamps();
+            $table->string('code')->nullable();
+            $table->string('phonecode')->nullable();
+            $table->boolean('enabled')->default(0);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
