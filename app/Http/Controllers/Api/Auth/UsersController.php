@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Profile as ProfileResource;
 
 class UsersController extends Controller
 {
@@ -43,5 +44,12 @@ class UsersController extends Controller
         return response()->json(['message' => 'Password has been updated please login with new password'], 200);
     }
 
+    public function me(): ProfileResource
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        return new ProfileResource(User::find($user->id));
+
+    }
 
 }
