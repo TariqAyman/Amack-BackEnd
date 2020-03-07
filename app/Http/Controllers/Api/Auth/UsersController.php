@@ -20,10 +20,11 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->mobile = $request->mobile;
+        $user->city_id = $request->city_id;
+        $user->country_id = $request->country_id;
         $user->password = Hash::make($request->password);
         $user->save();
         return new UserResource(User::find($user->id));
-
     }
 
 }

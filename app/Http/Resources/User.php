@@ -16,6 +16,8 @@ class User extends JsonResource
             'mobile' => $this->mobile,
             'gender' => $this->gender,
             'photo' => $this->photo,
+            'country_id' => $this->country_id,
+            'city_id' => $this->city_id,
             'token' => $this->createToken('user')->accessToken
         ];
     }

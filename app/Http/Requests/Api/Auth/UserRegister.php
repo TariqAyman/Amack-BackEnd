@@ -24,6 +24,8 @@ class UserRegister extends FormRequest
             'mobile' => 'required | unique:users,mobile',
             'email' => 'required | unique:users,email',
             'password' => 'required',
+            'country_id' => 'exists:countries,id',
+            'city_id' => 'exists:cities,id'
         ];
     }
 
