@@ -22,3 +22,4 @@ Route::get('/me', 'Api\Auth\UsersController@me')->middleware('auth:api');
 
 Route::post('/register', 'Api\Auth\UsersController@register');
 Route::get('/countries', 'Api\CountriesController@listCountries');
+Route::get('/schools', 'Api\SchoolsController@listSchools');
