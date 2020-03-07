@@ -32,7 +32,7 @@ class AddCountryCityToUsersTable extends Migration
 
             $table->dropForeign('users_country_id_foreign');
             $table->dropForeign('users_city_id_foreign');
-                        $table->dropColumn('country_id');
+            $table->dropColumn('country_id');
             $table->dropColumn('city_id');
 
         });
