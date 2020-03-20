@@ -15,7 +15,8 @@ class AddDefaultLicenseToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('default_license')->nullable()->after('country_id');
-            $table->foreign('default_license')->references('id')->on('user_licenses');
+            $table->foreign('default_license')->references('id')->on('user_licenses')
+                ->onDelete('set null');
         });
     }
 
