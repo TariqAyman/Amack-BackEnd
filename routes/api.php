@@ -19,6 +19,10 @@ Route::post('/logout', 'Api\Auth\AuthController@logout')->middleware('auth:api')
 Route::post('/me/change-password', 'Api\Auth\UsersController@changePassword')->middleware('auth:api');
 Route::get('/me', 'Api\Auth\UsersController@me')->middleware('auth:api');
 
+Route::post('user-licenses/create', 'Api\UserLicensesController@create')->middleware('auth:api');
+Route::delete('user-licenses/{id}', 'Api\UserLicensesController@delete')->middleware('auth:api');
+Route::patch('user-licenses/{id}/default', 'Api\UserLicensesController@setDefault')->middleware('auth:api');
+
 
 Route::post('/register', 'Api\Auth\UsersController@register');
 Route::get('/countries', 'Api\CountriesController@listCountries');

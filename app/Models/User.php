@@ -37,4 +37,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function licenses()
+    {
+        return $this->belongsToMany(Course::class, 'user_licenses', 'user_id', 'course_id')
+            ->withPivot('license_number', 'front_photo', 'back_photo');
+    }
+
+
+    public function defaultLicense()
+    {
+        return $this->hasOne(Course::class, 'default_license', 'id');
+    }
+
 }
