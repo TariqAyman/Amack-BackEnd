@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class Profile extends JsonResource
 {
@@ -20,7 +21,7 @@ class Profile extends JsonResource
 
         }
         if (null !== $this->photo) {
-            $data->photo = $this->photo;
+            $data->photo = Storage::disk('public')->url($this->photo);
 
         }
         if (null !== $this->defaultLicense) {

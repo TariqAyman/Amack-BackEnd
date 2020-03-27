@@ -15,7 +15,7 @@ class ImageHelper
         $imgType = explode('.', $image['name'])[1];
         $imageName = Str::random(10) . '.' . $imgType;
         try {
-            Storage::disk('local')->put($path . $imageName, base64_decode($image['content']));
+            Storage::disk('public')->put($path . $imageName, base64_decode($image['content']));
 
         } catch (FileException $fileException) {
             throw new \RuntimeException($fileException->getPrevious());

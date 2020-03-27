@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\Auth;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\ImageHelper;
 use App\Http\Requests\Api\Auth\UserRegister;
+use App\Http\Requests\Api\Users\ChangeAvatar;
 use App\Http\Requests\Api\Users\ChangePassword;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -15,6 +17,16 @@ use App\Http\Resources\Profile as ProfileResource;
 
 class UsersController extends Controller
 {
+    /**
+     * @var ImageHelper $imageHelper
+     */
+    private $imageHelper;
+
+
+    public function __construct(ImageHelper $imageHelper)
+    {
+        $this->imageHelper = $imageHelper;
+    }
 
     public function register(UserRegister $request): UserResource
     {
@@ -43,6 +55,18 @@ class UsersController extends Controller
         $user->token()->revoke();
         return response()->json(['message' => 'Password has been updated please login with new password'], 200);
     }
+
+    public function changeAvatar(ChangeAvatar $request): JsonResponse
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        $photo = $this->imageHelper->save($request->photo, 'avatars/');
+        $user->photo = $photo;
+        $user->save();
+
+        return response()->json(['message' => 'Your Avatar has been changed'], 200);
+    }
+
 
     public function me(): ProfileResource
     {
