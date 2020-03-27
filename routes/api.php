@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::post('/login', 'Api\Auth\AuthController@login');
 
 Route::post('/logout', 'Api\Auth\AuthController@logout')->middleware('auth:api');
-Route::post('/me/change-password', 'Api\Auth\UsersController@changePassword')->middleware('auth:api');
+Route::patch('/me/change-password', 'Api\Auth\UsersController@changePassword')->middleware('auth:api');
 Route::get('/me', 'Api\Auth\UsersController@me')->middleware('auth:api');
 Route::patch('/me/change-avatar', 'Api\Auth\UsersController@changeAvatar')->middleware('auth:api');
 
