@@ -41,13 +41,13 @@ class User extends Authenticatable
     public function licenses()
     {
         return $this->belongsToMany(Course::class, 'user_licenses', 'user_id', 'course_id')
-            ->withPivot('license_number', 'front_photo', 'back_photo');
+            ->withPivot('id', 'license_number', 'front_photo', 'back_photo');
     }
 
 
     public function defaultLicense()
     {
-        return $this->hasOne(Course::class, 'default_license', 'id');
+        return $this->belongsTo(UserLicense::class, 'default_license', 'id');
     }
 
 }

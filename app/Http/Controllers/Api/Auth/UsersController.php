@@ -48,7 +48,7 @@ class UsersController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        return new ProfileResource(User::find($user->id));
+        return new ProfileResource(User::where('id', $user->id)->with(['licenses', 'defaultLicense.course:id,name'])->first());
 
     }
 

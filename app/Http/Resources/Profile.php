@@ -7,17 +7,35 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class Profile extends JsonResource
 {
 
-    public function toArray($request): array
+    public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'mobile' => $this->mobile,
-            'gender' => $this->gender,
-            'photo' => $this->photo,
-            'country_id' => $this->country_id,
-            'city_id' => $this->city_id
-        ];
+        $data = new \stdClass();
+        $data->id = $this->id;
+        $data->name = $this->name;
+        $data->mobile = $this->mobile;
+        $data->gender = $this->gender;
+        $data->countryId = $this->country_id;
+        if (null !== $this->cityId) {
+            $data->city_id = $this->city_id;
+
+        }
+        if (null !== $this->photo) {
+            $data->photo = $this->photo;
+
+        }
+        if (null !== $this->defaultLicense) {
+            $data->defaultLicense = [
+                'id' => $this->defaultLicense->id,
+                'licenseNumber' => $this->defaultLicense->license_number,
+                'name' => $this->defaultLicense->course->name
+            ];
+
+
+        }
+        if (null !== $this->licenses) {
+            $data->licenses = UserLicense::collection($this->licenses);
+
+        }
+        return $data;
     }
 }
