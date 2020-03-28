@@ -18,7 +18,7 @@ class CreateDivingSitesTable extends Migration
             $table->point('position');
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('city_id');
-            $table->enum('dive_type', ['off_shore,zodiac,boat']);
+            $table->string('dive_type');
             $table->boolean('enabled')->default(false);
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('city_id')->references('id')->on('cities');
