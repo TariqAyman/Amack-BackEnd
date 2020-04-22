@@ -18,7 +18,7 @@ class UserLogin extends FormRequest
     public function rules()
     {
         return [
-            'mobile' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ];
     }
