@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Auth\SocialAuth;
 use App\Http\Requests\Api\Auth\SocialLogin;
 use App\Models\SocialUser;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Resources\User as UserResource;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SocialLoginController extends Controller
 {
@@ -19,7 +22,7 @@ class SocialLoginController extends Controller
         return Socialite::driver($request->query('provider'))->stateless()->redirect();
     }
 
-    public function handleProviderCallback(SocialLogin $request): UserResource
+    public function handleProviderCallback(SocialLogin $request): JsonResponse
     {
         $provider = $request->query('provider');
         $providerUser = Socialite::driver($provider)->stateless()->user();
@@ -44,7 +47,21 @@ class SocialLoginController extends Controller
             }
 
             $socialAccount->user()->associate($user);
-            $socialAccount->save();
+        }
+        $socialAccount->token = $request->query('code');
+        $socialAccount->save();
+        return response()->json();
+    }
+
+    /** Auth with Social Token **/
+    public function auth(SocialAuth $request): UserResource
+    {
+        $socialAccount = SocialUser::query()->where('token', '=', $request->post('token'))
+            ->where('provider', '=', $request->post('provider'))
+            ->first();
+
+        if (!$socialAccount) {
+            throw new NotFoundHttpException('User with provided token not found');
         }
 
         /** @var User $user */

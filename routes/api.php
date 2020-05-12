@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 Route::post('/login', 'Api\Auth\AuthController@login');
 Route::get('/social/login', 'Api\Auth\SocialLoginController@redirectToProvider');
 Route::get('/social/callback','Api\Auth\SocialLoginController@handleProviderCallback')->name('social.callback');
+Route::post('/social/auth','Api\Auth\SocialLoginController@auth')->name('social.auth');
+
 Route::post('/logout', 'Api\Auth\AuthController@logout')->middleware('auth:api');
 Route::patch('/me/change-password', 'Api\Auth\UsersController@changePassword')->middleware('auth:api');
 Route::get('/me', 'Api\Auth\UsersController@me')->middleware('auth:api');
