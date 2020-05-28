@@ -13,7 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Resources\User as UserResource;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class SocialLoginController extends Controller
 {
@@ -61,7 +61,7 @@ class SocialLoginController extends Controller
             ->first();
 
         if (!$socialAccount) {
-            throw new NotFoundHttpException('User with provided token not found');
+            throw new UnauthorizedHttpException('token');
         }
 
         /** @var User $user */
