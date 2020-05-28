@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDivingSitesTable extends Migration
+class CreateDiveSiteDayTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateDivingSitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('diving_sites', function (Blueprint $table) {
+        Schema::create('dive_site_day_times', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->point('position');
-            $table->unsignedBigInteger('country_id');
-            $table->unsignedBigInteger('city_id');
-            $table->string('dive_type');
-            $table->boolean('enabled')->default(false);
-            $table->foreign('country_id')->references('id')->on('countries');
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->unsignedBigInteger('dive_site_id');
+            $table->unsignedBigInteger('day_time_id');
+            $table->foreign('dive_site_id')->references('id')->on('dive_sites');
+            $table->foreign('day_time_id')->references('id')->on('day_times');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -34,6 +31,6 @@ class CreateDivingSitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diving_sites');
+        Schema::dropIfExists('dive_site_day_times');
     }
 }
