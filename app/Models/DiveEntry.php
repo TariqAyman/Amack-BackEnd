@@ -1,12 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DivingSite extends Model
+class DiveEntry extends Model
 {
-    protected $table = 'diving_sites';
-
+    protected $table = 'dive_entries';
 }
