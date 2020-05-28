@@ -2,12 +2,12 @@
 
 /** @var Factory $factory */
 
-use App\Models\City;
-use App\Models\Country;
-use App\Models\DivingSite;
+use App\Models\Course;
+use App\Models\DiveEntry;
+use App\Models\DiveSite;
+use App\Models\Taxon;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +20,19 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-$factory->define(DivingSite::class, function (Faker $faker) {
+$factory->define(DiveSite::class, function (Faker $faker) {
     return [
-        'position' => DB::raw('POINT(' . $faker->latitude . ',' . $faker->longitude . ')'),
-        'country_id' => Country::all()->random()->id,
-        'city_id' => City::all()->random()->id,
-        'dive_type' => 'zodiac',
-        'enabled' => $faker->boolean()
+        'name' => $faker->firstName,
+        'city_id' => 1059,
+        'license_id' => Course::all()->random()->id,
+        'main_taxon_id' => Taxon::all()->random()->id,
+        'description' => $faker->text,
+        'longitude' => $faker->longitude,
+        'latitude' => $faker->latitude,
+        'dive_entry' => DiveEntry::all()->random()->id,
+        'max_depth' => $faker->numberBetween(),
+        'current' => 'low',
+        'visibility' => $faker->numberBetween(),
+        'enabled' => 1
     ];
 });

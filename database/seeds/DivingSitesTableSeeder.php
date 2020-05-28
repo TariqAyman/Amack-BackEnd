@@ -1,8 +1,12 @@
 <?php
 
 
+use App\Models\DayTime;
+use App\Models\DiveActivity;
+use App\Models\Season;
+use App\Models\Taxon;
 use Illuminate\Database\Seeder;
-use App\Models\DivingSite;
+use App\Models\DiveSite;
 
 class DivingSitesTableSeeder extends Seeder
 {
@@ -13,7 +17,14 @@ class DivingSitesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(DivingSite::class, 50)->create();
+        factory(DiveSite::class, 50)->create()->each(function (DiveSite $site) {
 
+            $site->subTaxons()->attach([
+                Taxon::all()->random()->id => ['position' => 0],
+                Taxon::all()->random()->id => ['position' => 1],
+            ]);
+            $site->dayTimes()->attach([DayTime::all()->random()->id, DayTime::all()->random()->id]);
+            $site->activites()->attach([DiveActivity::all()->random()->id ,DiveActivity::all()->random()->id]);
+        });
     }
 }
