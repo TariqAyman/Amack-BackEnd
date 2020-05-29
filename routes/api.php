@@ -15,8 +15,8 @@ use Illuminate\Http\Request;
 
 Route::post('/login', 'Api\Auth\AuthController@login');
 Route::get('/social/login', 'Api\Auth\SocialLoginController@redirectToProvider');
-Route::get('/social/callback','Api\Auth\SocialLoginController@handleProviderCallback')->name('social.callback');
-Route::post('/social/auth','Api\Auth\SocialLoginController@auth')->name('social.auth');
+Route::get('/social/callback', 'Api\Auth\SocialLoginController@handleProviderCallback')->name('social.callback');
+Route::post('/social/auth', 'Api\Auth\SocialLoginController@auth')->name('social.auth');
 
 Route::post('/logout', 'Api\Auth\AuthController@logout')->middleware('auth:api');
 Route::patch('/me/change-password', 'Api\Auth\UsersController@changePassword')->middleware('auth:api');
@@ -31,3 +31,5 @@ Route::patch('user-licenses/{id}/default', 'Api\UserLicensesController@setDefaul
 Route::post('/register', 'Api\Auth\UsersController@register');
 Route::get('/countries', 'Api\CountriesController@listCountries');
 Route::get('/schools', 'Api\SchoolsController@listSchools');
+
+Route::get('/sites', 'Api\DiveSitesController@index');

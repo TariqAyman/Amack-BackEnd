@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DivingCitiesTableSeeder::class);
         $this->call(DiveEntriesTableSeeder::class);
         $this->call(DiveActivitiesTableSeeder::class);
+        $this->call(SeasonsTableSeeder::class);
         $this->call(DivingSitesTableSeeder::class);
     }
 }

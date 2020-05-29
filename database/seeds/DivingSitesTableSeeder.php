@@ -18,13 +18,13 @@ class DivingSitesTableSeeder extends Seeder
     public function run()
     {
         factory(DiveSite::class, 50)->create()->each(function (DiveSite $site) {
-
             $site->subTaxons()->attach([
                 Taxon::all()->random()->id => ['position' => 0],
                 Taxon::all()->random()->id => ['position' => 1],
             ]);
             $site->dayTimes()->attach([DayTime::all()->random()->id, DayTime::all()->random()->id]);
-            $site->activites()->attach([DiveActivity::all()->random()->id ,DiveActivity::all()->random()->id]);
+            $site->activities()->attach([DiveActivity::all()->random()->id, DiveActivity::all()->random()->id]);
+            $site->seasons()->attach([Season::all()->random()->id, Season::all()->random()->id]);
         });
     }
 }

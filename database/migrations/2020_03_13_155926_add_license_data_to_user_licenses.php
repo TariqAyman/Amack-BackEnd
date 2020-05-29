@@ -17,7 +17,6 @@ class AddLicenseDataToUserLicenses extends Migration
             $table->string('license_number')->after('course_id');
             $table->string('front_photo')->after('license_number');
             $table->string('back_photo')->after('front_photo');
-
         });
     }
 
@@ -32,7 +31,6 @@ class AddLicenseDataToUserLicenses extends Migration
             $table->dropColumn('license_number');
             $table->dropColumn('front_photo');
             $table->dropColumn('back_photo');
-
         });
     }
 }

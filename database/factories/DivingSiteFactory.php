@@ -3,6 +3,7 @@
 /** @var Factory $factory */
 
 use App\Models\Course;
+use App\Models\DiveCity;
 use App\Models\DiveEntry;
 use App\Models\DiveSite;
 use App\Models\Taxon;
@@ -23,13 +24,13 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(DiveSite::class, function (Faker $faker) {
     return [
         'name' => $faker->firstName,
-        'city_id' => 1059,
+        'dive_city_id' => DiveCity::all()->random()->id,
         'license_id' => Course::all()->random()->id,
         'main_taxon_id' => Taxon::all()->random()->id,
         'description' => $faker->text,
         'longitude' => $faker->longitude,
         'latitude' => $faker->latitude,
-        'dive_entry' => DiveEntry::all()->random()->id,
+        'dive_entry_id' => DiveEntry::all()->random()->id,
         'max_depth' => $faker->numberBetween(),
         'current' => 'low',
         'visibility' => $faker->numberBetween(),
