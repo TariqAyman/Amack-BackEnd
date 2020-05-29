@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Http\Views\DiveSiteView;
@@ -26,6 +28,7 @@ class DiveSite extends JsonResource
         $diveSiteView->subTaxons = Taxon::collection($this->subTaxons);
         $diveSiteView->seasons = Season::collection($this->seasons);
         $diveSiteView->activities = DiveActivity::collection($this->activities);
+        $diveSiteView->dayTimes = DayTime::collection($this->dayTimes);
         $diveSiteView->license = $this->license;
 
         return $diveSiteView;

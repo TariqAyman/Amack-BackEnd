@@ -43,4 +43,7 @@ class DiveSiteView
     public $maxDepth;
 
     public $license;
+
+    /** @var array */
+    public $dayTimes;
 }
