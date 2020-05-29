@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 class Profile extends JsonResource
 {
-
     public function toArray($request)
     {
         $data = new \stdClass();
@@ -18,11 +17,9 @@ class Profile extends JsonResource
         $data->countryId = $this->country_id;
         if (null !== $this->cityId) {
             $data->city_id = $this->city_id;
-
         }
         if (null !== $this->photo) {
             $data->photo = Storage::disk('public')->url($this->photo);
-
         }
         if (null !== $this->defaultLicense) {
             $data->defaultLicense = [
@@ -30,12 +27,9 @@ class Profile extends JsonResource
                 'licenseNumber' => $this->defaultLicense->license_number,
                 'name' => $this->defaultLicense->course->name
             ];
-
-
         }
         if (null !== $this->licenses) {
             $data->licenses = UserLicense::collection($this->licenses);
-
         }
         return $data;
     }

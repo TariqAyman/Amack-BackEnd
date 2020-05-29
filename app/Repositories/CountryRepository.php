@@ -12,8 +12,6 @@ class CountryRepository implements CountryRepositoryInterface
     {
         return Country::Where('enabled', true)->select(['id', 'name'])->with(['cities' => function ($query) {
             $query->where('enabled', true)->select(['id', 'name', 'country_id']);
-
         }])->get();
     }
-
 }

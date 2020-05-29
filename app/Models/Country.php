@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
@@ -14,6 +13,6 @@ class Country extends Model
 
     public function cities()
     {
-        return $this->hasMany(City::class,'country_id');
+        return $this->hasMany(City::class, 'country_id');
     }
 }

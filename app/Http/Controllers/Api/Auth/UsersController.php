@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Auth;
 
-
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\ImageHelper;
 use App\Http\Requests\Api\Auth\UserRegister;
@@ -73,7 +72,5 @@ class UsersController extends Controller
         /** @var User $user */
         $user = auth()->user();
         return new ProfileResource(User::where('id', $user->id)->with(['licenses', 'defaultLicense.course:id,name'])->first());
-
     }
-
 }

@@ -12,7 +12,6 @@ use Illuminate\Validation\ValidationException;
 
 class SocialLogin extends FormRequest
 {
-
     public function rules(): array
     {
         return [

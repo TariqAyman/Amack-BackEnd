@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Http\Helpers;
 
-
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -16,7 +15,6 @@ class ImageHelper
         $imageName = Str::random(10) . '.' . $imgType;
         try {
             Storage::disk('public')->put($path . $imageName, base64_decode($image['content']));
-
         } catch (FileException $fileException) {
             throw new \RuntimeException($fileException->getPrevious());
         }

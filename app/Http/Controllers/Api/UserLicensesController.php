@@ -33,15 +33,16 @@ class UserLicensesController extends Controller
         $frontPhoto = $this->imageHelper->save($request->frontPhoto, 'licenses/');
         $backPhoto = $this->imageHelper->save($request->backPhoto, 'licenses/');
 
-        $user->licenses()->attach($request->courseId,
+        $user->licenses()->attach(
+            $request->courseId,
             [
                 'license_number' => $request->licenseNumber,
                 'front_photo' => $frontPhoto,
                 'back_photo' => $backPhoto
-            ]);
+            ]
+        );
 
         return response()->json('Added Successfully', 200);
-
     }
 
     public function delete($id): JsonResponse
@@ -54,7 +55,6 @@ class UserLicensesController extends Controller
         }
         $license->delete();
         return response()->json('Deleted Successfully', 200);
-
     }
 
     public function setDefault($id): JsonResponse
@@ -68,6 +68,5 @@ class UserLicensesController extends Controller
         $user->default_license = $id;
         $user->save();
         return response()->json('Sat Successfully', 200);
-
     }
 }

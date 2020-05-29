@@ -13,6 +13,5 @@ class DiveActivitiesTableSeeder extends Seeder
     public function run()
     {
         factory(DiveActivity::class, 5)->create();
-
     }
 }

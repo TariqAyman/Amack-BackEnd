@@ -14,6 +14,5 @@ class UsersTableSeeder extends Seeder
     {
         factory(User::class, 50)->create()->each(function ($user) {
         });
-
     }
 }
