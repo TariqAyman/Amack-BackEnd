@@ -32,4 +32,9 @@ Route::post('/register', 'Api\Auth\UsersController@register');
 Route::get('/countries', 'Api\CountriesController@listCountries');
 Route::get('/schools', 'Api\SchoolsController@listSchools');
 
-Route::get('/sites', 'Api\DiveSitesController@index');
+Route::get('/taxons', 'Api\TaxonsController@index');
+Route::get('/seasons', 'Api\SeasonsController@index');
+Route::get('/day-times', 'Api\DayTimesController@index');
+Route::get('/dive-activities', 'Api\DiveActivitiesController@index');
+
+Route::post('/sites/search', 'Api\DiveSitesController@index');
