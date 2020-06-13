@@ -38,3 +38,4 @@ Route::get('/day-times', 'Api\DayTimesController@index');
 Route::get('/dive-activities', 'Api\DiveActivitiesController@index');
 
 Route::post('/sites/search', 'Api\DiveSitesController@index');
+Route::get('/sites/autocomplete', 'Api\DiveSitesController@autoComplete');

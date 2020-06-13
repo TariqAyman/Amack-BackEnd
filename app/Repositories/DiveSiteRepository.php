@@ -80,4 +80,11 @@ class DiveSiteRepository
             ->orderBy('created_at', 'desc')
             ->get();
     }
+
+    public function findByPartName($query)
+    {
+        return DiveSite::query()
+            ->where('name', 'like', '%' . $query->name . '%')
+            ->select('id', 'name')->get();
+    }
 }
