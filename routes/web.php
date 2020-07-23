@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->namespace('Admin')->group(function () {
-    Route::get('/', 'DashboardController@index');
+Route::prefix('admin/')->namespace('Admin')->group(function () {
+    Route::get('login', 'AuthController@showLoginForm');
+    Route::post('login', 'AuthController@login')->name('login');
 
-    Route::get('user/profile', function () {
-        // Uses first & second Middleware
+    Route::middleware('auth')->group(function () {
+        Route::get('logout', 'AuthController@logout')->name('logout');
+        Route::get('', 'DashboardController@index')->name('dashboard');
     });
 });
