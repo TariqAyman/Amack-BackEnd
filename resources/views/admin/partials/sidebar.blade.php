@@ -26,7 +26,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{route('dashboard')}}" class="nav-link @if($current === 'dashboard') active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -93,8 +93,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                    <a href="{{route('admins.index')}}" class="nav-link @if($current === 'admins') active @endif">
+                        <i class="nav-icon fas  fa-user-shield"></i>
                         <p>
                             Admins
                         </p>
@@ -109,8 +109,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                    <a href="{{route('logout')}}" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Logout
                         </p>

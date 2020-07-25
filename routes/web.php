@@ -24,5 +24,9 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('logout', 'AuthController@logout')->name('logout');
         Route::get('', 'DashboardController@index')->name('dashboard');
+
+        Route::post('admins/data', 'AdminsController@data')->name('admins.data');
+        Route::resource('admins', 'AdminsController');
+
     });
 });

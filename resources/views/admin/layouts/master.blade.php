@@ -6,6 +6,7 @@
     <title>Amack | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
@@ -27,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('lte/plugins/summernote/summernote-bs4.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -80,5 +82,7 @@
 <script src="{{asset('lte/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 {{--<script src="{{asset('lte/js/demo.js')}}"></script>--}}
+@yield('scripts')
+
 </body>
 </html>
