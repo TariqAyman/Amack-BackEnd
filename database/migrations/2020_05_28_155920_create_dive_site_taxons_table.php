@@ -18,8 +18,10 @@ class CreateDiveSiteTaxonsTable extends Migration
             $table->unsignedBigInteger('dive_site_id');
             $table->unsignedBigInteger('taxon_id');
             $table->integer('position');
-            $table->foreign('dive_site_id')->references('id')->on('dive_sites');
-            $table->foreign('taxon_id')->references('id')->on('taxons');
+            $table->foreign('dive_site_id')->references('id')->on('dive_sites')
+                ->onDelete('cascade');
+            $table->foreign('taxon_id')->references('id')->on('taxons')
+                ->onDelete('cascade');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

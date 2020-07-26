@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class DiveActivity extends Model
 {
     protected $table = 'dive_activities';
+
+    protected $fillable = ['name', 'description'];
 }

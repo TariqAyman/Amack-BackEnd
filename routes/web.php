@@ -34,5 +34,14 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
         Route::post('cities/data', 'CitiesController@data')->name('cities.data');
         Route::resource('cities', 'CitiesController');
 
+        Route::post('taxons/data', 'TaxonsController@data')->name('taxons.data');
+        Route::resource('taxons', 'TaxonsController');
+
+        Route::post('dive-entries/data', 'DiveEntriesController@data')->name('dive-entries.data');
+        Route::resource('dive-entries', 'DiveEntriesController');
+
+        Route::post('dive-activities/data', 'DiveActivitiesController@data')->name('dive-activities.data');
+        Route::resource('dive-activities', 'DiveActivitiesController');
+
     });
 });

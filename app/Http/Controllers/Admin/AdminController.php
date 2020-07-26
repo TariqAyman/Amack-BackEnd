@@ -64,6 +64,6 @@ abstract class AdminController extends Controller
     public function destroy(int $id)
     {
         $this->repository->delete($id);
-        return response()->json('deleted');
+        return response()->json('Deleted Successfully');
     }
 }

@@ -34,9 +34,9 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview @if(in_array($current,['dive-entries','taxons', 'dive-activities'])) menu-open @endif">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                        <i class="nav-icon fas fa-swimmer"></i>
                         <p>
                             Diving Sites
                             <i class="fas fa-angle-left right"></i>
@@ -44,26 +44,30 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html" class="nav-link">
+                            <a href="pages/mailbox/mailbox.html"
+                               class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sites</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/compose.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{route('taxons.index')}}"
+                               class="nav-link @if($current === 'taxons') active @endif">
+                                <i class="fas fa-code-branch nav-icon"></i>
                                 <p>Taxons</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/read-mail.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{route('dive-activities.index')}}"
+                               class="nav-link @if($current === 'dive-activities') active @endif">
+                                <i class="fas fa-snowboarding nav-icon"></i>
                                 <p>Activities</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/read-mail.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{route('dive-entries.index')}}"
+                               class="nav-link @if($current === 'dive-entries') active @endif">
+                                <i class="fas fa-person-booth nav-icon"></i>
                                 <p>Entries</p>
                             </a>
                         </li>
@@ -92,7 +96,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview @if($current === 'cities' || $current === 'countries') menu-open @endif">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-globe"></i>
                         <p>
@@ -102,13 +106,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('countries.index')}}" class="nav-link">
+                            <a href="{{route('countries.index')}}"
+                               class="nav-link @if($current === 'countries') active @endif">
                                 <i class="fas fa-flag nav-icon"></i>
                                 <p>Countries</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('cities.index')}}" class="nav-link">
+                            <a href="{{route('cities.index')}}"
+                               class="nav-link @if($current === 'cities') active @endif">
                                 <i class="fas fa-city nav-icon"></i>
                                 <p>Cities</p>
                             </a>

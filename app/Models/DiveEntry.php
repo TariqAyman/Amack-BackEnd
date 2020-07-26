@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class DiveEntry extends Model
 {
     protected $table = 'dive_entries';
+
+    protected $fillable = ['name'];
 }

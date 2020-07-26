@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Taxon extends Model
 {
     protected $table = 'taxons';
+
+    protected $fillable = ['name', 'description'];
 }
