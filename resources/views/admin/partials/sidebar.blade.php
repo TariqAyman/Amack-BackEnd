@@ -92,6 +92,30 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-globe"></i>
+                        <p>
+                            Geo
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('countries.index')}}" class="nav-link">
+                                <i class="fas fa-flag nav-icon"></i>
+                                <p>Countries</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('cities.index')}}" class="nav-link">
+                                <i class="fas fa-city nav-icon"></i>
+                                <p>Cities</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{route('admins.index')}}" class="nav-link @if($current === 'admins') active @endif">
                         <i class="nav-icon fas  fa-user-shield"></i>

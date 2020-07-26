@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{asset('lte/plugins/summernote/summernote-bs4.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -82,6 +84,9 @@
 <script src="{{asset('lte/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 {{--<script src="{{asset('lte/js/demo.js')}}"></script>--}}
+
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 @yield('scripts')
 
 </body>

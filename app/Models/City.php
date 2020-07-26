@@ -17,4 +17,9 @@ class City extends Model
     {
         return $this->hasOne(DiveCity::class, 'city_id', 'id');
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
 }

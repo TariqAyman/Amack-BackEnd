@@ -28,5 +28,11 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
         Route::post('admins/data', 'AdminsController@data')->name('admins.data');
         Route::resource('admins', 'AdminsController');
 
+        Route::post('countries/data', 'CountriesController@data')->name('countries.data');
+        Route::resource('countries', 'CountriesController');
+
+        Route::post('cities/data', 'CitiesController@data')->name('cities.data');
+        Route::resource('cities', 'CitiesController');
+
     });
 });
