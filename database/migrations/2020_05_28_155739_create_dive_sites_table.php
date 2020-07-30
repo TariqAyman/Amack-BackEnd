@@ -22,12 +22,12 @@ class CreateDiveSitesTable extends Migration
             $table->integer('max_depth');
             $table->integer('visibility');
             $table->string('current');
-            $table->unsignedBigInteger('dive_city_id');
+            $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('main_taxon_id');
             $table->unsignedBigInteger('license_id');
             $table->unsignedBigInteger('dive_entry_id');
-            $table->foreign('dive_city_id')->references('id')
-                ->on('dive_cities')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')
+                ->on('cities')->onDelete('cascade');
             $table->foreign('main_taxon_id')->references('id')
                 ->on('taxons')->onDelete('cascade');
             $table->foreign('license_id')->references('id')

@@ -22,7 +22,7 @@ class DiveSite extends JsonResource
         $diveSiteView->diveEntry = $this->entry;
         $diveSiteView->visibility = $this->visibility;
         $diveSiteView->mainTaxon = $this->mainTaxon;
-        $diveSiteView->city = DiveCity::make($this->diveCity);
+        $diveSiteView->city = DiveCity::make($this->city);
         $diveSiteView->latitude = $this->latitude;
         $diveSiteView->longitude = $this->longitude;
         $diveSiteView->subTaxons = Taxon::collection($this->subTaxons);

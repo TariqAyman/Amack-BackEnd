@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolsTableSeeder::class);
         $this->call(TaxonsTableSeeder::class);
         $this->call(DayTimesTableSeeder::class);
-        $this->call(DivingCitiesTableSeeder::class);
         $this->call(DiveEntriesTableSeeder::class);
         $this->call(DiveActivitiesTableSeeder::class);
         $this->call(SeasonsTableSeeder::class);

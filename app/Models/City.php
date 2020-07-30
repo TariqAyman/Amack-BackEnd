@@ -10,13 +10,9 @@ class City extends Model
     protected $table = 'cities';
 
     protected $fillable = [
-        'name', 'enabled', 'country_id'
+        'name', 'enabled', 'country_id', 'latitude', 'longitude', 'is_dive'
     ];
 
-    public function diveCity()
-    {
-        return $this->hasOne(DiveCity::class, 'city_id', 'id');
-    }
 
     public function country()
     {

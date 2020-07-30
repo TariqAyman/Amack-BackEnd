@@ -9,6 +9,9 @@ class DiveSite extends Model
 {
     protected $table = 'dive_sites';
 
+    protected $fillable = ['name', 'description', 'latitude', 'longitude', 'max_depth', 'visibility',
+        'current', 'city_id', 'main_taxon_id', 'license_id', 'dive_entry_id', 'enabled'];
+
     public function mainTaxon()
     {
         return $this->belongsTo(Taxon::class, 'main_taxon_id', 'id');
@@ -16,7 +19,8 @@ class DiveSite extends Model
 
     public function subTaxons()
     {
-        return $this->belongsToMany(Taxon::class, 'dive_site_taxons', 'dive_site_id', 'taxon_id');
+        return $this->belongsToMany(Taxon::class, 'dive_site_taxons', 'dive_site_id', 'taxon_id')
+            ->withPivot('position');
     }
 
     public function entry()
@@ -26,7 +30,8 @@ class DiveSite extends Model
 
     public function dayTimes()
     {
-        return $this->belongsToMany(DayTime::class, 'dive_site_day_times', 'dive_site_id', 'day_time_id');
+        return $this->belongsToMany(DayTime::class, 'dive_site_day_times', 'dive_site_id', 'day_time_id')
+            ->withTimestamps();
     }
 
     public function seasons()
@@ -44,8 +49,8 @@ class DiveSite extends Model
         return $this->belongsTo(Course::class, 'license_id', 'id');
     }
 
-    public function diveCity()
+    public function city()
     {
-        return $this->belongsTo(DiveCity::class, 'dive_city_id', 'id');
+        return $this->belongsTo(City::class, 'city_id', 'id');
     }
 }

@@ -13,8 +13,7 @@ class CityRepository extends Repository
     {
         return City::query()
             ->where('name', 'like', '%' . $request->get('name') . '%')
-            ->whereHas('diveCity')
-            ->with('diveCity:id,city_id')
+            ->where('is_dive', '=', '1')
             ->select('id', 'name')
             ->get();
     }

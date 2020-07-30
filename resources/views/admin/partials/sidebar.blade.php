@@ -34,7 +34,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview @if(in_array($current,['dive-entries','taxons', 'dive-activities'])) menu-open @endif">
+                <li class="nav-item has-treeview @if(in_array($current,['dive-entries','taxons', 'dive-activities','day-times','dive-sites','seasons'])) menu-open @endif">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-swimmer"></i>
                         <p>
@@ -44,9 +44,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html"
-                               class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{route('dive-sites.index')}}"
+                               class="nav-link @if($current === 'dive-sites') active @endif">
+                                <i class="fas fa-location-arrow nav-icon"></i>
                                 <p>Sites</p>
                             </a>
                         </li>
@@ -69,6 +69,20 @@
                                class="nav-link @if($current === 'dive-entries') active @endif">
                                 <i class="fas fa-person-booth nav-icon"></i>
                                 <p>Entries</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('day-times.index')}}"
+                               class="nav-link @if($current === 'day-times') active @endif">
+                                <i class="far fa-clock nav-icon"></i>
+                                <p>Day Times</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('seasons.index')}}"
+                               class="nav-link @if($current === 'seasons') active @endif">
+                                <i class="fas fa-umbrella nav-icon"></i>
+                                <p>Seasons</p>
                             </a>
                         </li>
                     </ul>

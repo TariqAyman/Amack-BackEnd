@@ -2,8 +2,8 @@
 
 /** @var Factory $factory */
 
+use App\Models\City;
 use App\Models\Course;
-use App\Models\DiveCity;
 use App\Models\DiveEntry;
 use App\Models\DiveSite;
 use App\Models\Taxon;
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(DiveSite::class, function (Faker $faker) {
     return [
         'name' => $faker->firstName,
-        'dive_city_id' => DiveCity::all()->random()->id,
+        'city_id' => City::all()->random()->id,
         'license_id' => Course::all()->random()->id,
         'main_taxon_id' => Taxon::all()->random()->id,
         'description' => $faker->text,

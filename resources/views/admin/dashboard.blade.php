@@ -1,5 +1,17 @@
 @extends('admin.layouts.master')
+@section('scripts')
+    <!-- ChartJS -->
+    <script src="{{asset('lte/plugins/chart.js/Chart.min.js')}}"></script>
+    <!-- Sparkline -->
+    <script src="{{asset('lte/plugins/sparklines/sparkline.js')}}"></script>
+    <!-- JQVMap -->
+    <script src="{{asset('lte/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+    <script src="{{asset('lte/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{asset('lte/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+    <script src="{{asset('lte/js/pages/dashboard.js')}}"></script>
 
+@stop
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">

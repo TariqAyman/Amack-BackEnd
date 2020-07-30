@@ -6,8 +6,10 @@ namespace App\Repositories;
 
 use App\Models\DiveSite;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Yajra\DataTables\Facades\DataTables;
 
-class DiveSiteRepository
+class DiveSiteRepository extends Repository
 {
     public function search($data): ?Collection
     {
@@ -23,7 +25,7 @@ class DiveSiteRepository
         $city = $data->city;
         if ($city) {
             $query->whereHas(
-                'diveCity.city',
+                'city',
                 function ($query) use ($city) {
                     $query->where('name', 'like', '%' . $city . '%');
                 }
@@ -73,7 +75,7 @@ class DiveSiteRepository
         }
 
         return $query
-            ->with(['entry:id,name', 'license:id,name', 'diveCity', 'diveCity.city'
+            ->with(['entry:id,name', 'license:id,name', 'city'
                 , 'mainTaxon:id,name,description',
                 'subTaxons', 'dayTimes',
                 'seasons', 'activities'])
@@ -86,5 +88,69 @@ class DiveSiteRepository
         return DiveSite::query()
             ->where('name', 'like', '%' . $query->name . '%')
             ->select('id', 'name')->get();
+    }
+
+    public function getModel()
+    {
+        return DiveSite::class;
+    }
+
+    public function getDatatable()
+    {
+        $data = DiveSite::select(['id', 'name']);
+        return Datatables::of($data)
+            ->addColumn('options', function (DiveSite $diveSite) {
+                $options = '<a href="' . route('dive-sites.edit', $diveSite->id) . '" <i class="fas fa-edit"></i></a>';
+                $options .= ' <a onclick="deleteItem(' . $diveSite->id . ')" class="btn btn-danger" href="#"> <i class="fas fa-trash"></i> </a>';
+
+                return $options;
+            })
+            ->rawColumns(['options'])
+            ->make(true);
+    }
+
+    public function insert(array $data): Model
+    {
+        /** @var DiveSite $site */
+        $site = $this->model::query()->create($data);
+        $this->addRelatedData($site, $data);
+        return $site;
+    }
+
+    public function update(int $id, array $data): Model
+    {
+        /** @var DiveSite $object */
+        $object = $this->find($id);
+        $object->update($data);
+        $this->addRelatedData($object, $data);
+        return $object->fresh();
+    }
+
+    private function addRelatedData(DiveSite $site, array $data): void
+    {
+        $site->activities()->detach();
+        if (isset($data['activities'])) {
+            foreach ($data['activities'] as $activity) {
+                $site->activities()->attach($activity);
+            }
+        }
+        $site->dayTimes()->detach();
+        if (isset($data['dayTimes'])) {
+            foreach ($data['dayTimes'] as $dayTime) {
+                $site->dayTimes()->attach($dayTime);
+            }
+        }
+        $site->seasons()->detach();
+        if (isset($data['seasons'])) {
+            foreach ($data['seasons'] as $season) {
+                $site->seasons()->attach($season);
+            }
+        }
+        $site->subTaxons()->detach();
+        if (isset($data['subTaxons'])) {
+            foreach ($data['subTaxons'] as $subTaxon) {
+                $site->subTaxons()->attach($subTaxon, ['position' => 0]);
+            }
+        }
     }
 }

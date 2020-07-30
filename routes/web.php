@@ -43,5 +43,14 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
         Route::post('dive-activities/data', 'DiveActivitiesController@data')->name('dive-activities.data');
         Route::resource('dive-activities', 'DiveActivitiesController');
 
+        Route::post('dive-sites/data', 'DiveSitesController@data')->name('dive-sites.data');
+        Route::resource('dive-sites', 'DiveSitesController');
+
+        Route::post('seasons/data', 'SeasonsController@data')->name('seasons.data');
+        Route::resource('seasons', 'SeasonsController');
+
+        Route::post('day-times/data', 'DayTimesController@data')->name('day-times.data');
+        Route::resource('day-times', 'DayTimesController');
+
     });
 });

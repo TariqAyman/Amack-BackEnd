@@ -54,6 +54,29 @@
 
                                 </div>
                                 <div class="form-group">
+                                    <label for="latitude">Latitude</label>
+                                    <input @if(isset($data)) value="{{$data->latitude}}" @endif name="latitude"
+                                           type="number"
+                                           class="form-control" id="latitude"
+                                           placeholder="Latitude">
+                                </div>
+                                <div class="form-group">
+                                    <label for="longitude">Longitude</label>
+                                    <input @if(isset($data)) value="{{$data->longitude}}" @endif name="longitude"
+                                           type="number"
+                                           class="form-control" id="longitude"
+                                           placeholder="Longitude">
+                                </div>
+                                <div class="form-group">
+                                    <label for="is_dive">Dive</label>
+                                    <div class="bootstrap-switch-square">
+                                        <input type="hidden" name="is_dive" value="0">
+                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="is_dive"
+                                               id="is_dive" @if(isset($data) && $data->is_dive) checked
+                                               @endif value="1"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="enabled">Enabled</label>
                                     <div class="bootstrap-switch-square">
                                         <input type="hidden" name="enabled" value="0">

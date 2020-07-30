@@ -13,7 +13,7 @@ class DiveCity extends JsonResource
     {
         $diveCityView = new DiveCityView();
         $diveCityView->id = $this->id;
-        $diveCityView->name = $this->city->name;
+        $diveCityView->name = $this->name;
         $diveCityView->longitude = $this->longitude;
         $diveCityView->latitude = $this->latitude;
         return $diveCityView;
