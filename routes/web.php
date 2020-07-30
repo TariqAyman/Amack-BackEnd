@@ -52,5 +52,7 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
         Route::post('day-times/data', 'DayTimesController@data')->name('day-times.data');
         Route::resource('day-times', 'DayTimesController');
 
+        Route::post('users/data', 'UsersController@data')->name('users.data');
+        Route::resource('users', 'UsersController');
     });
 });
