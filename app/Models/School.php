@@ -4,6 +4,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class School extends Model
 {
@@ -14,5 +15,13 @@ class School extends Model
     public function courses()
     {
         return $this->hasMany(Course::class, 'school_id');
+    }
+
+    public function getLogoAttribute($logo)
+    {
+        if (!$logo) {
+            return '';
+        }
+        return Storage::disk('public')->url($logo);
     }
 }

@@ -10,6 +10,11 @@ class Course extends Model
     protected $table = 'diving_courses';
 
     protected $fillable = [
-        'title', 'description', 'school_id'
+        'name', 'description', 'school_id'
     ];
+
+    public function school()
+    {
+        return $this->belongsTo(School::class, 'school_id', 'id');
+    }
 }

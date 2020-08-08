@@ -87,7 +87,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview  @if($current === 'schools' || $current === 'courses') menu-open @endif">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
@@ -97,14 +97,16 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{route('schools.index')}}"
+                               class="nav-link @if($current === 'schools') active @endif">
+                                <i class="fas fa-school nav-icon"></i>
                                 <p>Schools</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/compose.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{route('courses.index')}}"
+                               class="nav-link @if($current === 'courses') active @endif">
+                                <i class="fas fa-graduation-cap nav-icon"></i>
                                 <p>Courses</p>
                             </a>
                         </li>

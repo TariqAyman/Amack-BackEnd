@@ -54,5 +54,12 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
 
         Route::post('users/data', 'UsersController@data')->name('users.data');
         Route::resource('users', 'UsersController');
+
+        Route::post('schools/data', 'SchoolsController@data')->name('schools.data');
+        Route::resource('schools', 'SchoolsController');
+        Route::delete('schools/{id}/remove-logo', 'SchoolsController@removeLogo')->name('schools.remove-logo');
+
+        Route::post('courses/data', 'CoursesController@data')->name('courses.data');
+        Route::resource('courses', 'CoursesController');
     });
 });
