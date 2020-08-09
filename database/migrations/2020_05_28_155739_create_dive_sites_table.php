@@ -35,6 +35,8 @@ class CreateDiveSitesTable extends Migration
             $table->foreign('dive_entry_id')->references('id')
                 ->on('dive_entries')->onDelete('cascade');
             $table->boolean('enabled')->default(false);
+            $table->boolean('special')->default(false);
+            $table->boolean('guided')->default(false);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

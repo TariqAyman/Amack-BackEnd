@@ -16,12 +16,18 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->longText('description')->nullable();
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->references('id')
                 ->on('countries')->onDelete('cascade');
             $table->boolean('is_dive')->default(0);
+            $table->integer('temp')->nullable();
+            $table->integer('wind')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
+            $table->string('emergency_phone')->nullable();
+            $table->decimal('emergency_latitude', 10, 8)->nullable();
+            $table->decimal('emergency_longitude', 11, 8)->nullable();
             $table->boolean('enabled')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

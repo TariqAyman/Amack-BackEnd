@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-
 use App\Models\Taxon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class TaxonRepository extends Repository
@@ -28,5 +30,42 @@ class TaxonRepository extends Repository
             })
             ->rawColumns(['options'])
             ->make(true);
+    }
+
+    public function insert(array $data): Model
+    {
+        /** @var Taxon $taxon */
+        $taxon = $this->model::query()->create($data);
+        $this->uploadPhoto($data, $taxon);
+        return $taxon->fresh();
+    }
+
+    public function update(int $id, array $data): Model
+    {
+        /** @var Taxon $object */
+        $object = $this->find($id);
+        $object->update($data);
+        $this->uploadPhoto($data, $object);
+        return $object->fresh();
+    }
+
+    private function uploadPhoto(array $data, Taxon $taxon): void
+    {
+        Storage::delete($taxon->image);
+        $taxon->photo = '';
+
+        if (isset($data['photo']) && ($data['photo'] instanceof UploadedFile) && request()->hasFile('photo')) {
+            $dir = 'taxons/' . $taxon->id;
+            $taxon->photo = Storage::disk('public')->put($dir, request()->file('photo'));
+        }
+        $taxon->save();
+    }
+
+    public function removeImage(int $id): void
+    {
+        $taxon = $this->find($id);
+        Storage::delete($taxon->photo);
+        $taxon->photo = '';
+        $taxon->save();
     }
 }
