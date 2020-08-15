@@ -40,13 +40,16 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
 
         Route::post('dive-entries/data', 'DiveEntriesController@data')->name('dive-entries.data');
         Route::resource('dive-entries', 'DiveEntriesController');
-        Route::delete('dive-entries/{id}/remove-photo', 'DiveEntriesController@removePhoto')->name('dive-entries.remove-photo');
+        Route::delete('dive-entries/{id}/remove-photo', 'DiveEntriesController@removePhoto')
+            ->name('dive-entries.remove-photo');
 
         Route::post('dive-activities/data', 'DiveActivitiesController@data')->name('dive-activities.data');
         Route::resource('dive-activities', 'DiveActivitiesController');
 
         Route::post('dive-sites/data', 'DiveSitesController@data')->name('dive-sites.data');
         Route::resource('dive-sites', 'DiveSitesController');
+        Route::delete('dive-sites/{id}/remove-image/{imageId}', 'DiveSitesController@removeImage')
+            ->name('dive-sites.remove-image');
 
         Route::post('seasons/data', 'SeasonsController@data')->name('seasons.data');
         Route::resource('seasons', 'SeasonsController');
@@ -59,7 +62,8 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
 
         Route::post('schools/data', 'SchoolsController@data')->name('schools.data');
         Route::resource('schools', 'SchoolsController');
-        Route::delete('schools/{id}/remove-logo', 'SchoolsController@removeLogo')->name('schools.remove-logo');
+        Route::delete('schools/{id}/remove-logo', 'SchoolsController@removeLogo')
+            ->name('schools.remove-logo');
 
         Route::post('courses/data', 'CoursesController@data')->name('courses.data');
         Route::resource('courses', 'CoursesController');

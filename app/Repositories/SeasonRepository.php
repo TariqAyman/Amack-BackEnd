@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-
 use App\Models\Season;
 use Yajra\DataTables\Facades\DataTables;
 
 class SeasonRepository extends Repository
 {
-
     public function getModel()
     {
         return Season::class;

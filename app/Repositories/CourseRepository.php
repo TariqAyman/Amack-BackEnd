@@ -9,7 +9,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CourseRepository extends Repository
 {
-
     public function getModel()
     {
         return Course::class;

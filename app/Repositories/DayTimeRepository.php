@@ -9,7 +9,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class DayTimeRepository extends Repository
 {
-
     public function getModel()
     {
         return DayTime::class;

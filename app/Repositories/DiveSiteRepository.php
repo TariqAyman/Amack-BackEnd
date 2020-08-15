@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\DiveSite;
+use App\Models\DiveSiteImage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class DiveSiteRepository extends Repository
@@ -51,7 +54,9 @@ class DiveSiteRepository extends Repository
 
         $diveEntries = $data->diveEntries;
         if ($diveEntries) {
-            $query->whereIn('dive_entry_id', $diveEntries);
+            $query->whereHas('entries', function ($query) use ($diveEntries) {
+                $query->whereIn('entry_id', $diveEntries);
+            });
         }
 
         $seasons = $data->seasons;
@@ -97,13 +102,22 @@ class DiveSiteRepository extends Repository
 
     public function getDatatable()
     {
-        $data = DiveSite::select(['id', 'name']);
+        $data = DiveSite::query()->latest()->with(['city:id,name', 'mainTaxon:id,name']);
         return Datatables::of($data)
             ->addColumn('options', function (DiveSite $diveSite) {
                 $options = '<a href="' . route('dive-sites.edit', $diveSite->id) . '" <i class="fas fa-edit"></i></a>';
                 $options .= ' <a onclick="deleteItem(' . $diveSite->id . ')" class="btn btn-danger" href="#"> <i class="fas fa-trash"></i> </a>';
 
                 return $options;
+            })
+            ->addColumn('city', function (DiveSite $diveSite) {
+                return $diveSite->city->name;
+            })
+            ->addColumn('main_type', function (DiveSite $diveSite) {
+                return $diveSite->mainTaxon->name;
+            })
+            ->editColumn('special', function (DiveSite $diveSite) {
+                return $diveSite->special ? 'Yes' : 'No';
             })
             ->rawColumns(['options'])
             ->make(true);
@@ -126,31 +140,36 @@ class DiveSiteRepository extends Repository
         return $object->fresh();
     }
 
+    private function uploadImages($images, DiveSite $diveSite): void
+    {
+        foreach ($images as $imageId => $image) {
+            $file = 'images.' . $imageId;
+            $dir = 'dive-sites/' . $diveSite->id;
+
+            if (($image instanceof UploadedFile) && request()->hasFile($file)) {
+                DiveSiteImage::create([
+                    'path' => Storage::disk('public')->put($dir, request()->file($file)),
+                    'dive_site_id' => $diveSite->id,
+                ]);
+            }
+        }
+    }
+
+    public function removeImage(int $id): void
+    {
+        $image = DiveSiteImage::query()->findOrFail($id);
+        Storage::delete($image->path);
+        $image->delete();
+    }
+
     private function addRelatedData(DiveSite $site, array $data): void
     {
-        $site->activities()->detach();
-        if (isset($data['activities'])) {
-            foreach ($data['activities'] as $activity) {
-                $site->activities()->attach($activity);
-            }
-        }
-        $site->dayTimes()->detach();
-        if (isset($data['dayTimes'])) {
-            foreach ($data['dayTimes'] as $dayTime) {
-                $site->dayTimes()->attach($dayTime);
-            }
-        }
-        $site->seasons()->detach();
-        if (isset($data['seasons'])) {
-            foreach ($data['seasons'] as $season) {
-                $site->seasons()->attach($season);
-            }
-        }
-        $site->subTaxons()->detach();
-        if (isset($data['subTaxons'])) {
-            foreach ($data['subTaxons'] as $subTaxon) {
-                $site->subTaxons()->attach($subTaxon, ['position' => 0]);
-            }
-        }
+        $this->uploadImages($data['images'] ?? [], $site);
+        $site->activities()->sync($data['activities'] ?? []);
+        $site->dayTimes()->sync($data['dayTimes'] ?? []);
+        $site->seasons()->sync($data['seasons'] ?? []);
+        $site->subTaxons()->sync($data['subTaxons'] ?? []);
+        $site->nearbySites()->sync($data['nearbySites'] ?? []);
+        $site->equipments()->sync($data['equipments'] ?? []);
     }
 }

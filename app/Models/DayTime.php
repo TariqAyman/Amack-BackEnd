@@ -10,5 +10,4 @@ class DayTime extends Model
 {
     protected $table = 'day_times';
     protected $fillable = ['name'];
-
 }

@@ -3,6 +3,26 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{asset('lte/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <style>
+        .thumb {
+            max-width: 150px;
+            max-height: 100px;
+        }
+
+        .img-wrap {
+            max-width: 150px;
+            max-height: 100px;
+
+            position: relative;
+        }
+
+        .img-wrap .close {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 100;
+        }
+    </style>
 @stop
 @section('scripts')
     <script src="{{asset('lte/plugins/select2/js/select2.full.min.js')}}"></script>
@@ -12,6 +32,24 @@
             $('.select2').select2()
 
         });
+
+        function removeImage(id) {
+            let url = '{{route('dive-sites.remove-image',[$data->id??0,'#'])}}'
+            url = url.replace('#', id);
+            $.ajax({
+                type: 'Delete',
+                url: url,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                },
+                encode: true
+            }).done(function (response) {
+                $('#photo-wrap-' + id).remove();
+
+            });
+            return false;
+        }
     </script>
 @stop
 @section('content')
@@ -88,10 +126,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="visibility">Visibility</label>
-                                    <input @if(isset($data)) value="{{$data->visibility}}" @endif name="visibility"
-                                           type="number"
-                                           class="form-control" id="visibility"
-                                           placeholder="Visibility">
+                                    <select class="custom-select" required id="visibility" name="current">
+                                        <option @if(isset($data) && $data->visibility === 'low') selected
+                                                @endif value="low"> Low
+                                        </option>
+                                        <option @if(isset($data) && $data->visibility === 'average') selected
+                                                @endif value="average"> Average
+                                        </option>
+                                        <option @if(isset($data) && $data->visibility === 'high') selected
+                                                @endif value="high"> High
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="current">Current</label>
@@ -108,6 +153,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="rate">Rate</label>
+                                    <input @if(isset($data)) value="{{$data->rate}}" @endif name="rate"
+                                           type="number" max="5" min="0"
+                                           class="form-control" id="rate"
+                                           placeholder="Max Depth">
+                                </div>
+                                <div class="form-group">
                                     <label for="city_id">City</label>
                                     <select class="custom-select" required id="city_id" name="city_id">
                                         @foreach($cities as $city)
@@ -117,7 +169,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="main_taxon_id">Main Taxon</label>
+                                    <label for="main_taxon_id">Main Type</label>
                                     <select class="custom-select" required id="main_taxon_id" name="main_taxon_id">
                                         @foreach($taxons as $taxon)
                                             <option
@@ -127,11 +179,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dive_entry_id">Dive Entry</label>
-                                    <select class="custom-select" required id="dive_entry_id" name="dive_entry_id">
+                                    <label for="diveEntries">Dive Entries</label>
+                                    <select id="diveEntries" name="diveEntries[]" class="select2" multiple="multiple"
+                                            data-placeholder="Select an Entry"
+                                            style="width: 100%;">
                                         @foreach($entries as $entry)
                                             <option
-                                                @if(isset($data) && $data->dive_entry_id === $entry->id) selected
+                                                @if(isset($data) && in_array($entry->id,$data->entries->pluck('id')->toArray(), true)) selected
                                                 @endif value="{{$entry->id}}"> {{$entry->name}}</option>
                                         @endforeach
                                     </select>
@@ -147,7 +201,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sub_taxons">Sub Taxons</label>
+                                    <label for="sub_taxons">Sub Types</label>
                                     <select id="sub_taxons" name="subTaxons[]" class="select2" multiple="multiple"
                                             data-placeholder="Select a Taxon"
                                             style="width: 100%;">
@@ -194,6 +248,63 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="equipments">Equipments</label>
+                                    <select id="equipments" name="equipments[]" class="select2" multiple="multiple"
+                                            data-placeholder="Select a Site"
+                                            style="width: 100%;">
+                                        @foreach($equipments as $equipment)
+                                            <option
+                                                @if(isset($data) && in_array($equipment->id,$data->equipments->pluck('id')->toArray(), true)) selected
+                                                @endif value="{{$equipment->id}}"> {{$equipment->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nearbySites">Near Sites</label>
+                                    <select id="nearbySites" name="nearbySites[]" class="select2" multiple="multiple"
+                                            data-placeholder="Select a Site"
+                                            style="width: 100%;">
+                                        @foreach($sites as $site)
+                                            <option
+                                                @if(isset($data) && in_array($site->id,$data->nearbySites->pluck('id')->toArray(), true)) selected
+                                                @endif value="{{$site->id}}"> {{$site->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="images">Images</label>
+                                    <input type="file" class="form-control" name="images[]" placeholder="images"
+                                           multiple>
+                                    @if(isset($data) && $data->images->count())
+                                        <br>
+                                        <div style="display:inline-block">
+                                            @foreach($data->images as $image)
+
+                                                <div style="display:inline-block" class="img-wrap"
+                                                     id="photo-wrap-{{$image->id}}">
+                                                    <button id="delete-image"
+                                                            onclick="removeImage({{$image->id}}); return false;"
+                                                            class="close">
+                                                        &times;
+                                                    </button>
+                                                    <img id="photo-img" class="thumb" src="{{ $image->path }}"
+                                                         alt="photo">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="special">Special</label>
+                                    <div class="bootstrap-switch-square">
+                                        <input type="hidden" name="special" value="0">
+                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="special"
+                                               id="special" @if(isset($data) && $data->special) checked
+                                               @endif value="1"/>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="enabled">Enabled</label>
                                     <div class="bootstrap-switch-square">

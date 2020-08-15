@@ -10,8 +10,10 @@ use App\Repositories\DayTimeRepository;
 use App\Repositories\DiveActivityRepository;
 use App\Repositories\DiveEntryRepository;
 use App\Repositories\DiveSiteRepository;
+use App\Repositories\EquipmentRepository;
 use App\Repositories\SeasonRepository;
 use App\Repositories\TaxonRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
 class DiveSitesController extends AdminController
@@ -43,8 +45,19 @@ class DiveSitesController extends AdminController
     /** @var CourseRepository */
     protected $courseRepository;
 
+    /** @var EquipmentRepository */
+    protected $equipmentRepository;
 
-    public function __construct(CityRepository $cityRepository, TaxonRepository $taxonRepository, DiveEntryRepository $diveEntryRepository, DiveActivityRepository $diveActivityRepository, DayTimeRepository $datTimeRepository, SeasonRepository $seasonRepository, CourseRepository $courseRepository)
+    public function __construct(
+        CityRepository $cityRepository,
+        TaxonRepository $taxonRepository,
+        DiveEntryRepository $diveEntryRepository,
+        DiveActivityRepository $diveActivityRepository,
+        DayTimeRepository $datTimeRepository,
+        SeasonRepository $seasonRepository,
+        CourseRepository $courseRepository,
+        EquipmentRepository $equipmentRepository
+    )
     {
         $this->cityRepository = $cityRepository;
         $this->taxonRepository = $taxonRepository;
@@ -53,6 +66,7 @@ class DiveSitesController extends AdminController
         $this->datTimeRepository = $datTimeRepository;
         $this->seasonRepository = $seasonRepository;
         $this->courseRepository = $courseRepository;
+        $this->equipmentRepository = $equipmentRepository;
         parent::__construct();
     }
 
@@ -66,7 +80,22 @@ class DiveSitesController extends AdminController
         $licenses = $this->courseRepository->findAll(['id', 'name']);
         $entries = $this->diveEntryRepository->findAll(['id', 'name']);
         $dayTimes = $this->datTimeRepository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('seasons', 'cities', 'taxons', 'activities', 'licenses', 'entries', 'dayTimes'));
+        $sites = $this->repository->findAll(['id', 'name']);
+        $equipments = $this->equipmentRepository->findAll(['name', 'id']);
+        return view(
+            'admin.' . $this->block . '.form',
+            compact(
+                'seasons',
+                'cities',
+                'taxons',
+                'activities',
+                'licenses',
+                'entries',
+                'dayTimes',
+                'sites',
+                'equipments'
+            )
+        );
     }
 
     public function edit(int $id): View
@@ -79,6 +108,14 @@ class DiveSitesController extends AdminController
         $licenses = $this->courseRepository->findAll(['id', 'name']);
         $entries = $this->diveEntryRepository->findAll(['id', 'name']);
         $dayTimes = $this->datTimeRepository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('data', 'seasons', 'cities', 'taxons', 'activities', 'licenses', 'entries', 'dayTimes'));
+        $sites = $this->repository->findAll(['id', 'name']);
+        $equipments = $this->equipmentRepository->findAll(['name', 'id']);
+        return view('admin.' . $this->block . '.form', compact('data', 'seasons', 'cities', 'taxons', 'activities', 'licenses', 'entries', 'dayTimes', 'sites', 'equipments'));
+    }
+
+    public function removeImage(int $id, int $imageId): JsonResponse
+    {
+        $this->repository->removeImage($imageId);
+        return new JsonResponse('deleted');
     }
 }

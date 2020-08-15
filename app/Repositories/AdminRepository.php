@@ -10,7 +10,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AdminRepository extends Repository
 {
-
     public function getModel(): string
     {
         return Admin::class;

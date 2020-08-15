@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -10,7 +11,7 @@ class DiveSite extends Model
     protected $table = 'dive_sites';
 
     protected $fillable = ['name', 'description', 'latitude', 'longitude', 'max_depth', 'visibility',
-        'current', 'city_id', 'main_taxon_id', 'license_id', 'dive_entry_id', 'enabled'];
+        'current', 'city_id', 'main_taxon_id', 'license_id', 'enabled', 'special', 'rate'];
 
     public function mainTaxon()
     {
@@ -20,12 +21,7 @@ class DiveSite extends Model
     public function subTaxons()
     {
         return $this->belongsToMany(Taxon::class, 'dive_site_taxons', 'dive_site_id', 'taxon_id')
-            ->withPivot('position');
-    }
-
-    public function entry()
-    {
-        return $this->belongsTo(DiveEntry::class, 'dive_entry_id', 'id');
+            ->withPivot('position')->withTimestamps();
     }
 
     public function dayTimes()
@@ -36,12 +32,20 @@ class DiveSite extends Model
 
     public function seasons()
     {
-        return $this->belongsToMany(Season::class, 'dive_site_seasons', 'dive_site_id', 'season_id');
+        return $this->belongsToMany(Season::class, 'dive_site_seasons', 'dive_site_id', 'season_id')
+            ->withTimestamps();
     }
 
     public function activities()
     {
-        return $this->belongsToMany(DiveActivity::class, 'dive_site_activities', 'dive_site_id', 'activity_id');
+        return $this->belongsToMany(DiveActivity::class, 'dive_site_activities', 'dive_site_id', 'activity_id')
+            ->withTimestamps();
+    }
+
+    public function entries()
+    {
+        return $this->belongsToMany(DiveActivity::class, 'dive_site_activities', 'dive_site_id', 'activity_id')
+            ->withTimestamps();
     }
 
     public function license()
@@ -52,5 +56,22 @@ class DiveSite extends Model
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    public function nearbySites()
+    {
+        return $this->belongsToMany(self::class, 'dive_site_nearby', 'owner_site_id', 'nearby_site_id')
+            ->withTimestamps();
+    }
+
+    public function equipments()
+    {
+        return $this->belongsToMany(Equipment::class, 'dive_site_equipments', 'dive_site_id', 'equipment_id')
+            ->withTimestamps();
+    }
+
+    public function images()
+    {
+        return $this->hasMany(DiveSiteImage::class, 'dive_site_id', 'id');
     }
 }

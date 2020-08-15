@@ -9,7 +9,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class DiveActivityRepository extends Repository
 {
-
     public function getModel()
     {
         return DiveActivity::class;

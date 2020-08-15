@@ -12,7 +12,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class DiveEntryRepository extends Repository
 {
-
     public function getModel()
     {
         return DiveEntry::class;

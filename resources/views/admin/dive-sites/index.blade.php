@@ -44,6 +44,10 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>City</th>
+                                    <th>Main Type</th>
+                                    <th>Depth</th>
+                                    <th>Special</th>
                                     <th>Options</th>
 
                                 </tr>
@@ -54,8 +58,11 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>City</th>
+                                    <th>Main Type</th>
+                                    <th>Depth</th>
+                                    <th>Special</th>
                                     <th>Options</th>
-
                                 </tr>
                                 </tfoot>
                             </table>
@@ -83,6 +90,10 @@
             }, columns: [
                 {data: 'id', name: 'id'},
                 {data: 'name', name: 'name'},
+                {data: 'city', name: 'city'},
+                {data: 'main_type', name: 'main_type'},
+                {data: 'max_depth', name: 'max_depth'},
+                {data: 'special', name: 'special'},
                 {data: 'options', name: 'options', searchable: false, orderable: false}
             ]
         });

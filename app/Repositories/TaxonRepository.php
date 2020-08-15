@@ -12,7 +12,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class TaxonRepository extends Repository
 {
-
     public function getModel()
     {
         return Taxon::class;

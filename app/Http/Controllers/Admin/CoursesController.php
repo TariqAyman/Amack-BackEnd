@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Repositories\CourseRepository;
 use App\Repositories\SchoolRepository;
 use Illuminate\View\View;

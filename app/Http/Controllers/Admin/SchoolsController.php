@@ -20,5 +20,4 @@ class SchoolsController extends AdminController
         $this->repository->removeLogo($id);
         return new JsonResponse('Deleted');
     }
-
 }
