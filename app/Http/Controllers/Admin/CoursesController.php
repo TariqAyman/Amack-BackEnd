@@ -28,13 +28,15 @@ class CoursesController extends AdminController
     public function create(): View
     {
         $schools = $this->schoolsRepository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('schools'));
+        $licenses = $this->repository->findAll(['id', 'name']);
+        return view('admin.' . $this->block . '.form', compact('schools', 'licenses'));
     }
 
     public function edit(int $id): View
     {
         $data = $this->repository->find($id);
         $schools = $this->schoolsRepository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('data', 'schools'));
+        $licenses = $this->repository->findAll(['id', 'name']);
+        return view('admin.' . $this->block . '.form', compact('data', 'schools', 'licenses'));
     }
 }

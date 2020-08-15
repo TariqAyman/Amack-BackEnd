@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="title">Name</label>
+                                    <label for="name">Name</label>
                                     <input @if(isset($data)) value="{{$data->name}}" @endif name="name" type="text"
                                            class="form-control" id="name"
                                            placeholder="name">
@@ -50,12 +50,52 @@
                                               placeholder="Description"> @if(isset($data)){{$data->description}} @endif</textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label for="days_num">Days</label>
+                                    <input @if(isset($data)) value="{{$data->days_num}}" @endif name="days_num"
+                                           type="number"
+                                           class="form-control" id="days_num" min="0"
+                                           placeholder="days_num">
+                                </div>
+                                <div class="form-group">
+                                    <label for="license_type">License Type</label>
+                                    <select class="custom-select" required id="license_type" name="license_type">
+                                        <option @if(isset($data) && $data->license_type === 'specialty') selected
+                                                @endif value="specialty"> Specialty
+                                        </option>
+                                        <option @if(isset($data) && $data->license_type === 'main') selected
+                                                @endif value="main"> Main
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="earning_type">Earning Type</label>
+                                    <select class="custom-select" required id="earning_type" name="earning_type">
+                                        <option @if(isset($data) && $data->earning_type === 'theoretical') selected
+                                                @endif value="theoretical"> Theoretical
+                                        </option>
+                                        <option @if(isset($data) && $data->earning_type === 'practical') selected
+                                                @endif value="practical"> Practical
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="school_id">School</label>
                                     <select class="custom-select" required id="school_id" name="school_id">
                                         @foreach($schools as $school)
                                             <option
                                                 @if(isset($data) && $data->school_id === $school->id) selected
                                                 @endif value="{{$school->id}}"> {{$school->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="required_license_id">Required License</label>
+                                    <select class="custom-select" required id="required_license_id"
+                                            name="required_license_id">
+                                        @foreach($licenses as $license)
+                                            <option
+                                                @if(isset($data) && $data->required_license_id === $license->id) selected
+                                                @endif value="{{$license->id}}"> {{$license->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

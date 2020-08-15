@@ -45,6 +45,7 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>School</th>
+                                    <th>license Type</th>
                                     <th>Options</th>
 
                                 </tr>
@@ -56,6 +57,7 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>School</th>
+                                    <th>license Type</th>
                                     <th>Options</th>
 
                                 </tr>
@@ -86,6 +88,7 @@
                 {data: 'id', name: 'id'},
                 {data: 'name', name: 'name'},
                 {data: 'school', name: 'school'},
+                {data: 'license_type', name: 'license_type'},
                 {data: 'options', name: 'options', searchable: false, orderable: false}
             ]
         });

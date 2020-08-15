@@ -57,8 +57,7 @@ class DiveSitesController extends AdminController
         SeasonRepository $seasonRepository,
         CourseRepository $courseRepository,
         EquipmentRepository $equipmentRepository
-    )
-    {
+    ) {
         $this->cityRepository = $cityRepository;
         $this->taxonRepository = $taxonRepository;
         $this->diveEntryRepository = $diveEntryRepository;

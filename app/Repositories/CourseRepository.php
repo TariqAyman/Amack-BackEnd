@@ -16,7 +16,7 @@ class CourseRepository extends Repository
 
     public function getDatatable()
     {
-        $data = Course::query()->select(['id', 'name', 'school_id'])->with('school:id,name');
+        $data = Course::query()->select(['id', 'name', 'school_id', 'license_type'])->with('school:id,name');
         return Datatables::of($data)
             ->addColumn('options', function (Course $course) {
                 $options = '<a href="' . route('courses.edit', $course->id) . '" <i class="fas fa-edit"></i></a>';
