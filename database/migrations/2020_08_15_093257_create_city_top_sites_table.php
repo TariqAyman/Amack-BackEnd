@@ -20,7 +20,7 @@ class CreateCityTopSitesTable extends Migration
             $table->foreign('city_id')->references('id')
                 ->on('cities')->onDelete('cascade');
             $table->foreign('dive_site_id')->references('id')
-                ->on('dive_Sites')->onDelete('cascade');
+                ->on('dive_sites')->onDelete('cascade');
             $table->timestamps();
         });
     }
