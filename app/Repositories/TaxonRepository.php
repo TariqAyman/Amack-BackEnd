@@ -50,14 +50,11 @@ class TaxonRepository extends Repository
 
     private function uploadPhoto(array $data, Taxon $taxon): void
     {
-        Storage::delete($taxon->image);
-        $taxon->photo = '';
-
         if (isset($data['photo']) && ($data['photo'] instanceof UploadedFile) && request()->hasFile('photo')) {
             $dir = 'taxons/' . $taxon->id;
             $taxon->photo = Storage::disk('public')->put($dir, request()->file('photo'));
+            $taxon->save();
         }
-        $taxon->save();
     }
 
     public function removeImage(int $id): void

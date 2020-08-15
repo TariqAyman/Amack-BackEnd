@@ -67,5 +67,10 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
 
         Route::post('courses/data', 'CoursesController@data')->name('courses.data');
         Route::resource('courses', 'CoursesController');
+
+        Route::post('equipments/data', 'EquipmentsController@data')->name('equipments.data');
+        Route::resource('equipments', 'EquipmentsController');
+        Route::delete('equipments/{id}/remove-photo', 'EquipmentsController@removePhoto')
+            ->name('equipments.remove-photo');
     });
 });

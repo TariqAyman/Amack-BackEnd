@@ -34,7 +34,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview @if(in_array($current,['dive-entries','taxons', 'dive-activities','day-times','dive-sites','seasons'])) menu-open @endif">
+                <li class="nav-item has-treeview @if(in_array($current,['dive-entries','taxons', 'dive-activities','day-times','dive-sites','seasons', 'equipments'])) menu-open @endif">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-swimmer"></i>
                         <p>
@@ -83,6 +83,13 @@
                                class="nav-link @if($current === 'seasons') active @endif">
                                 <i class="fas fa-umbrella nav-icon"></i>
                                 <p>Seasons</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('equipments.index')}}"
+                               class="nav-link @if($current === 'equipments') active @endif">
+                                <i class="fas fa-toolbox nav-icon"></i>
+                                <p>Equipments</p>
                             </a>
                         </li>
                     </ul>

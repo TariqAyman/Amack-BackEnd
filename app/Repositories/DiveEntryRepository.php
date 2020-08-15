@@ -50,14 +50,11 @@ class DiveEntryRepository extends Repository
 
     private function uploadImage(array $data, DiveEntry $entry): void
     {
-        Storage::delete($entry->image);
-        $entry->photo = '';
-
         if (isset($data['photo']) && ($data['photo'] instanceof UploadedFile) && request()->hasFile('photo')) {
             $dir = 'dive-entries/' . $entry->id;
             $entry->photo = Storage::disk('public')->put($dir, request()->file('photo'));
+            $entry->save();
         }
-        $entry->save();
     }
 
     public function removeImage(int $id): void
