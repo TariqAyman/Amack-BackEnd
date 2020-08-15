@@ -30,10 +30,9 @@ $factory->define(DiveSite::class, function (Faker $faker) {
         'description' => $faker->text,
         'longitude' => $faker->longitude,
         'latitude' => $faker->latitude,
-        'dive_entry_id' => DiveEntry::all()->random()->id,
         'max_depth' => $faker->numberBetween(),
         'current' => 'low',
-        'visibility' => $faker->numberBetween(),
+        'visibility' => 'high',
         'enabled' => 1
     ];
 });
