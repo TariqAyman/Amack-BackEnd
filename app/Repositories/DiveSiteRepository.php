@@ -80,7 +80,7 @@ class DiveSiteRepository extends Repository
         }
 
         return $query
-            ->with(['entry:id,name', 'license:id,name', 'city'
+            ->with(['entries', 'license:id,name', 'city'
                 , 'mainTaxon:id,name,description',
                 'subTaxons', 'dayTimes',
                 'seasons', 'activities'])

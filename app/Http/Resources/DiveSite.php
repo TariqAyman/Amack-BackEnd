@@ -19,7 +19,7 @@ class DiveSite extends JsonResource
         }
         $diveSiteView->maxDepth = $this->max_depth;
         $diveSiteView->current = $this->current;
-        $diveSiteView->diveEntry = $this->entry;
+        $diveSiteView->entries = $this->entries;
         $diveSiteView->visibility = $this->visibility;
         $diveSiteView->mainTaxon = $this->mainTaxon;
         $diveSiteView->city = DiveCity::make($this->city);

@@ -23,7 +23,7 @@ class DiveSiteView
     public $subTaxons;
 
 
-    public $diveEntry;
+    public $entries;
 
     /** @var array */
     public $seasons;
