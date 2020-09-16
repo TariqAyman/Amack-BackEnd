@@ -80,6 +80,7 @@ class DiveSiteRepository extends Repository
         }
 
         return $query
+            ->where('enabled', '=', 1)
             ->with(['entries', 'license:id,name', 'city'
                 , 'mainTaxon:id,name,description,photo',
                 'subTaxons', 'dayTimes',

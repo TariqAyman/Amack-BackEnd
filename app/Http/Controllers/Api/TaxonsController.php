@@ -13,7 +13,7 @@ class TaxonsController extends Controller
     public function index(): JsonResponse
     {
         $taxons = Taxon::query()
-            ->select('id', 'name')
+            ->select('id', 'name', 'photo')
             ->orderBy('name', 'desc')->get();
         return new JsonResponse($taxons);
     }
