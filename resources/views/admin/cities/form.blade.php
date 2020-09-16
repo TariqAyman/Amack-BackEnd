@@ -56,14 +56,14 @@
                                 <div class="form-group">
                                     <label for="latitude">Latitude</label>
                                     <input @if(isset($data)) value="{{$data->latitude}}" @endif name="latitude"
-                                           type="number"
+                                           type="number" step="any"
                                            class="form-control" id="latitude"
                                            placeholder="Latitude">
                                 </div>
                                 <div class="form-group">
                                     <label for="longitude">Longitude</label>
                                     <input @if(isset($data)) value="{{$data->longitude}}" @endif name="longitude"
-                                           type="number"
+                                           type="number" step="any"
                                            class="form-control" id="longitude"
                                            placeholder="Longitude">
                                 </div>
