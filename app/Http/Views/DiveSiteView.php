@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Views;
 
+use App\Http\Resources\SimpleDiveSite;
+
 class DiveSiteView
 {
     /** @var string */
@@ -18,11 +20,13 @@ class DiveSiteView
     /** @var double */
     public $latitude;
 
+    /** @var TaxonView */
     public $mainTaxon;
 
+    /** @var TaxonView[] */
     public $subTaxons;
 
-
+    /** @var DiveEntryView[] */
     public $entries;
 
     /** @var array */
@@ -46,4 +50,13 @@ class DiveSiteView
 
     /** @var array */
     public $dayTimes;
+
+    /** @var bool */
+    public $special;
+
+    /** @var bool */
+    public $guided;
+
+    /** @var SimpleDiveSite[] */
+    public $nearbySites;
 }

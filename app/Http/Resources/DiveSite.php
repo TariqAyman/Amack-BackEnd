@@ -19,7 +19,7 @@ class DiveSite extends JsonResource
         }
         $diveSiteView->maxDepth = $this->max_depth;
         $diveSiteView->current = $this->current;
-        $diveSiteView->entries = $this->entries;
+        $diveSiteView->entries = DiveEntry::collection($this->entries);
         $diveSiteView->visibility = $this->visibility;
         $diveSiteView->mainTaxon = $this->mainTaxon;
         $diveSiteView->city = DiveCity::make($this->city);
@@ -30,7 +30,9 @@ class DiveSite extends JsonResource
         $diveSiteView->activities = DiveActivity::collection($this->activities);
         $diveSiteView->dayTimes = DayTime::collection($this->dayTimes);
         $diveSiteView->license = $this->license;
-
+        $diveSiteView->special = $this->special;
+        $diveSiteView->guided = $this->guided;
+        $diveSiteView->nearbySites = SimpleDiveSite::collection($this->nearbySites);
         return $diveSiteView;
     }
 }

@@ -16,7 +16,7 @@ class Taxon extends Model
     public function getPhotoAttribute($photo)
     {
         if (!$photo) {
-            return '';
+            return null;
         }
         return Storage::disk('public')->url($photo);
     }

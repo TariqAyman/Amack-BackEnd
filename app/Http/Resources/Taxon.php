@@ -13,6 +13,9 @@ class Taxon extends JsonResource
         $taxonView = new TaxonView();
         $taxonView->id = $this->id;
         $taxonView->name = $this->name;
+        if (null !== $this->photo) {
+            $taxonView->photo = $this->photo;
+        }
         if (null !== $this->description) {
             $taxonView->description = $this->description;
         }

@@ -81,7 +81,7 @@ class DiveSiteRepository extends Repository
 
         return $query
             ->with(['entries', 'license:id,name', 'city'
-                , 'mainTaxon:id,name,description',
+                , 'mainTaxon:id,name,description,photo',
                 'subTaxons', 'dayTimes',
                 'seasons', 'activities'])
             ->orderBy('created_at', 'desc')
