@@ -59,4 +59,13 @@ class DiveSiteView
 
     /** @var SimpleDiveSite[] */
     public $nearbySites;
+
+    /** @var int */
+    public $rate;
+
+    /** @var array */
+    public $images;
+
+    /** @var array */
+    public $equipments;
 }

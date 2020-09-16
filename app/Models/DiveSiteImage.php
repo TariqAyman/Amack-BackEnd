@@ -15,7 +15,7 @@ class DiveSiteImage extends Model
     public function getPathAttribute($path)
     {
         if (!$path) {
-            return '';
+            return null;
         }
         return Storage::disk('public')->url($path);
     }

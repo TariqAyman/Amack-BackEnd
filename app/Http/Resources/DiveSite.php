@@ -33,6 +33,9 @@ class DiveSite extends JsonResource
         $diveSiteView->special = $this->special;
         $diveSiteView->guided = $this->guided;
         $diveSiteView->nearbySites = SimpleDiveSite::collection($this->nearbySites);
+        $diveSiteView->rate = $this->rate;
+        $diveSiteView->images = $this->images;
+        $diveSiteView->equipments = $this->equipments;
         return $diveSiteView;
     }
 }
