@@ -44,7 +44,7 @@ class UsersController extends Controller
     public function changePassword(ChangePassword $request): JsonResponse
     {
         /** @var User $user */
-        $user = auth()->user();
+        $user = auth('api')->user();
         $user->password = Hash::make($request->newPassword);
         $user->save();
 
@@ -58,7 +58,7 @@ class UsersController extends Controller
     public function changeAvatar(ChangeAvatar $request): JsonResponse
     {
         /** @var User $user */
-        $user = auth()->user();
+        $user = auth('api')->user();
         $photo = $this->imageHelper->save($request->photo, 'avatars/');
         $user->photo = $photo;
         $user->save();
@@ -70,7 +70,7 @@ class UsersController extends Controller
     public function me(): ProfileResource
     {
         /** @var User $user */
-        $user = auth()->user();
+        $user = auth('api')->user();
         return new ProfileResource(User::where('id', $user->id)->with(['licenses', 'defaultLicense.course:id,name'])->first());
     }
 }

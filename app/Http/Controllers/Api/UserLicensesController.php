@@ -28,7 +28,7 @@ class UserLicensesController extends Controller
     public function create(CreateLicense $request): JsonResponse
     {
         /** @var User $user */
-        $user = Auth()->user();
+        $user = Auth('api')->user();
 
         $frontPhoto = $this->imageHelper->save($request->frontPhoto, 'licenses/');
         $backPhoto = $this->imageHelper->save($request->backPhoto, 'licenses/');
@@ -48,7 +48,7 @@ class UserLicensesController extends Controller
     public function delete($id): JsonResponse
     {
         /** @var UserLicense|null $license */
-        $license = UserLicense::where(['id' => $id, 'user_id' => Auth()->user()->id])->first();
+        $license = UserLicense::where(['id' => $id, 'user_id' => Auth('api')->user()->id])->first();
 
         if (null === $license) {
             return response()->json(['message' => 'license not found'], 404);
@@ -59,12 +59,12 @@ class UserLicensesController extends Controller
 
     public function setDefault($id): JsonResponse
     {
-        $license = UserLicense::where(['id' => $id, 'user_id' => Auth()->user()->id])->first();
+        $license = UserLicense::where(['id' => $id, 'user_id' => Auth('api')->user()->id])->first();
         if (null === $license) {
             return response()->json(['message' => 'license not found'], 404);
         }
         /** @var User $user */
-        $user = Auth()->user();
+        $user = Auth('api')->user();
         $user->default_license = $id;
         $user->save();
         return response()->json('Sat Successfully', 200);
