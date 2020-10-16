@@ -68,12 +68,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="earning_type">Earning Type</label>
-                                    <select class="custom-select" required id="earning_type" name="earning_type">
-                                        <option @if(isset($data) && $data->earning_type === 'theoretical') selected
+                                    <label for="learning_type">Learning Type</label>
+                                    <select class="custom-select" required id="learning_type" name="learning_type">
+                                        <option @if(isset($data) && $data->learning_type === 'theoretical') selected
                                                 @endif value="theoretical"> Theoretical
                                         </option>
-                                        <option @if(isset($data) && $data->earning_type === 'practical') selected
+                                        <option @if(isset($data) && $data->learning_type === 'practical') selected
                                                 @endif value="practical"> Practical
                                         </option>
                                     </select>

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateDivingCoursesTable extends Migration
@@ -25,7 +26,7 @@ class CreateDivingCoursesTable extends Migration
             $table->foreign('required_license_id')->references('id')
                 ->on('diving_courses')->onDelete('cascade');
             $table->integer('days_num')->default(0);
-            $table->string('earning_type');
+            $table->string('learning_type');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

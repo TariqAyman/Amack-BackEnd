@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Admin;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AdminTableSeeder extends Seeder
@@ -15,6 +16,7 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('admins')->delete();
         Admin::create(
             [
                 'name' => 'admin',
@@ -25,7 +27,7 @@ class AdminTableSeeder extends Seeder
             ]
         );
 
-        factory(Admin::class, 10)->create()->each(function ($admin) {
-        });
+        // factory(Admin::class, 10)->create()->each(function ($admin) {
+        // });
     }
 }

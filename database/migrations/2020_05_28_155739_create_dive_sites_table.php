@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateDiveSitesTable extends Migration
@@ -17,11 +18,11 @@ class CreateDiveSitesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
-            $table->integer('max_depth');
-            $table->string('visibility');
-            $table->string('current');
+            $table->decimal('latitude', 10, 8)->default(28.488930);
+            $table->decimal('longitude', 11, 8)->default(34.501560);
+            $table->integer('max_depth')->default(0);
+            $table->string('visibility')->default('High');
+            $table->string('current')->default('Low');
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('main_taxon_id');
             $table->unsignedBigInteger('license_id');
