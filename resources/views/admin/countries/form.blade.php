@@ -44,11 +44,21 @@
                                            placeholder="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="enabled">Enabled</label>
+                                    <label for="enabled">Enabled For Dive</label>
                                     <div class="bootstrap-switch-square">
-                                        <input type="hidden" name="enabled" value="0">
-                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="enabled"
-                                               id="enabled" @if(isset($data) && $data->enabled) checked
+                                        <input type="hidden" name="enabled_for_dive" value="0">
+                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="enabled_for_dive"
+                                               id="enabled_for_dive" @if(isset($data) && $data->enabled_for_dive) checked
+                                               @endif value="1"/>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="enabled">Enabled For Dive</label>
+                                    <div class="bootstrap-switch-square">
+                                        <input type="hidden" name="enabled_for_signup" value="0">
+                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="enabled_for_signup"
+                                               id="enabled_for_signup" @if(isset($data) && $data->enabled_for_signup) checked
                                                @endif value="1"/>
                                     </div>
 

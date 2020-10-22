@@ -21,7 +21,7 @@ class CreateCitiesTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->references('id')
                 ->on('countries')->onDelete('cascade');
-            $table->boolean('is_dive')->default(0);
+            $table->boolean('is_dive')->default(1);
             $table->string('temp')->nullable();
             $table->string('wind')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();

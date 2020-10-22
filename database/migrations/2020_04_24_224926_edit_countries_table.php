@@ -14,7 +14,7 @@ class EditCountriesTable extends Migration
     public function up()
     {
         Schema::table('countries', function (Blueprint $table) {
-            $table->boolean('enabled')->default(1)->change();
+            $table->boolean('enabled_for_dive')->default(1)->change();
         });
     }
 

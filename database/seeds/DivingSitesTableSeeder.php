@@ -31,7 +31,7 @@ class DivingSitesTableSeeder extends Seeder
             'license_id' => Course::all()->random()->id,
                 'main_taxon_id' => Taxon::all()->random()->id,
             'enabled' => 1
-        
+
         ]);
 
         DiveSite::create([

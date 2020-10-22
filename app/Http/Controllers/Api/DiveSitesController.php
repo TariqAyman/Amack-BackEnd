@@ -33,7 +33,7 @@ class DiveSitesController extends Controller
     {
         $sites = $this->diveSiteRepository->search(request());
 
-        return response()->json( DiveSiteResource::collection($sites));
+        return   DiveSiteResource::collection($sites)->toArray((request()));
     }
 
     public function autoComplete()

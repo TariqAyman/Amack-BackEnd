@@ -27,6 +27,7 @@ class CreateDivingCoursesTable extends Migration
                 ->on('diving_courses')->onDelete('cascade');
             $table->integer('days_num')->default(0);
             $table->string('learning_type');
+            $table->boolean('enabled')->default(1);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

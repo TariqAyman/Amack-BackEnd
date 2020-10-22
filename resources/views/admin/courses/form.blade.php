@@ -99,6 +99,15 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="enabled">Enabled</label>
+                                    <div class="bootstrap-switch-square">
+                                        <input type="hidden" name="enabled" value="0">
+                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="enabled"
+                                               id="enabled" @if(isset($data) && $data->enabled) checked
+                                               @endif value="1"/>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
 

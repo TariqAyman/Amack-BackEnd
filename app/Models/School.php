@@ -10,7 +10,7 @@ class School extends Model
 {
     protected $table = 'diving_schools';
 
-    protected $fillable = ['name', 'logo'];
+    protected $fillable = ['name', 'logo','enabled'];
 
     public function courses()
     {
