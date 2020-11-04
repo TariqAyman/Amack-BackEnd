@@ -68,12 +68,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="earning_type">Earning Type</label>
-                                    <select class="custom-select" required id="earning_type" name="earning_type">
-                                        <option @if(isset($data) && $data->earning_type === 'theoretical') selected
+                                    <label for="learning_type">Learning Type</label>
+                                    <select class="custom-select" required id="learning_type" name="learning_type">
+                                        <option @if(isset($data) && $data->learning_type === 'theoretical') selected
                                                 @endif value="theoretical"> Theoretical
                                         </option>
-                                        <option @if(isset($data) && $data->earning_type === 'practical') selected
+                                        <option @if(isset($data) && $data->learning_type === 'practical') selected
                                                 @endif value="practical"> Practical
                                         </option>
                                     </select>
@@ -98,6 +98,15 @@
                                                 @endif value="{{$license->id}}"> {{$license->name}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="enabled">Enabled</label>
+                                    <div class="bootstrap-switch-square">
+                                        <input type="hidden" name="enabled" value="0">
+                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="enabled"
+                                               id="enabled" @if(isset($data) && $data->enabled) checked
+                                               @endif value="1"/>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->

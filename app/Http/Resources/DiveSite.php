@@ -11,7 +11,9 @@ class DiveSite extends JsonResource
 {
     public function toArray($request): DiveSiteView
     {
+
         $diveSiteView = new DiveSiteView();
+
 
         $diveSiteView->name = $this->name;
         if (null !== $this->description) {
@@ -34,8 +36,9 @@ class DiveSite extends JsonResource
         $diveSiteView->guided = $this->guided;
         $diveSiteView->nearbySites = SimpleDiveSite::collection($this->nearbySites);
         $diveSiteView->rate = $this->rate;
-        $diveSiteView->images = $this->images;
+        $diveSiteView->images = SimpleImagesSite::collection($this->images);
         $diveSiteView->equipments = $this->equipments;
+
         return $diveSiteView;
     }
 }

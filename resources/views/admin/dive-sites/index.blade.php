@@ -48,23 +48,14 @@
                                     <th>Main Type</th>
                                     <th>Depth</th>
                                     <th>Special</th>
+                                    <th>Latitude</th>
+                                    <th>Longtude</th>
                                     <th>Options</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>City</th>
-                                    <th>Main Type</th>
-                                    <th>Depth</th>
-                                    <th>Special</th>
-                                    <th>Options</th>
-                                </tr>
-                                </tfoot>
+
                             </table>
                         </div>
                     </div>
@@ -94,6 +85,8 @@
                 {data: 'main_type', name: 'main_type'},
                 {data: 'max_depth', name: 'max_depth'},
                 {data: 'special', name: 'special'},
+                {data: 'latitude', name: 'latitude'},
+                {data: 'longitude', name: 'longitude'},
                 {data: 'options', name: 'options', searchable: false, orderable: false}
             ]
         });

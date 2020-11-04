@@ -10,7 +10,7 @@ class Course extends Model
     protected $table = 'diving_courses';
 
     protected $fillable = [
-        'name', 'description', 'school_id', 'license_type', 'required_license_id', 'earning_type', 'days_num'
+        'name', 'description', 'school_id', 'license_type', 'required_license_id', 'learning_type', 'days_num','enabled'
     ];
 
     public function school()

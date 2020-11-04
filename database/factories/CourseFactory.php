@@ -22,7 +22,7 @@ $factory->define(Course::class, function (Faker $faker) {
         'name' => $faker->name,
         'description' => $faker->text(),
         'license_type' => 'main',
-        'earning_type' => 'theoretical',
+        'learning_type' => 'theoretical',
         'school_id' => factory(App\Models\School::class),
     ];
 });

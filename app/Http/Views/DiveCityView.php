@@ -18,4 +18,13 @@ class DiveCityView
 
     /** @var double */
     public $longitude;
+
+    /** @var string */
+    public $temp;
+
+    /** @var string */
+    public $wind;
+
+    /** @var double */
+    public $rate;
 }

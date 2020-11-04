@@ -9,7 +9,7 @@ class Country extends Model
 {
     protected $table = 'countries';
 
-    protected $fillable = ['name', 'enabled'];
+    protected $fillable = ['name', 'enabled_for_dive','enabled_for_signup'];
 
     public function cities()
     {

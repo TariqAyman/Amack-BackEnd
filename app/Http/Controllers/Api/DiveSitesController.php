@@ -32,7 +32,8 @@ class DiveSitesController extends Controller
     public function index()
     {
         $sites = $this->diveSiteRepository->search(request());
-        return DiveSiteResource::collection($sites);
+
+        return   DiveSiteResource::collection($sites)->toArray((request()));
     }
 
     public function autoComplete()

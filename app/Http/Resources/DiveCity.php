@@ -16,6 +16,11 @@ class DiveCity extends JsonResource
         $diveCityView->name = $this->name;
         $diveCityView->longitude = $this->longitude;
         $diveCityView->latitude = $this->latitude;
+        $diveCityView->description = $this->description;
+        $diveCityView->temp = $this->temp;
+        $diveCityView->wind = $this->wind;
+        $diveCityView->rate = $this->rate;
+    
         return $diveCityView;
     }
 }

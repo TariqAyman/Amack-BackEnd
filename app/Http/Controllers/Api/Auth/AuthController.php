@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Auth\UserLogin;
-use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -32,7 +32,7 @@ class AuthController extends Controller
         } catch (ModelNotFoundException $exception) {
             return response()->json(['errors' => 'Wrong Credentials'], 401);
         }
-
+           
         return new UserResource(auth('api')->user());
     }
 

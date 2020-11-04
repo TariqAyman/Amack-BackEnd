@@ -9,9 +9,9 @@ class SchoolsTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(School::class, 50)->create()->each(function ($school) {
+        factory(School::class, 1)->create()->each(function ($school) {
             $school->courses()->createMany(
-                factory(Course::class, 10)->make()->toArray()
+                factory(Course::class, 2)->make()->toArray()
             );
         });
     }

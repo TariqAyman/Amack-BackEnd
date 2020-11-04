@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SeasonsTableSeeder extends Seeder
 {
@@ -11,6 +12,7 @@ class SeasonsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('seasons')->delete();
         $seasons = [['name' => 'Spring'], ['name' => 'Autumn'], ['name' => 'winter'], ['name' => 'summer']];
         DB::table('seasons')->insert($seasons);
     }

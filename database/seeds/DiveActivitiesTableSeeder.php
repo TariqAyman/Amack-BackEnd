@@ -2,6 +2,7 @@
 
 use App\Models\DiveActivity;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DiveActivitiesTableSeeder extends Seeder
 {
@@ -12,6 +13,11 @@ class DiveActivitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(DiveActivity::class, 5)->create();
+        DB::table('dive_activities')->delete();
+        $dive_activities = [
+            ['id' => 1,'name' => "SCUBA Diving", 'description'=>'adasdeqad'],
+            ['id' => 2,'name' => "Free-Diving", 'description'=>'adasdeqad']
+        ];
+        DB::table('dive_activities')->insert($dive_activities);
     }
 }

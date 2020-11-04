@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SeasonsTableSeeder::class);
         $this->call(DivingSitesTableSeeder::class);
         $this->call(AdminTableSeeder::class);
+        $this->call(EquipmentsTableSeeder::class);
     }
 }
