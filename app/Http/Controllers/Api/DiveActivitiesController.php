@@ -8,11 +8,14 @@ use App\Http\Controllers\Controller;
 use App\Models\DiveActivity;
 use Illuminate\Http\JsonResponse;
 
-class DiveActivitiesController extends Controller
+class DiveActivitiesController extends ApiController
 {
-    public function index(): JsonResponse
+    /**
+     * @return string
+     */
+    public function index(): string
     {
         $activities = DiveActivity::query()->select('id', 'name')->get();
-        return new JsonResponse($activities);
+        return $this->success(new JsonResponse($activities));
     }
 }

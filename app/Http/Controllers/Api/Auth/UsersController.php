@@ -29,6 +29,7 @@ class UsersController extends Controller
 
     public function register(UserRegister $request): UserResource
     {
+        // todo : need to refactor to fillable
         /** @var User $user */
         $user = new User();
         $user->name = $request->name;

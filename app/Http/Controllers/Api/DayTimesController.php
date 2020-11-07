@@ -7,14 +7,17 @@ namespace App\Http\Controllers\Api;
 use App\Models\DayTime;
 use Illuminate\Http\JsonResponse;
 
-class DayTimesController
+class DayTimesController extends ApiController
 {
-    public function index(): JsonResponse
+    /**
+     * @return string
+     */
+    public function index(): string
     {
         $dayTimes = DayTime::query()
             ->select('id', 'name')
             ->orderBy('name', 'desc')
             ->get();
-        return new JsonResponse($dayTimes);
+        return $this->success(new JsonResponse($dayTimes));
     }
 }

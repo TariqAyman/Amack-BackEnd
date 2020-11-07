@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CountryRepository;
 use Illuminate\Http\JsonResponse;
 
-class CountriesController extends Controller
+class CountriesController extends ApiController
 {
     /** @var CountryRepository $countryRepository */
     private $countryRepository;
@@ -18,9 +18,12 @@ class CountriesController extends Controller
         $this->countryRepository = $countryRepository;
     }
 
-    public function listCountries(): JsonResponse
+    /**
+     * @return string
+     */
+    public function listCountries(): string
     {
         $countries = $this->countryRepository->findEnabled();
-        return response()->json($countries, 200);
+        return $this->success($countries);
     }
 }
