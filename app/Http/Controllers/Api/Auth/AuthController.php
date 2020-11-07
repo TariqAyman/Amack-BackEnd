@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Auth\UserLogin;
+use App\Http\Controllers\Api\ApiController;
+use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\User as UserResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-
-class AuthController extends Controller
+class AuthController extends ApiController
 {
     /** @var UserRepository */
     private $userRepository;
@@ -22,18 +22,29 @@ class AuthController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function login(UserLogin $request)
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function login(Request $request)
     {
+        $this->validator($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
         try {
             $user = $this->userRepository->findOneBy(['email' => $request->get('email')]);
+
             if (!Hash::check($request->get('password'), $user->password)) {
-                return response()->json(['errors' => 'Wrong Credentials'], 401);
+                return $this->errorResponse('Your password or email not correct');
             }
+
         } catch (ModelNotFoundException $exception) {
-            return response()->json(['errors' => 'Wrong Credentials'], 401);
+            return $this->errorResponse('Your password or email not correct');
         }
-           
-        return new UserResource(auth('api')->user());
+
+        return $this->success(new UserResource($user));
     }
 
     public function logout(): JsonResponse
@@ -44,6 +55,6 @@ class AuthController extends Controller
             throw new \InvalidArgumentException('token not found');
         }
         $user->token()->revoke();
-        return response()->json(['message' => 'User logged out successfully'], 200);
+        return $this->successResponse(['message' => 'User logged out successfully'], 200);
     }
 }
