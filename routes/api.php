@@ -14,29 +14,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login', 'Api\Auth\AuthController@login');
-Route::get('/social/login', 'Api\Auth\SocialLoginController@redirectToProvider');
-Route::get('/social/callback', 'Api\Auth\SocialLoginController@handleProviderCallback')->name('social.callback');
-Route::post('/social/auth', 'Api\Auth\SocialLoginController@auth')->name('social.auth');
-
-Route::post('/logout', 'Api\Auth\AuthController@logout')->middleware('auth:api');
-Route::patch('/me/change-password', 'Api\Auth\UsersController@changePassword')->middleware('auth:api');
-Route::get('/me', 'Api\Auth\UsersController@me')->middleware('auth:api');
-Route::patch('/me/change-avatar', 'Api\Auth\UsersController@changeAvatar')->middleware('auth:api');
-
-Route::post('user-licenses/create', 'Api\UserLicensesController@create')->middleware('auth:api');
-Route::delete('user-licenses/{id}', 'Api\UserLicensesController@delete')->middleware('auth:api');
-Route::patch('user-licenses/{id}/default', 'Api\UserLicensesController@setDefault')->middleware('auth:api');
+Route::post('/login', 'Auth\AuthController@login');
+Route::get('/social/login', 'Auth\SocialLoginController@redirectToProvider');
+Route::get('/social/callback', 'Auth\SocialLoginController@handleProviderCallback')->name('social.callback');
+Route::post('/social/auth', 'Auth\SocialLoginController@auth')->name('social.auth');
+Route::post('/register', 'Auth\UsersController@register');
 
 
-Route::post('/register', 'Api\Auth\UsersController@register');
-Route::get('/countries', 'Api\CountriesController@listCountries');
-Route::get('/schools', 'Api\SchoolsController@listSchools');
+Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class])->group(function () {
+    Route::post('/logout', 'Auth\AuthController@logout');
+    Route::patch('/me/change-password', 'Auth\UsersController@changePassword');
+    Route::get('/me', 'Auth\UsersController@me');
+    Route::patch('/me/change-avatar', 'Auth\UsersController@changeAvatar');
 
-Route::get('/taxons', 'Api\TaxonsController@index');
-Route::get('/seasons', 'Api\SeasonsController@index');
-Route::get('/day-times', 'Api\DayTimesController@index');
-Route::get('/dive-activities', 'Api\DiveActivitiesController@index');
+    Route::post('user-licenses/create', 'UserLicensesController@create');
+    Route::delete('user-licenses/{id}', 'UserLicensesController@delete');
+    Route::patch('user-licenses/{id}/default', 'UserLicensesController@setDefault');
 
-Route::post('/sites/search', 'Api\DiveSitesController@index');
-Route::get('/sites/autocomplete', 'Api\DiveSitesController@autoComplete');
+    Route::get('/countries', 'CountriesController@listCountries');
+    Route::get('/schools', 'SchoolsController@listSchools');
+
+    Route::get('/taxons', 'TaxonsController@index');
+    Route::get('/seasons', 'SeasonsController@index');
+    Route::get('/day-times', 'DayTimesController@index');
+    Route::get('/dive-activities', 'DiveActivitiesController@index');
+
+    Route::post('/sites/search', 'DiveSitesController@index');
+    Route::get('/sites/autocomplete', 'DiveSitesController@autoComplete');
+
+    Route::get('filters','FilterController@index');
+});
