@@ -11,9 +11,11 @@ class DayTime extends JsonResource
 {
     public function toArray($request)
     {
+        // todo: get icon
         $diveTimeView = new DayTimeView();
         $diveTimeView->id = $this->id;
         $diveTimeView->name = $this->name;
+        $diveTimeView->icon = $this->icon;
         return $diveTimeView;
     }
 }

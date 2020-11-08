@@ -44,6 +44,26 @@
                                            placeholder="name">
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="photo">Photo</label>
+                                    <input id="photo" type="file" class="form-control" name="icon" placeholder="photo"
+                                    >
+                                    <br>
+                                    <div style="display:inline-block">
+                                        @if(isset($data) && !empty($data->icon))
+                                            <div style="display:inline-block" class="img-wrap"
+                                                 id="photo-wrap">
+                                                <button id="delete-image"
+                                                        onclick="removePhoto(); return false;"
+                                                        class="close">
+                                                    &times;
+                                                </button>
+                                                <img id="photo-img" class="thumb" src="{{ $data->icon }}" alt="photo">
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
                             </div>
                             <!-- /.card-body -->
 
@@ -58,4 +78,45 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script>
+        function removePhoto() {
+            $.ajax({
+                type: 'Delete',
+                url: '{{route('seasons.remove-photo',$data->id??0)}}',
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                },
+                encode: true
+            }).done(function (response) {
+                $('#photo-wrap').remove();
+
+            });
+            return false;
+        }
+    </script>
+@stop
+@section('styles')
+    <style>
+        .thumb {
+            max-width: 150px;
+            max-height: 100px;
+        }
+
+        .img-wrap {
+            max-width: 150px;
+            max-height: 100px;
+
+            position: relative;
+        }
+
+        .img-wrap .close {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 100;
+        }
+    </style>
 @endsection

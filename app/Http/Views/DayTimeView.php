@@ -11,4 +11,7 @@ class DayTimeView
 
     /** @var string */
     public $name;
+
+    /** @var string */
+    public $icon;
 }
