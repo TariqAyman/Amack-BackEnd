@@ -40,22 +40,23 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
 
         Route::post('dive-entries/data', 'DiveEntriesController@data')->name('dive-entries.data');
         Route::resource('dive-entries', 'DiveEntriesController');
-        Route::delete('dive-entries/{id}/remove-photo', 'DiveEntriesController@removePhoto')
-            ->name('dive-entries.remove-photo');
+        Route::delete('dive-entries/{id}/remove-photo', 'DiveEntriesController@removePhoto')->name('dive-entries.remove-photo');
 
         Route::post('dive-activities/data', 'DiveActivitiesController@data')->name('dive-activities.data');
         Route::resource('dive-activities', 'DiveActivitiesController');
+        Route::delete('dive-activities/{id}/remove-photo', 'DiveActivitiesController@removePhoto')->name('dive-activities.remove-photo');
 
         Route::post('dive-sites/data', 'DiveSitesController@data')->name('dive-sites.data');
         Route::resource('dive-sites', 'DiveSitesController');
-        Route::delete('dive-sites/{id}/remove-image/{imageId}', 'DiveSitesController@removeImage')
-            ->name('dive-sites.remove-image');
+        Route::delete('dive-sites/{id}/remove-image/{imageId}', 'DiveSitesController@removeImage')->name('dive-sites.remove-image');
 
         Route::post('seasons/data', 'SeasonsController@data')->name('seasons.data');
         Route::resource('seasons', 'SeasonsController');
+        Route::delete('seasons/{id}/remove-photo', 'SeasonsController@removePhoto')->name('seasons.remove-photo');
 
         Route::post('day-times/data', 'DayTimesController@data')->name('day-times.data');
         Route::resource('day-times', 'DayTimesController');
+        Route::delete('day-times/{id}/remove-photo', 'DayTimesController@removePhoto')->name('day-times.remove-photo');
 
         Route::post('users/data', 'UsersController@data')->name('users.data');
         Route::resource('users', 'UsersController');
