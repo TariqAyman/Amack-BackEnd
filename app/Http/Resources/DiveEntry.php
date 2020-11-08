@@ -15,7 +15,7 @@ class DiveEntry extends JsonResource
         $diveEntryView = new DiveEntryView();
         $diveEntryView->id = $this->id;
         $diveEntryView->name = $this->name;
-        $diveEntryView->photo = $this->photo;
+        $diveEntryView->icon = $this->photo;
 
         return $diveEntryView;
     }

@@ -16,5 +16,5 @@ class TaxonView
     public $description;
 
     /** @var string|null */
-    public $photo;
+    public $icon;
 }

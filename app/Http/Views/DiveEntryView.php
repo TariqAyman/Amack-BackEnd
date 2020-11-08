@@ -14,5 +14,5 @@ class DiveEntryView
     public $name;
 
     /** @var string|null */
-    public $photo;
+    public $icon;
 }
