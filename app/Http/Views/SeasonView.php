@@ -12,4 +12,7 @@ class SeasonView
 
     /** @var string */
     public $name;
+
+    /** @var string */
+    public $icon;
 }
