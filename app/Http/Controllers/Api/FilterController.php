@@ -61,9 +61,9 @@ class FilterController extends ApiController
     public function index()
     {
         $taxons = $this->taxonRepository->getModel()::select('id', 'name', 'photo')->orderBy('name', 'desc')->get();
-        $seasons = $this->seasonRepository->getModel()::select('id', 'name')->orderBy('name', 'desc')->get();
-        $dayTimes = $this->dayTimeRepository->getModel()::select('id', 'name')->orderBy('name', 'desc')->get();
-        $activities = $this->diveActivityRepository->getModel()::select('id', 'name')->get();
+        $seasons = $this->seasonRepository->getModel()::select(['id', 'name','icon'])->orderBy('name', 'desc')->get();
+        $dayTimes = $this->dayTimeRepository->getModel()::select(['id', 'name','icon'])->orderBy('name', 'desc')->get();
+        $activities = $this->diveActivityRepository->getModel()::select(['id', 'name','icon'])->get();
         $diveEntry = $this->diveEntryRepository->getModel()::select('id', 'name')->get();
 
         $data = [
