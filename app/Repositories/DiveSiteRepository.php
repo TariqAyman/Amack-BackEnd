@@ -89,6 +89,16 @@ class DiveSiteRepository extends Repository
             ->get();
     }
 
+    public function findByIdApi(int $id)
+    {
+        return DiveSite::query()
+            ->where('id', $id)
+            ->with([
+                'nearbySites','images','dayTimes','activities','equipments','subTaxons'
+            ])
+            ->first();
+    }
+
     public function findByPartName($query)
     {
         return DiveSite::query()

@@ -41,6 +41,7 @@ Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class]
 
     Route::post('/sites/search', 'DiveSitesController@index');
     Route::get('/sites/autocomplete', 'DiveSitesController@autoComplete');
+    Route::get('/sites/{siteId}', 'DiveSitesController@show');
 
     Route::get('filters','FilterController@index');
 });

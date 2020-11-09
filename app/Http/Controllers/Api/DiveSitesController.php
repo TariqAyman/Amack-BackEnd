@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SimpleDiveSite;
+use App\Http\Resources\SiteResource;
 use App\Repositories\CityRepository;
 use App\Repositories\DiveSiteRepository;
 use App\Http\Resources\DiveSite as DiveSiteResource;
@@ -13,7 +14,7 @@ use App\Http\Resources\SimpleDiveSite as SimpleDiveSiteResource;
 use App\Http\Resources\SimpleDiveCity as SimpleDiveCityResource;
 use Illuminate\Http\JsonResponse;
 
-class DiveSitesController extends Controller
+class DiveSitesController extends ApiController
 {
     /** @var DiveSiteRepository */
     private $diveSiteRepository;
@@ -33,7 +34,14 @@ class DiveSitesController extends Controller
     {
         $sites = $this->diveSiteRepository->search(request());
 
-        return   DiveSiteResource::collection($sites)->toArray((request()));
+        return DiveSiteResource::collection($sites)->toArray((request()));
+    }
+
+    public function show($id)
+    {
+        $site = $this->diveSiteRepository->findByIdApi((int) $id);
+        $site = new SiteResource($site);
+        return $this->success($site);
     }
 
     public function autoComplete()
