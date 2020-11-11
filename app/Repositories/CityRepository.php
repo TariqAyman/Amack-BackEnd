@@ -77,6 +77,7 @@ class CityRepository extends Repository
                     $sql->where('rate', '=', $data->rate);
                 }
 
+                // todo: allow this filter
 //                if ($data->hide_old_dives) {
 //                    $sql->where('main_taxon_id', '=', $data->hide_old_dives);
 //                }
