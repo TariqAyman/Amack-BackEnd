@@ -44,7 +44,7 @@ class DiveSite extends Model
 
     public function entries()
     {
-        return $this->belongsToMany(DiveEntry::class, 'dive_site_activities', 'dive_site_id', 'activity_id')
+        return $this->belongsToMany(DiveEntry::class, 'dive_site_entries', 'dive_site_id', 'entry_id')
             ->withTimestamps();
     }
 
