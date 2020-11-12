@@ -11,9 +11,9 @@ class CountryRepository extends Repository
 {
     public function findEnabled(): ?Collection
     {
-        return Country::Where('enabled_for_dive', true)->select(['id', 'name'])->with(['cities' => function ($query) {
-            $query->where('enabled', true)->select(['id', 'name', 'country_id']);
-        }])->get();
+        return Country::Where('enabled_for_dive', true)
+            ->where('enabled_for_signup', true)
+            ->select(['id', 'name'])->get();
     }
 
     public function getModel()

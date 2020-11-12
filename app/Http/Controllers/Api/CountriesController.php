@@ -21,7 +21,7 @@ class CountriesController extends ApiController
     /**
      * @return string
      */
-    public function listCountries(): string
+    public function listCountries()
     {
         $countries = $this->countryRepository->findEnabled();
         return $this->success($countries);
