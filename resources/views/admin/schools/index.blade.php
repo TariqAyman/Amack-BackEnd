@@ -9,17 +9,17 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Dive Entries</h1>
+                    <h1>Schools</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Dive Entries</li>
+                        <li class="breadcrumb-item active">School</li>
                     </ol>
                 </div>
                 <div class="col-sm-12">
 
-                    <a class="float-sm-right" href="{{route('schools.create')}}">Add a new Dive Entry</a>
+                    <a class="float-sm-right" href="{{route('schools.create')}}">Add a new School</a>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
