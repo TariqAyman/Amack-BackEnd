@@ -20,6 +20,7 @@ Route::get('/social/callback', 'Auth\SocialLoginController@handleProviderCallbac
 Route::post('/social/auth', 'Auth\SocialLoginController@auth')->name('social.auth');
 Route::post('/register', 'Auth\UsersController@register');
 
+Route::get('/countries', 'CountriesController@listCountries');
 
 Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class])->group(function () {
     Route::post('/logout', 'Auth\AuthController@logout');
@@ -31,13 +32,14 @@ Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class]
     Route::delete('user-licenses/{id}', 'UserLicensesController@delete');
     Route::patch('user-licenses/{id}/default', 'UserLicensesController@setDefault');
 
-    Route::get('/countries', 'CountriesController@listCountries');
     Route::get('/schools', 'SchoolsController@listSchools');
 
+    //
     Route::get('/taxons', 'TaxonsController@index');
     Route::get('/seasons', 'SeasonsController@index');
     Route::get('/day-times', 'DayTimesController@index');
     Route::get('/dive-activities', 'DiveActivitiesController@index');
+    //
 
     Route::post('/sites/search', 'DiveSitesController@index');
     Route::get('/sites/autocomplete', 'DiveSitesController@autoComplete');
