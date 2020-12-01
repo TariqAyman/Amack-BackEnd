@@ -63,15 +63,21 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
 
         Route::post('schools/data', 'SchoolsController@data')->name('schools.data');
         Route::resource('schools', 'SchoolsController');
-        Route::delete('schools/{id}/remove-logo', 'SchoolsController@removeLogo')
-            ->name('schools.remove-logo');
+        Route::delete('schools/{id}/remove-logo', 'SchoolsController@removeLogo')->name('schools.remove-logo');
 
         Route::post('courses/data', 'CoursesController@data')->name('courses.data');
         Route::resource('courses', 'CoursesController');
 
         Route::post('equipments/data', 'EquipmentsController@data')->name('equipments.data');
         Route::resource('equipments', 'EquipmentsController');
-        Route::delete('equipments/{id}/remove-photo', 'EquipmentsController@removePhoto')
-            ->name('equipments.remove-photo');
+        Route::delete('equipments/{id}/remove-photo', 'EquipmentsController@removePhoto')->name('equipments.remove-photo');
+
+        Route::post('centers/data', 'CentersController@data')->name('centers.data');
+        Route::resource('centers', 'CentersController');
+        Route::delete('centers/{id}/remove-logo', 'CentersController@removeLogo')->name('centers.remove-logo');
+
+        Route::post('staff/data', 'StaffController@data')->name('staff.data');
+        Route::resource('staff', 'StaffController');
+
     });
 });
