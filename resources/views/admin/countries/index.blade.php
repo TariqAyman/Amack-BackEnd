@@ -39,7 +39,7 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <table id="datatable" class="table table-bordered table-hover dataTable">
+                            <table id="datatable" class="table table-bordered table-striped dataTable">
                                 <thead>
                                 <tr>
                                     <th>Id</th>
