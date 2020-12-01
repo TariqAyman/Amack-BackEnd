@@ -22,7 +22,7 @@ class AdminTableSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
                 'email_verified_at' => now(),
-                'password' => bcrypt('123123'),
+                'password' => '123123',
                 'remember_token' => Str::random(10),
             ]
         );
