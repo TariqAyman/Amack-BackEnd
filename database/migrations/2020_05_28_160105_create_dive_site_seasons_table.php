@@ -17,10 +17,9 @@ class CreateDiveSiteSeasonsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('dive_site_id');
             $table->unsignedBigInteger('season_id');
-            $table->foreign('dive_site_id')->references('id')
-                ->on('dive_sites')->onDelete('cascade');
-            $table->foreign('season_id')->references('id')
-                ->on('seasons')->onDelete('cascade');
+            $table->foreign('dive_site_id')->references('id')->on('dive_sites')->onDelete('cascade');
+            $table->foreign('season_id')->references('id')->on('seasons')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

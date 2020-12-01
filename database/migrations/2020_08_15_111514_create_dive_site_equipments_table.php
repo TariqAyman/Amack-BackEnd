@@ -17,10 +17,8 @@ class CreateDiveSiteEquipmentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('dive_site_id');
             $table->unsignedBigInteger('equipment_id');
-            $table->foreign('dive_site_id')->references('id')
-                ->on('dive_sites')->onDelete('cascade');
-            $table->foreign('equipment_id')->references('id')
-                ->on('equipments')->onDelete('cascade');
+            $table->foreign('dive_site_id')->references('id')->on('dive_sites')->onDelete('cascade');
+            $table->foreign('equipment_id')->references('id')->on('equipments')->onDelete('cascade');
             $table->timestamps();
         });
     }

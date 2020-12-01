@@ -19,6 +19,7 @@ class CreateDivingSchoolsTable extends Migration
             $table->string('name');
             $table->string('logo')->nullable();
             $table->boolean('enabled')->default(1);
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

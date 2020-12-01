@@ -17,8 +17,8 @@ class CreateSiteImagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('path');
             $table->unsignedBigInteger('dive_site_id');
-            $table->foreign('dive_site_id')->references('id')->on('dive_sites')
-                ->onDelete('cascade');
+            $table->foreign('dive_site_id')->references('id')->on('dive_sites')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

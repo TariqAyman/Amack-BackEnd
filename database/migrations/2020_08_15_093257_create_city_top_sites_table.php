@@ -17,10 +17,8 @@ class CreateCityTopSitesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('dive_site_id');
-            $table->foreign('city_id')->references('id')
-                ->on('cities')->onDelete('cascade');
-            $table->foreign('dive_site_id')->references('id')
-                ->on('dive_sites')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('dive_site_id')->references('id')->on('dive_sites')->onDelete('cascade');
             $table->timestamps();
         });
     }

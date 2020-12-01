@@ -23,7 +23,12 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable();
             $table->string('photo')->nullable();
             $table->enum('gender', ['m', 'f', 'u'])->default('u');
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

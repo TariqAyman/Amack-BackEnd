@@ -15,8 +15,7 @@ class AddPeakSeasonToCitiesTable extends Migration
     {
         Schema::table('cities', function (Blueprint $table) {
             $table->unsignedBigInteger('peak_season_id')->nullable();
-            $table->foreign('peak_season_id')->references('id')
-                ->on('seasons')->onDelete('cascade');
+            $table->foreign('peak_season_id')->references('id')->on('seasons')->onDelete('cascade');
         });
     }
 

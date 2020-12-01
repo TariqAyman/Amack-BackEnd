@@ -16,8 +16,7 @@ class CreatePackageCoursesTable extends Migration
         Schema::create('package_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('id')
-                ->on('diving_courses')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('diving_courses')->onDelete('cascade');
             $table->timestamps();
         });
     }

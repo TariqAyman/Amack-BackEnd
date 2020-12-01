@@ -19,8 +19,7 @@ class CreateCitiesTable extends Migration
             $table->string('name');
             $table->longText('description')->nullable();
             $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('id')
-                ->on('countries')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->boolean('is_dive')->default(1);
             $table->string('temp')->nullable();
             $table->string('wind')->nullable();
@@ -31,6 +30,7 @@ class CreateCitiesTable extends Migration
             $table->decimal('emergency_longitude', 11, 8)->nullable();
             $table->integer('rate')->default(0);
             $table->boolean('enabled')->default(1);
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

@@ -22,8 +22,8 @@ class CreateEquipmentsTable extends Migration
             $table->string('image')->nullable();
             $table->string('state');
             $table->unsignedBigInteger('season_id')->nullable();
-            $table->foreign('season_id')->references('id')
-                ->on('seasons')->onDelete('cascade');
+            $table->foreign('season_id')->references('id')->on('seasons')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

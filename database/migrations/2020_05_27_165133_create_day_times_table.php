@@ -16,6 +16,8 @@ class CreateDayTimesTable extends Migration
         Schema::create('day_times', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('icon')->nullable();
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

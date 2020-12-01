@@ -23,6 +23,7 @@ class CreateCountriesTable extends Migration
             $table->decimal('longitude', 11, 8)->nullable();
             $table->boolean('enabled_for_dive')->default(1);
             $table->boolean('enabled_for_signup')->default(1);
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
