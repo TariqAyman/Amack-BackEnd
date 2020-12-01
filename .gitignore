@@ -13,3 +13,11 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .php_cs.cache
+.phpstorm.meta.php
+_ide_helper.php
+/.idea
+/.env.*.local
+/.env.local
+/.env.local.php
+/public/uploads
+/public/uploads/*
