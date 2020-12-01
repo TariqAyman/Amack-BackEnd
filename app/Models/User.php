@@ -5,22 +5,32 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
+    use LogsActivity, SoftDeletes;
+
     use HasApiTokens, Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'mobile', 'birth_date', 'photo', 'city_id', 'country_id', 'default_license'
+    ];
+
+    protected static $logName = 'users';
+    protected static $logAttributes = [
+        'name', 'email', 'password', 'mobile', 'birth_date', 'photo', 'city_id', 'country_id', 'default_license'
     ];
 
     /**
@@ -57,4 +67,16 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    // todo : gender , is_mobile_verified
 }
