@@ -145,6 +145,32 @@
                     </ul>
                 </li>
 
+                <li class="nav-item has-treeview @if($current === 'centers' || $current === 'staff') menu-open @endif">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Centers
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('centers.index')}}"
+                               class="nav-link @if($current === 'centers') active @endif">
+                                <i class="fas fa-place-of-worship nav-icon"></i>
+                                <p>Centers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('centers.index')}}"
+                               class="nav-link @if($current === 'staff') active @endif">
+                                <i class="fas fa-city nav-icon"></i>
+                                <p>Staff</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{route('admins.index')}}" class="nav-link @if($current === 'admins') active @endif">
                         <i class="nav-icon fas  fa-user-shield"></i>
