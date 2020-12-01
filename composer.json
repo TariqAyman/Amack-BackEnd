@@ -20,11 +20,13 @@
         "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "laravelcollective/html": "^6.2",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-permission": "^3.17",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.6",
         "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.4",
@@ -71,6 +73,23 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta"
+        ],
+        "clear-all": [
+            "@php artisan clear-compiled",
+            "@php artisan cache:clear",
+            "@php artisan route:clear",
+            "@php artisan view:clear",
+            "@php artisan config:clear",
+            "composer dumpautoload -o"
+        ],
+        "cache-all": [
+            "@php artisan config:cache",
+            "@php artisan route:cache"
         ]
     }
 }
