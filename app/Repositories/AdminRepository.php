@@ -33,16 +33,13 @@ class AdminRepository extends Repository
 
     public function insert(array $data): Model
     {
-        $data['password'] = bcrypt($data['password']);
         return $this->model::query()->create($data);
     }
 
     public function update(int $id, array $data): Model
     {
         $object = $this->find($id);
-        if ($data['password']) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
+        if (!$data['password']) {
             unset($data['password']);
         }
 
