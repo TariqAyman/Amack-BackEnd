@@ -37,55 +37,56 @@
                             @endif
                             <div class="card-body">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input @if(isset($data)) value="{{$data->name}}" @endif name="name" type="text"
-                                           class="form-control" id="name"
-                                           placeholder="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Country</label>
-                                    <select class="custom-select" required id="country" name="country_id">
-                                        @foreach($countries as $country)
-                                            <option @if(isset($data) && $data->country_id === $country->id) selected
-                                                    @endif value="{{$country->id}}"> {{$country->name}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Name</label>
+                                        <input @if(isset($data)) value="{{$data->name}}" @endif name="name" type="text"
+                                               class="form-control" id="name"
+                                               placeholder="name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="country">Country</label>
+                                        <select class="custom-select" required id="country" name="country_id">
+                                            @foreach($countries as $country)
+                                                <option @if(isset($data) && $data->country_id === $country->id) selected
+                                                        @endif value="{{$country->id}}"> {{$country->name}}</option>
+                                            @endforeach
+                                        </select>
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="latitude">Latitude</label>
-                                    <input @if(isset($data)) value="{{$data->latitude}}" @endif name="latitude"
-                                           type="number" step="any"
-                                           class="form-control" id="latitude"
-                                           placeholder="Latitude">
-                                </div>
-                                <div class="form-group">
-                                    <label for="longitude">Longitude</label>
-                                    <input @if(isset($data)) value="{{$data->longitude}}" @endif name="longitude"
-                                           type="number" step="any"
-                                           class="form-control" id="longitude"
-                                           placeholder="Longitude">
-                                </div>
-                                <div class="form-group">
-                                    <label for="is_dive">Dive</label>
-                                    <div class="bootstrap-switch-square">
-                                        <input type="hidden" name="is_dive" value="0">
-                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="is_dive"
-                                               id="is_dive" @if(isset($data) && $data->is_dive) checked
-                                               @endif value="1"/>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="latitude">Latitude</label>
+                                        <input @if(isset($data)) value="{{$data->latitude}}" @endif name="latitude"
+                                               type="number" step="any"
+                                               class="form-control" id="latitude"
+                                               placeholder="Latitude">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="longitude">Longitude</label>
+                                        <input @if(isset($data)) value="{{$data->longitude}}" @endif name="longitude"
+                                               type="number" step="any"
+                                               class="form-control" id="longitude"
+                                               placeholder="Longitude">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="is_dive">Dive</label>
+                                        <div class="bootstrap-switch-square">
+                                            <input type="hidden" name="is_dive" value="0">
+                                            <input type="checkbox" data-toggle="toggle" data-width="100" name="is_dive"
+                                                   id="is_dive" @if(isset($data) && $data->is_dive) checked
+                                                   @endif value="1"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="enabled">Enabled</label>
+                                        <div class="bootstrap-switch-square">
+                                            <input type="hidden" name="enabled" value="0">
+                                            <input type="checkbox" data-toggle="toggle" data-width="100" name="enabled"
+                                                   id="enabled" @if(isset($data) && $data->enabled) checked
+                                                   @endif value="1"/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="enabled">Enabled</label>
-                                    <div class="bootstrap-switch-square">
-                                        <input type="hidden" name="enabled" value="0">
-                                        <input type="checkbox" data-toggle="toggle" data-width="100" name="enabled"
-                                               id="enabled" @if(isset($data) && $data->enabled) checked
-                                               @endif value="1"/>
-                                    </div>
-                                </div>
-
                             </div>
                             <!-- /.card-body -->
 
