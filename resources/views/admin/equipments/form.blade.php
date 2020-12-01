@@ -37,13 +37,13 @@
                             @endif
                             <div class="card-body">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="name">Name</label>
                                     <input @if(isset($data)) value="{{$data->name}}" @endif name="name" type="text"
                                            class="form-control" id="name"
                                            placeholder="name">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="state">State</label>
                                     <select class="custom-select" required id="state" name="state">
                                         <option @if(isset($data) && $data->state === 'main') selected
@@ -54,7 +54,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="image">Image</label>
                                     <input id="image" type="file" class="form-control" name="image" placeholder="image"
                                     >
@@ -74,7 +74,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="season_id">Season</label>
                                     <select class="custom-select" required id="season_id" name="season_id">
                                         @foreach($seasons as $season)
@@ -83,7 +83,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="night_dive">Night Dive</label>
                                     <div class="bootstrap-switch-square">
                                         <input type="hidden" name="night_dive" value="0">
@@ -92,7 +92,7 @@
                                                @endif value="1"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="nitrox">Nitrox</label>
                                     <div class="bootstrap-switch-square">
                                         <input type="hidden" name="nitrox" value="0">
