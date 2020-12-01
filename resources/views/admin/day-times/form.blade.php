@@ -37,14 +37,14 @@
                             @endif
                             <div class="card-body">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="name">Name</label>
                                     <input @if(isset($data)) value="{{$data->name}}" @endif name="name" type="text"
                                            class="form-control" id="name"
                                            placeholder="name">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="photo">Photo</label>
                                     <input id="photo" type="file" class="form-control" name="icon" placeholder="photo"
                                     >
