@@ -19,4 +19,9 @@ class DiveSiteImage extends Model
         }
         return Storage::disk('public')->url($path);
     }
+
+    public function site()
+    {
+        return $this->belongsTo(DiveSite::class, 'dive_site_id');
+    }
 }
