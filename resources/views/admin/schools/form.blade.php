@@ -37,13 +37,13 @@
                             @endif
                             <div class="card-body">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="name">Name</label>
                                     <input @if(isset($data)) value="{{$data->name}}" @endif name="name" type="text"
                                            class="form-control" id="name"
                                            placeholder="name">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="logo">Logo</label>
                                     <input id="logo" type="file" class="form-control" name="logo" placeholder="logo"
                                     >
@@ -61,7 +61,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-md-6">
                                         <label for="enabled">Enabled</label>
                                         <div class="bootstrap-switch-square">
                                             <input type="hidden" name="enabled" value="0">
