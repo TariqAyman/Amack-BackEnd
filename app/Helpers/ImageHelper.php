@@ -1,7 +1,16 @@
 <?php
+/*
+ * Created by PhpStorm.
+ * Developer: Tariq Ayman ( tariq.ayman94@gmail.com )
+ * Date: 12/2/20, 3:52 AM
+ * Last Modified: 10/24/20, 7:41 PM
+ * Project Name: Amack-BackEnd
+ * File Name: ImageHelper.php
+ */
+
 declare(strict_types=1);
 
-namespace App\Http\Helpers;
+namespace App\Helpers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
