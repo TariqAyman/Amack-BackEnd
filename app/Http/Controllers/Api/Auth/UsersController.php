@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
-use App\Http\Helpers\ImageHelper;
+use App\Helpers\ImageHelper;
 use App\Http\Requests\Api\Auth\UserRegister;
 use App\Http\Requests\Api\Users\ChangeAvatar;
 use App\Http\Requests\Api\Users\ChangePassword;
@@ -52,7 +52,7 @@ class UsersController extends ApiController
         $user->mobile = $request->mobile;
         $user->city_id = $request->city_id;
         $user->country_id = $request->country_id;
-        $user->password = Hash::make($request->password);
+        $user->password = $request->password;
         $user->save();
         return $this->success(new UserResource($user));
     }
@@ -61,7 +61,7 @@ class UsersController extends ApiController
     {
         /** @var User $user */
         $user = auth('api')->user();
-        $user->password = Hash::make($request->newPassword);
+        $user->password = $request->newPassword;
         $user->save();
 
         if (null === $user->token()) {

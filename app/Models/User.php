@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -57,6 +58,12 @@ class User extends Authenticatable
             ->withPivot('id', 'license_number', 'front_photo', 'back_photo');
     }
 
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            return $this->attributes['password'] = Hash::make($value);
+        }
+    }
 
     public function defaultLicense()
     {
