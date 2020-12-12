@@ -15,6 +15,7 @@ class SiteResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id" => $this->id,
             "name" => $this->name,
             "images" => $this->images->pluck('path'),
             "site_type" => $this->mainTaxon->name,
