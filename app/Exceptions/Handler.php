@@ -62,6 +62,6 @@ class Handler extends ExceptionHandler
             return response()->json(['message' => "You are Unauthorized."], 401);
         }
 
-        return redirect()->guest(route(RouteServiceProvider::HOME));
+        return redirect()->guest(route('login'));
     }
 }
