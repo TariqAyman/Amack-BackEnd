@@ -198,12 +198,6 @@
 <script src="{{ asset('/soon/assets/js/particles.min.js') }}"></script>
 <!-- WOW Min JS -->
 <script src="{{ asset('/soon/assets/js/wow.min.js') }}"></script>
-<!-- AjaxChimp Min JS -->
-<script src="{{ asset('/soon/assets/js/jquery.ajaxchimp.min.js') }}"></script>
-<!-- Form Validator Min JS -->
-<script src="{{ asset('/soon/assets/js/form-validator.min.js') }}"></script>
-<!-- Contact Form Min JS -->
-<script src="{{ asset('/soon/assets/js/contact-form-script.js') }}"></script>
 <!-- Main JS -->
 <script src="{{ asset('/soon/assets/js/main.js') }}"></script>
 </body>
