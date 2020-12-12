@@ -16,6 +16,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
+    protected $centerNamespace = 'App\Http\Controllers\Center';
+
     protected $apiNamespace = 'App\Http\Controllers\Api';
 
 
@@ -49,6 +51,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapCenterRoutes();
         //
     }
 
@@ -62,8 +65,23 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
+    }
+
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapCenterRoutes()
+    {
+        Route::prefix('center')
+            ->middleware('web')
+            ->namespace($this->centerNamespace)
+            ->group(base_path('routes/center.php'));
     }
 
     /**
@@ -76,8 +94,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
+            ->middleware('api')
             ->namespace($this->apiNamespace)
-             ->group(base_path('routes/api.php'));
+            ->group(base_path('routes/api.php'));
     }
 }
