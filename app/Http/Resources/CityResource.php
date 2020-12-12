@@ -25,16 +25,18 @@ class CityResource extends JsonResource
             "description" => $this->description,
             "average_temp" => $this->temp,
             "average_wind" => $this->wind,
-            "emergency" => [[
-                "id" => 1,
-                "title" => "TOURIMS POLICE",
-                "icon" => "url",
-                "number" => "01117724287",
-                "location" => [
-                    "lat" => "30.303",
-                    "long" => "28.021"
+            "emergency" => [
+                [
+                    "id" => 1,
+                    "title" => "TOURIMS POLICE",
+                    "icon" => asset('center-panel/images/icon-call.png'),
+                    "number" => "01117724287",
+                    "location" => [
+                        "lat" => "30.303",
+                        "long" => "28.021"
+                    ]
                 ]
-            ]],
+            ],
             "top_sites" => SiteResource::collection($this->top_sites)
         ];
     }
