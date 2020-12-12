@@ -20,7 +20,7 @@ class CityRepository extends Repository
         }
 
         if ($data->name || $data->main_taxon_id || $data->maxDepth || $data->dayTimes || $data->activities ||
-            $data->diveEntries || $data->seasons || $data->taxons  || $data->rate  || $data->max_depth || $data->hide_old_dives || $data->special_sites_only) {
+            $data->diveEntries || $data->seasons || $data->taxons || $data->rate || $data->max_depth || $data->hide_old_dives || $data->special_sites_only) {
 
             $query->whereHas('sites', function ($sql) use ($data) {
 
@@ -85,7 +85,6 @@ class CityRepository extends Repository
                 if ($data->special_sites_only) {
                     $sql->where('special', '=', $data->special_sites_only);
                 }
-
             });
         }
 
@@ -127,5 +126,28 @@ class CityRepository extends Repository
             })
             ->rawColumns(['options'])
             ->make(true);
+    }
+
+    public function getWith($id, $data)
+    {
+        $query = City::query()
+            ->where('id', $id);
+
+        return $query
+            ->where('enabled', '=', 1)
+            ->with($data)
+            ->orderBy('created_at', 'desc')
+            ->firstOrFail();
+    }
+
+    public function getAllWith($data)
+    {
+        $query = City::query();
+
+        return $query
+            ->where('enabled', '=', 1)
+            ->with($data)
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 }
