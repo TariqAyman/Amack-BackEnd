@@ -17,8 +17,8 @@ class CitiesResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "image" => "url",
-            "rate" => "",
+            "image" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTItKb-XnJWhU_NkWbaijbwom30tWK11Q6teg&usqp=CAU",
+            "rate" => 3.5,
             "dive_sites" => $this->sites->count(),
             "location" => [
                 "lat" => $this->latitude,

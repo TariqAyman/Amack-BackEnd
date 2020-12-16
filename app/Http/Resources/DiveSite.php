@@ -14,6 +14,7 @@ class DiveSite extends JsonResource
 
         $diveSiteView = new DiveSiteView();
 
+        $diveSiteView->id = $this->id;
 
         $diveSiteView->name = $this->name;
         if (null !== $this->description) {

@@ -8,6 +8,9 @@ use App\Http\Resources\SimpleDiveSite;
 
 class DiveSiteView
 {
+    /** @var int */
+    public $id;
+
     /** @var string */
     public $name;
 

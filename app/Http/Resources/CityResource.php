@@ -17,7 +17,7 @@ class CityResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "images" => $this->images,
+            "images" => collect($this->images)->merge(["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTItKb-XnJWhU_NkWbaijbwom30tWK11Q6teg&usqp=CAU"]) ,
             "rate" => $this->rate,
             "dive_sites" => $this->sites->count(),
             "dive_centers" => 200,
