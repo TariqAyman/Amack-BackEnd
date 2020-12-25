@@ -33,4 +33,9 @@ class Equipment extends Model
     {
         return $this->belongsTo(Season::class, 'season_id');
     }
+
+    public function sites()
+    {
+        return $this->belongsToMany(DiveSite::class,'dive_site_equipments','equipment_id','dive_site_id');
+    }
 }

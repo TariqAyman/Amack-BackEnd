@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Equipment;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -63,5 +64,20 @@ class EquipmentRepository extends Repository
         Storage::delete($equipment->image);
         $equipment->image = '';
         $equipment->save();
+    }
+
+    public function getByIds($ids)
+    {
+        return $this->model::where(function ($sql) use ($ids) {
+            if (is_array($ids)) {
+                $sql->whereHas('sites', function (Builder $query) use ($ids) {
+                    $query->whereIn('dive_sites.id', $ids);
+                });
+            } else {
+                $sql->whereHas('sites', function (Builder $query) use ($ids) {
+                    $query->where('dive_sites.id', $ids);
+                });
+            }
+        })->get();
     }
 }
