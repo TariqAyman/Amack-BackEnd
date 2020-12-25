@@ -17,20 +17,29 @@ class SiteResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "rate" => $this->rate,
             "images" => $this->images->pluck('path'),
-            "site_type" => $this->mainTaxon->name,
-            "max_depth" => $this->max_depth,
-            "visibility" => $this->visibility,
-            "required_license" => "",
-            "time_of_day" => DayTime::collection($this->dayTimes),
-            "activities" => DiveActivity::collection($this->activities),
-            "when_to_visit" => [],
+            "active_info" => [
+                "visited_by" => "3 Center",
+                "next_trip_in" => "14 days"
+            ],
+            "description" => $this->description,
+            "trip_info" => [
+                "site_type" => $this->mainTaxon->name,
+                "dive_entry" => $this->entries->pluck('name'),
+                "max_depth" => $this->max_depth,
+                "current" => $this->current,
+                "visibility" => $this->visibility,
+                "required_license" => $this->license->name,
+                "time_of_day" => DayTime::collection($this->dayTimes),
+                "activities" => DiveActivity::collection($this->activities),
+                "when_to_visit" => $this->seasons->pluck('name'),
+            ],
             "site_features" => Taxon::collection($this->subTaxons),
             "recommended_equipment" => EquipmentResource::collection($this->equipments),
             "near_sites" => NearbySiteResource::collection($this->nearbySites),
-            "rate" => $this->rate,
             "isSpecial" => $this->special,
-            "isAvailable" => $this->enabled
+            "isAvailable" => $this->enabled,
         ];
     }
 }
