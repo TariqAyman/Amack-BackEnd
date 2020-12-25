@@ -17,13 +17,13 @@ class CityResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "images" => collect($this->images)->merge(["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTItKb-XnJWhU_NkWbaijbwom30tWK11Q6teg&usqp=CAU"]) ,
             "rate" => $this->rate,
+            "images" => collect($this->images)->merge(["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTItKb-XnJWhU_NkWbaijbwom30tWK11Q6teg&usqp=CAU"]) ,
             "dive_sites" => $this->sites->count(),
             "dive_centers" => 200,
-            "peak_seasons" => "summer",
+            "peak_seasons" => $this->peak_season->name ?? '',
             "top_place" => "mamsha",
-            "description" => $this->description,
+            "about" => $this->description,
             "average_temp" => $this->temp,
             "average_wind" => $this->wind,
             "emergency" => [
