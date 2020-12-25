@@ -48,5 +48,7 @@ Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class]
     Route::post('/cities/search', 'CitiesController@index');
     Route::get('/cities/{id}', 'CitiesController@show');
 
+    Route::post('/sites/equipments', 'EquipmentsController@getEquipmentBySitesIds');
+
     Route::get('filters','FilterController@index');
 });
