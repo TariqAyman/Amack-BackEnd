@@ -70,6 +70,7 @@ class CenterRepository extends Repository
         /** @var Center $center */
         $center = $this->find($id);
         $center->update($data);
+        if(!empty($data['sites'])) $center->diveSites()->sync($data['sites']);
         $this->uploadLogo($data, $center);
         return $center->fresh();
     }
