@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Center extends Model
@@ -45,6 +46,10 @@ class Center extends Model
         'mini_days_boat_dives',
         'max_days_shore_dives',
         'max_days_boat_dives',
+        'mini_days_em_dives',
+        'mini_days_night_dives',
+        'max_days_em_dives',
+        'max_days_night_dives',
         'bank_name',
         'account_name',
         'account_number',
@@ -84,6 +89,10 @@ class Center extends Model
         'mini_days_boat_dives',
         'max_days_shore_dives',
         'max_days_boat_dives',
+        'mini_days_em_dives',
+        'mini_days_night_dives',
+        'max_days_em_dives',
+        'max_days_night_dives',
         'bank_name',
         'account_name',
         'account_number',
@@ -110,6 +119,14 @@ class Center extends Model
 
     public function diveSites()
     {
-        return $this->belongsToMany(DiveSite::class, 'centers_dive_sites', 'center_id', 'dive_site_id');
+        return $this->belongsToMany(DiveSite::class, 'centers_dive_sites', 'center_id', 'dive_site_id')->withTimestamps();
+    }
+
+    public function getLogoAttribute($logo)
+    {
+        if (!$logo) {
+            return null;
+        }
+        return Storage::url($logo);
     }
 }
