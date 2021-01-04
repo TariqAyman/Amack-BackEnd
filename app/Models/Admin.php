@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Admin extends Authenticatable
@@ -43,5 +44,9 @@ class Admin extends Authenticatable
         }
     }
 
+    public function getPhotoAttribute($value)
+    {
+        return Storage::url($value);
+    }
     // todo: title , permissions & role
 }
