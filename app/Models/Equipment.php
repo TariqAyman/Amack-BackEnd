@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Equipment extends Model
@@ -26,7 +27,7 @@ class Equipment extends Model
         if (!$image) {
             return '';
         }
-        return Storage::disk('public')->url($image);
+        return Storage::url($image);
     }
 
     public function season_id()
@@ -37,5 +38,10 @@ class Equipment extends Model
     public function sites()
     {
         return $this->belongsToMany(DiveSite::class,'dive_site_equipments','equipment_id','dive_site_id');
+    }
+
+    public function getStateAttribute($value): string
+    {
+        return Str::lower($value);
     }
 }
