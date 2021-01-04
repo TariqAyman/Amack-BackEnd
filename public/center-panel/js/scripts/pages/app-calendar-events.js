@@ -11,7 +11,7 @@ var nextMonth = date.getMonth() === 11 ? new Date(date.getFullYear() + 1, 0, 1) 
 // prettier-ignore
 var prevMonth = date.getMonth() === 11 ? new Date(date.getFullYear() - 1, 0, 1) : new Date(date.getFullYear(), date.getMonth() - 1, 1);
 
-var events = [
+var events = [];/*[
   {
     id: 1,
     url: '',
@@ -123,3 +123,4 @@ var events = [
     }
   }
 ];
+*/

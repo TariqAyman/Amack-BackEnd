@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
     eventToUpdate,
     sidebar = $('.event-sidebar'),
     calendarsColor = {
-      Business: 'primary',
-      Holiday: 'success',
-      Personal: 'danger',
-      Family: 'warning',
-      ETC: 'info'
+      // Business: 'primary',
+      // Holiday: 'success',
+      // Personal: 'danger',
+      // Family: 'warning',
+      // ETC: 'info'
     },
     eventForm = $('.event-form'),
     addEventBtn = $('.add-event-btn'),
