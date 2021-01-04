@@ -13,6 +13,8 @@ class CreateCentersSchoolsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('centers_schools');
+
         Schema::create('centers_schools', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');

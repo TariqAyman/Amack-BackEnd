@@ -13,6 +13,8 @@ class CreateEventImagesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('event_images');
+
         Schema::create('event_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');

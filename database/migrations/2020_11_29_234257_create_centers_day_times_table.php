@@ -13,6 +13,8 @@ class CreateCentersDayTimesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('centers_day_times');
+
         Schema::create('centers_day_times', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');

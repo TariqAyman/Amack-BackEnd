@@ -13,6 +13,8 @@ class CreateStaffTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('staff');
+
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->string('name');

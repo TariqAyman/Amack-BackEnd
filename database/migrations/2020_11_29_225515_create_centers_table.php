@@ -14,6 +14,8 @@ class CreateCentersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('centers');
+
         Schema::create('centers', function (Blueprint $table) {
             $table->id();
             $table->string('name');

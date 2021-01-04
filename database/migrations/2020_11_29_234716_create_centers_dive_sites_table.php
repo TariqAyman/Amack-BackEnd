@@ -13,6 +13,8 @@ class CreateCentersDiveSitesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('centers_dive_sites');
+
         Schema::create('centers_dive_sites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');

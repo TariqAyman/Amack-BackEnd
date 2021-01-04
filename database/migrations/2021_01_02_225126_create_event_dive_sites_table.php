@@ -13,6 +13,8 @@ class CreateEventDiveSitesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('event_dive_sites');
+
         Schema::create('event_dive_sites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');

@@ -13,6 +13,8 @@ class CreateEventEquipmentsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('event_equipments');
+
         Schema::create('event_equipments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');
