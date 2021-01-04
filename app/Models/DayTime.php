@@ -26,6 +26,6 @@ class DayTime extends Model
         if (!$photo) {
             return null;
         }
-        return Storage::disk('public')->url($photo);
+        return Storage::url($photo);
     }
 }
