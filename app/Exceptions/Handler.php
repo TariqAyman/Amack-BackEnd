@@ -62,6 +62,20 @@ class Handler extends ExceptionHandler
             return response()->json(['message' => "You are Unauthorized."], 401);
         }
 
-        return redirect()->guest(route('login'));
+        $guard = $exception->guards()[0] ?? null;
+
+        switch ($guard) {
+            case 'admin':
+                $login = 'admin.login';
+                break;
+            case 'staff':
+                $login = 'center.login';
+                break;
+            default:
+                $login = 'home';
+                break;
+        }
+
+        return redirect()->guest(route($login));
     }
 }
