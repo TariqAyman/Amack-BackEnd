@@ -17,7 +17,7 @@ class DiveSiteImage extends Model
         if (!$path) {
             return null;
         }
-        return Storage::disk('public')->url($path);
+        return Storage::url($path);
     }
 
     public function site()
