@@ -23,7 +23,8 @@
         "laravelcollective/html": "^6.2",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-permission": "^3.17",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
