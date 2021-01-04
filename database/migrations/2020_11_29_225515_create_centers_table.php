@@ -40,6 +40,7 @@ class CreateCentersTable extends Migration
             $table->json('working_days');
 
             $table->json('amenities');
+            $table->json('languages');
 
             $table->integer('max_divers_per_trip');
             $table->integer('max_divers_per_day');
@@ -52,6 +53,11 @@ class CreateCentersTable extends Migration
 
             $table->integer('max_days_shore_dives');
             $table->integer('max_days_boat_dives');
+
+            $table->integer('mini_days_em_dives');
+            $table->integer('mini_days_night_dives');
+            $table->integer('max_days_em_dives');
+            $table->integer('max_days_night_dives');
 
             $table->string('bank_name')->nullable();
             $table->string('account_name')->nullable();
