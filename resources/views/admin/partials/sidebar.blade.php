@@ -162,7 +162,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('centers.index')}}"
+                            <a href="{{route('staff.index')}}"
                                class="nav-link @if($current === 'staff') active @endif">
                                 <i class="fas fa-city nav-icon"></i>
                                 <p>Staff</p>

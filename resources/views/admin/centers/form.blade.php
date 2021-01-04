@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="activities">Activities Offered</label>
-                                        {!! Form::select('activities',$cities ,isset($data) ? $data->activities : old('activities'),['id'=>'activities','class' => 'custom-select','placeholder' => 'Select Activities Offered' , 'required'=>true]) !!}
+                                        {!! Form::select('activities',$activities ,isset($data) ? $data->activities : old('activities'),['id'=>'activities','class' => 'custom-select','placeholder' => 'Select Activities Offered' , 'required'=>true]) !!}
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="type">Staff Members : </label>
@@ -161,7 +161,7 @@
 
                                     <div class="form-group col-6">
                                         <label for="languages">languages</label>
-                                        {!! Form::select('languages',$languages ,isset($data) ? $data->languages : old('languages'),['id' => 'languages','class' => 'select2','data-placeholder' => 'Select languages' , 'required' => true , 'multiple'=>"multiple" ,'style' => "width: 100%"]) !!}
+                                        {!! Form::select('languages[]',$languages ,isset($data) ? $data->languages : old('languages[]'),['id' => 'languages','class' => 'select2','data-placeholder' => 'Select languages' , 'required' => true , 'multiple'=>true ,'style' => "width: 100%"]) !!}
                                     </div>
 
                                     <div class="form-group col-12">
@@ -177,6 +177,20 @@
                                         @include('admin.centers.integers')
                                     </div>
 
+
+                                    <div class="form-group col-6">
+                                        <label for="bank_name">Bank Name</label>
+                                        {!! Form::text('bank_name',isset($data) ? $data->bank_name : old('bank_name'),['id' => 'bank_name','class' => 'form-control','placeholder' => 'Bank Name']) !!}
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label for="account_name">Account Name</label>
+                                        {!! Form::text('account_name',isset($data) ? $data->account_name : old('account_name'),['id' => 'account_name','class' => 'form-control','placeholder' => 'Account Name']) !!}
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="account_number">Account Number</label>
+                                        {!! Form::text('account_number',isset($data) ? $data->account_number : old('account_number'),['id' => 'account_number','class' => 'form-control','placeholder' => 'Account Number']) !!}
+                                    </div>
 
                                     <div class="form-group col-6">
                                         <label for="enabled">Enabled</label>

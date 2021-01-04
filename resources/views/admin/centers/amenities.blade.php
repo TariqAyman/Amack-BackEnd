@@ -71,11 +71,11 @@
     @foreach($amenities as $row)
         <div class="col-3">
             <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text"><input type="checkbox" name="amenities[{{ $row['key'] }}][enable]"></span>
+                <div class="input-group-prepend"><span class="input-group-text"><input type="checkbox" name="amenities[{{ $row['key'] }}][enable]" @if(isset($data) && isset($data->amenities[$row['key']]) && isset($data->amenities[$row['key']]['enable']) && $data->amenities[$row['key']]['enable'] == 'on') checked @endif></span>
                     <span class="input-group-text">{{ $row['text'] }}</span>
                 </div>
                 @if(isset($row['hasValue']))
-                    <input type="{{ $row['typeValue'] }}" class="form-control" placeholder="{{ $row['placeholder'] }}" name="amenities[{{ $row['key'] }}][value]">
+                    <input type="{{ $row['typeValue'] }}" class="form-control" placeholder="{{ $row['placeholder'] }}" name="amenities[{{ $row['key'] }}][value]" value="@if(isset($data) && isset($data->amenities[$row['key']]) && isset($data->amenities[$row['key']]['value']) ) {{ $data->amenities[$row['key']]['value'] }} @endif">
                 @endif
                 @if(isset($row['group-text']))
                     <div class="input-group-append">
