@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\DiveActivity;
 use App\Repositories\CenterRepository;
 use App\Repositories\CityRepository;
 use App\Repositories\SchoolRepository;
@@ -15,18 +16,19 @@ class CentersController extends AdminController
 {
     protected $block = 'centers';
 
-    /** @var SchoolRepository */
+    /** @var CenterRepository */
     protected $repository = CenterRepository::class;
 
     /**
-     * @var CityRepository
+     * @var DiveActivity
      */
-    private $cityRepository;
+    private $diveActivity;
 
-    public function __construct(CityRepository $cityRepository)
+
+    public function __construct(DiveActivity $diveActivity)
     {
         parent::__construct();
-        $this->cityRepository = $cityRepository;
+        $this->diveActivity = $diveActivity;
     }
 
     public function removeLogo(int $id)
@@ -37,15 +39,22 @@ class CentersController extends AdminController
 
     public function create(): View
     {
-        $cities = $this->cityRepository->getModel()::pluck('name', 'id');
-        $languages = ['Arabic', 'Spanish', 'English', 'Russian', 'Deutsch', 'French', 'Italian'];
-        return view('admin.' . $this->block . '.form', compact('cities', 'languages'));
+        $activities = $this->diveActivity->getModel()::pluck('name', 'id');
+        $languages = ['ar' => 'Arabic', 'esp' => 'Spanish', 'en' => 'English', 'ru' => 'Russian', 'deu' => 'Deutsch', 'fra' => 'French', 'ita' => 'Italian'];
+        return view('admin.' . $this->block . '.form', compact('activities', 'languages'));
     }
 
     public function store(Request $request)
     {
-        dd($request->all());
         $this->repository->insert($request->all());
         return redirect(route($this->block . '.index'))->with('status', 'Added Successfully!');
+    }
+
+    public function edit(int $id): View
+    {
+        $activities = $this->diveActivity->getModel()::pluck('name', 'id');
+        $languages = ['ar' => 'Arabic', 'esp' => 'Spanish', 'en' => 'English', 'ru' => 'Russian', 'deu' => 'Deutsch', 'fra' => 'French', 'ita' => 'Italian'];
+        $data = $this->repository->find($id);
+        return view('admin.' . $this->block . '.form', compact('data', 'activities', 'languages'));
     }
 }
