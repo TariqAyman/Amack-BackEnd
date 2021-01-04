@@ -30,6 +30,6 @@ class School extends Model
         if (!$logo) {
             return '';
         }
-        return Storage::disk('public')->url($logo);
+        return Storage::url($logo);
     }
 }
