@@ -14,7 +14,7 @@ class CreateDiveSiteEntries extends Migration
     public function up()
     {
         Schema::create('dive_site_entries', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('dive_site_id');
             $table->unsignedBigInteger('entry_id');
             $table->foreign('dive_site_id')->references('id')->on('dive_sites')->onDelete('cascade');

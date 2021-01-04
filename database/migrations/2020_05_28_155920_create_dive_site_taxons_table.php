@@ -14,7 +14,7 @@ class CreateDiveSiteTaxonsTable extends Migration
     public function up()
     {
         Schema::create('dive_site_taxons', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('dive_site_id');
             $table->unsignedBigInteger('taxon_id');
             $table->integer('position');

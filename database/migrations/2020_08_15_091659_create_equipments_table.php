@@ -15,7 +15,7 @@ class CreateEquipmentsTable extends Migration
     public function up()
     {
         Schema::create('equipments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->boolean('night_dive')->default(0);
             $table->boolean('nitrox')->default(0);

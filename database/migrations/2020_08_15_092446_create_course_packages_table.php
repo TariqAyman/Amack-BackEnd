@@ -14,7 +14,7 @@ class CreateCoursePackagesTable extends Migration
     public function up()
     {
         Schema::create('course_packages', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->timestamps();
         });

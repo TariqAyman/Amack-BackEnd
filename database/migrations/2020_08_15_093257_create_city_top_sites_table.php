@@ -14,7 +14,7 @@ class CreateCityTopSitesTable extends Migration
     public function up()
     {
         Schema::create('city_top_sites', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('dive_site_id');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');

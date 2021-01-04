@@ -15,7 +15,7 @@ class CreateDiveSitesTable extends Migration
     public function up()
     {
         Schema::create('dive_sites', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('latitude', 10, 8)->default(28.488930);

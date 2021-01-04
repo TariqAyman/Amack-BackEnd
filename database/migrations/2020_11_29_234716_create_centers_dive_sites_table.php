@@ -14,7 +14,7 @@ class CreateCentersDiveSitesTable extends Migration
     public function up()
     {
         Schema::create('centers_dive_sites', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('center_id');
             $table->unsignedBigInteger('dive_site_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');

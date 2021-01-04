@@ -15,7 +15,7 @@ class CreateDivingSchoolsTable extends Migration
     public function up()
     {
         Schema::create('diving_schools', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->string('logo')->nullable();
             $table->boolean('enabled')->default(1);

@@ -14,7 +14,7 @@ class CreateTaxonsTable extends Migration
     public function up()
     {
         Schema::create('taxons', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('photo')->nullable();

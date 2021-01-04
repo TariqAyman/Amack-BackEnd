@@ -14,7 +14,7 @@ class CreateSiteImagesTable extends Migration
     public function up()
     {
         Schema::create('dive_site_images', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('path');
             $table->unsignedBigInteger('dive_site_id');
             $table->foreign('dive_site_id')->references('id')->on('dive_sites')->onDelete('cascade');

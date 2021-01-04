@@ -14,7 +14,7 @@ class CreateCentersDayTimesTable extends Migration
     public function up()
     {
         Schema::create('centers_day_times', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('center_id');
             $table->unsignedBigInteger('day_time_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');

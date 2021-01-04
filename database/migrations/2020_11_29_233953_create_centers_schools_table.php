@@ -14,7 +14,7 @@ class CreateCentersSchoolsTable extends Migration
     public function up()
     {
         Schema::create('centers_schools', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('center_id');
             $table->unsignedBigInteger('school_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');

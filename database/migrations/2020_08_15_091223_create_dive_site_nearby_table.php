@@ -14,7 +14,7 @@ class CreateDiveSiteNearbyTable extends Migration
     public function up()
     {
         Schema::create('dive_site_nearby', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('owner_site_id');
             $table->unsignedBigInteger('nearby_site_id');
             $table->foreign('owner_site_id')->references('id')->on('dive_sites')->onDelete('cascade');

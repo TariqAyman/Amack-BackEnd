@@ -14,7 +14,7 @@ class CreateSocialUsersTable extends Migration
     public function up()
     {
         Schema::create('social_users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('provider_user_id');
