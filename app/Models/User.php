@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -85,5 +86,12 @@ class User extends Authenticatable
         return $this->belongsTo(Country::class, 'country_id');
     }
 
+    public function getPhotoAttribute($photo)
+    {
+        if (!$photo) {
+            return null;
+        }
+        return Storage::url($photo);
+    }
     // todo : gender , is_mobile_verified
 }
