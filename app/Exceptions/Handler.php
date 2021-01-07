@@ -72,7 +72,7 @@ class Handler extends ExceptionHandler
                 $login = 'center.login';
                 break;
             default:
-                $login = 'home';
+                $login = 'login';
                 break;
         }
 
