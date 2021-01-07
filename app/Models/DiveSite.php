@@ -60,7 +60,7 @@ class DiveSite extends Model
 
     public function city()
     {
-        return $this->belongsTo(City::class, 'city_id', 'id');
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     public function nearbySites()

@@ -19,9 +19,9 @@ class CitiesController extends ApiController
         $this->cityRepository = $cityRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $sites = $this->cityRepository->search(request());
+        $sites = $this->cityRepository->search($request);
         $sites = CitiesResource::collection($sites);
         return $this->success($sites);
     }

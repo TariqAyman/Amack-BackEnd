@@ -5,76 +5,86 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\City;
+use App\Models\DiveSite;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Database\Eloquent\Builder;
 
 class CityRepository extends Repository
 {
 
     public function search($data): ?Collection
     {
-        $query = City::query();
+        $cities = City::query();
 
         if ($data->city) {
-            $query->where('name', 'like', '%' . $data->city . '%');
+            $cities = $cities->where('name', 'like', '%' . $data->city . '%');
         }
 
-        if ($data->name || $data->main_taxon_id || $data->maxDepth || $data->dayTimes || $data->activities ||
-            $data->diveEntries || $data->seasons || $data->taxons || $data->rate || $data->max_depth || $data->hide_old_dives || $data->special_sites_only) {
+        $cities = $cities->where('enabled', '=', 1)->orderBy('created_at', 'desc')->get();
 
-            $query->whereHas('sites', function ($sql) use ($data) {
+        foreach ($cities as $index => $city) {
+            if ($data->name || $data->main_taxon_id || $data->maxDepth || $data->dayTimes || $data->activities ||
+                $data->diveEntries || $data->seasons || $data->taxons || $data->rate || $data->max_depth || $data->hide_old_dives || $data->special_sites_only) {
+
+                $site = DiveSite::query()->where('city_id', $city->id);
+
+                if ($data->name) {
+                    $site->where('name', 'like', '%' . $data->name . '%');
+                }
 
                 if ($data->main_taxon_id) {
-                    $sql->where('main_taxon_id', '=', $data->main_taxon_id);
+                    $site->where('main_taxon_id', '=', $data->main_taxon_id);
                 }
 
                 if ($data->maxDepth) {
-                    $sql->where('max_depth', '<=', $data->maxDepth);
+                    $site->where('max_depth', '<=', $data->maxDepth);
                 }
 
                 $dayTimes = $data->dayTimes;
                 if ($dayTimes) {
-                    $sql->whereHas('dayTimes', function ($query) use ($dayTimes) {
+                    $site->whereHas('dayTimes', function (Builder $query) use ($dayTimes) {
                         $query->whereIn('day_time_id', $dayTimes);
                     });
                 }
 
                 $activities = $data->activities;
                 if ($activities) {
-                    $sql->whereHas('activities', function ($query) use ($activities) {
+                    $site->whereHas('activities', function (Builder $query) use ($activities) {
                         $query->whereIn('activity_id', $activities);
                     });
                 }
 
                 $diveEntries = $data->diveEntries;
                 if ($diveEntries) {
-                    $sql->whereHas('entries', function ($query) use ($diveEntries) {
+                    $site->whereHas('entries', function (Builder $query) use ($diveEntries) {
                         $query->whereIn('entry_id', $diveEntries);
                     });
                 }
 
                 $seasons = $data->seasons;
                 if ($seasons) {
-                    $sql->whereHas('seasons', function ($query) use ($seasons) {
+                    $site->whereHas('seasons', function (Builder $query) use ($seasons) {
                         $query->whereIn('season_id', $seasons);
                     });
                 }
 
 
                 $taxons = $data->taxons;
-//                if ($taxons) {
-//                    $sql->where(function ($query) use ($taxons) {
-//                        $query->wherein('main_taxon_id', $taxons)
-//                            ->orWhere(function ($query) use ($taxons) {
-//                                $query->WhereHas('subTaxons', function ($query) use ($taxons) {
-//                                    $query->whereIn('taxon_id', $taxons);
-//                                });
-//                            });
-//                    });
-//                }
+                if ($taxons) {
+                    $site->where(function ($query) use ($taxons) {
+                        $query->wherein('main_taxon_id', $taxons)
+                            ->orWhere(function ($query) use ($taxons) {
+                                $query->whereHas('subTaxons', function ($query) use ($taxons) {
+                                    $query->whereIn('taxon_id', $taxons);
+                                });
+                            });
+                    });
+                }
 
                 if ($data->rate) {
-                    $sql->where('rate', '=', $data->rate);
+                    $site->where('rate', '=', $data->rate);
                 }
 
                 // todo: allow this filter
@@ -83,17 +93,15 @@ class CityRepository extends Repository
 //                }
 
                 if ($data->special_sites_only) {
-                    $sql->where('special', '=', $data->special_sites_only);
+                    $site->where('special', '=', $data->special_sites_only);
                 }
-            });
+
+                $site = $site->get();
+                if ($site) $cities[$index]->sites = $site;
+            }
         }
 
-
-        return $query
-            ->where('enabled', '=', 1)
-            ->with(['sites'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+        return $cities;
     }
 
     public function findByPartName($request)
@@ -150,4 +158,19 @@ class CityRepository extends Repository
             ->orderBy('created_at', 'desc')
             ->get();
     }
+
+    public function insert(array $data): Model
+    {
+        $insert = $this->model::query()->create($data);
+        $insert->top_sites()->sync($data->top_sites);
+    }
+
+    public function update(int $id, array $data): Model
+    {
+        $object = $this->find($id);
+        $object->update($data);
+        $object->top_sites()->sync($data->top_sites);
+        return $object->fresh();
+    }
+
 }

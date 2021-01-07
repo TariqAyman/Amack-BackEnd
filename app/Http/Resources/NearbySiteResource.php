@@ -17,8 +17,8 @@ class NearbySiteResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "image" => $this->images->first()->path ?? 'https://i.pinimg.com/236x/fc/7e/ce/fc7ece8e8ee1f5db97577a4622f33975--photo-icon-sad.jpg',
-            //"image" => $this->images->first(),
+            "cover" => $this->images->first()->path ?? 'https://i.pinimg.com/236x/fc/7e/ce/fc7ece8e8ee1f5db97577a4622f33975--photo-icon-sad.jpg',
+            "images" => $this->images->pluck('path'),
             "location" => [
                 "lat" => $this->latitude,
                 "long" => $this->longitude
