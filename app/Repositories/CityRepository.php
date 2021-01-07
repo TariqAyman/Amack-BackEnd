@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\DiveSite;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -95,6 +96,8 @@ class CityRepository extends Repository
                 if ($data->special_sites_only) {
                     $site->where('special', '=', $data->special_sites_only);
                 }
+
+                $site->orderBy(DB::raw("3959 * acos( cos( radians({$city->latitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-{$city->longitude}) ) + sin( radians({$city->latitude}) ) * sin(radians(latitude)) )"), 'ASC');
 
                 $site = $site->get();
                 if ($site) $cities[$index]->sites = $site;
