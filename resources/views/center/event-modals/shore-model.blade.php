@@ -1,5 +1,5 @@
 <!-- Calendar Add/Update/Delete event modal-->
-<div class="modal event-sidebar fade" id="model-1">
+<div class="modal event-sidebar fade" id="shore-model">
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content p-0">
             <div class="modal-header mb-1">
@@ -13,7 +13,7 @@
                         <line x1="3" y1="12" x2="3.01" y2="12"></line>
                         <line x1="3" y1="18" x2="3.01" y2="18"></line>
                     </svg>
-                    <h5 class="modal-title">New Event</h5>
+                    <h5 class="modal-title">New Event (Shore)</h5>
                 </div>
                 <p class="modal-title"> : Create a new trip</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>

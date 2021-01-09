@@ -115,18 +115,17 @@
                 <div class="col app-calendar-sidebar flex-grow-0 overflow-hidden d-flex flex-column" id="app-calendar-sidebar">
                     <div class="sidebar-wrapper">
                         <div class="card-body d-flex justify-content-center">
-                            <button
-                                class="btn btn-primary btn-toggle-sidebar btn-block"
-                                data-toggle="modal"
-                                data-target="#model-1">
-                                <span class="align-middle">Add Event 1</span>
-                            </button>
-                            <button
-                                class="btn btn-primary btn-toggle-sidebar btn-block"
-                                data-toggle="modal"
-                                data-target="#model-2">
-                                <span class="align-middle">Add Event 2</span>
-                            </button>
+
+                            <div class="btn-group">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Create Event
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="javascript:void(0);">Create shore trip</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Create boat trip</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Custom days off</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body pb-0">
                             <h5 class="section-label mb-1">
@@ -136,34 +135,34 @@
                                 <input type="checkbox" class="custom-control-input select-all" id="select-all" checked/>
                                 <label class="custom-control-label" for="select-all">View All</label>
                             </div>
-{{--                            <div class="calendar-events-filter">--}}
-{{--                                <div class="custom-control custom-control-danger custom-checkbox mb-1">--}}
-{{--                                    <input--}}
-{{--                                        type="checkbox"--}}
-{{--                                        class="custom-control-input input-filter"--}}
-{{--                                        id="personal"--}}
-{{--                                        data-value="personal"--}}
-{{--                                        checked--}}
-{{--                                    />--}}
-{{--                                    <label class="custom-control-label" for="personal">Personal</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="custom-control custom-control-primary custom-checkbox mb-1">--}}
-{{--                                    <input type="checkbox" class="custom-control-input input-filter" id="business" data-value="business" checked/>--}}
-{{--                                    <label class="custom-control-label" for="business">Business</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="custom-control custom-control-warning custom-checkbox mb-1">--}}
-{{--                                    <input type="checkbox" class="custom-control-input input-filter" id="family" data-value="family" checked/>--}}
-{{--                                    <label class="custom-control-label" for="family">Family</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="custom-control custom-control-success custom-checkbox mb-1">--}}
-{{--                                    <input type="checkbox" class="custom-control-input input-filter" id="holiday" data-value="holiday" checked/>--}}
-{{--                                    <label class="custom-control-label" for="holiday">Holiday</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="custom-control custom-control-info custom-checkbox">--}}
-{{--                                    <input type="checkbox" class="custom-control-input input-filter" id="etc" data-value="etc" checked/>--}}
-{{--                                    <label class="custom-control-label" for="etc">ETC</label>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="calendar-events-filter">--}}
+                            {{--                                <div class="custom-control custom-control-danger custom-checkbox mb-1">--}}
+                            {{--                                    <input--}}
+                            {{--                                        type="checkbox"--}}
+                            {{--                                        class="custom-control-input input-filter"--}}
+                            {{--                                        id="personal"--}}
+                            {{--                                        data-value="personal"--}}
+                            {{--                                        checked--}}
+                            {{--                                    />--}}
+                            {{--                                    <label class="custom-control-label" for="personal">Personal</label>--}}
+                            {{--                                </div>--}}
+                            {{--                                <div class="custom-control custom-control-primary custom-checkbox mb-1">--}}
+                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="business" data-value="business" checked/>--}}
+                            {{--                                    <label class="custom-control-label" for="business">Business</label>--}}
+                            {{--                                </div>--}}
+                            {{--                                <div class="custom-control custom-control-warning custom-checkbox mb-1">--}}
+                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="family" data-value="family" checked/>--}}
+                            {{--                                    <label class="custom-control-label" for="family">Family</label>--}}
+                            {{--                                </div>--}}
+                            {{--                                <div class="custom-control custom-control-success custom-checkbox mb-1">--}}
+                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="holiday" data-value="holiday" checked/>--}}
+                            {{--                                    <label class="custom-control-label" for="holiday">Holiday</label>--}}
+                            {{--                                </div>--}}
+                            {{--                                <div class="custom-control custom-control-info custom-checkbox">--}}
+                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="etc" data-value="etc" checked/>--}}
+                            {{--                                    <label class="custom-control-label" for="etc">ETC</label>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                         </div>
                     </div>
                     <div class="mt-auto">
@@ -308,8 +307,8 @@
                                                     <div class="form-group">
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <div class="custom-control custom-control-primary custom-switch">
-                                                                <input type="checkbox" {{ $info->diveSites->contains($site->id) ? 'checked' : '' }} name="sites[]" value="{{ $site->id }}" class="custom-control-input" id="sites[{{ $site->id }}]" disabled>
-                                                                <label class="custom-control-label" for="sites[{{ $site->id }}]">{{ $site->name }}</label>
+                                                                <input type="checkbox" {{ $info->diveSites->contains($site->id) ? 'checked' : '' }} name="sites[]" value="{{ $site->id }}" class="custom-control-input" id="sites[{{ $site->id }}]">
+                                                                <label class="custom-control-label" for="sites[{{ $site->id }}]"><a href="{{ route('center.site.show',$site->id) }}">{{ $site->name }}</a></label>
                                                             </div>
                                                         </div>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -341,8 +340,8 @@
         </div>
     </section>
 
-    @include('center.modals.model-1')
-    @include('center.modals.model-2')
+    @include('center.event-modals.boat-model')
+    @include('center.event-modals.shore-model')
 
 @endsection
 
