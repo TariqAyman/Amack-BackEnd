@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,4 +50,6 @@ Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class]
     Route::post('/sites/equipments', 'EquipmentsController@getEquipmentBySitesIds');
 
     Route::get('filters','FilterController@index');
+
+    Route::get('settings','SettingsController@index');
 });
