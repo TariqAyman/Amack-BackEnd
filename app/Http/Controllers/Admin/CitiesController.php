@@ -8,6 +8,7 @@ use App\Repositories\CityRepository;
 use App\Repositories\CountryRepository;
 use App\Repositories\DiveSiteRepository;
 use App\Repositories\SeasonRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
 class CitiesController extends AdminController
@@ -39,11 +40,10 @@ class CitiesController extends AdminController
         $this->diveSiteRepository = $diveSiteRepository;
     }
 
-
     public function create(): View
     {
         $countries = $this->countryRepository->findAll(['id', 'name']);
-        $seasons = $this->countryRepository->findAll(['id', 'name']);
+        $seasons = $this->seasonRepository->findAll(['id', 'name']);
         $top_sites = $this->diveSiteRepository->getModel()::pluck('name', 'id');
         return view('admin.' . $this->block . '.form', compact('countries', 'seasons', 'top_sites'));
     }
@@ -52,8 +52,14 @@ class CitiesController extends AdminController
     {
         $countries = $this->countryRepository->findAll(['id', 'name']);
         $data = $this->repository->find($id);
-        $seasons = $this->countryRepository->findAll(['id', 'name']);
+        $seasons = $this->seasonRepository->findAll(['id', 'name']);
         $top_sites = $this->diveSiteRepository->getModel()::where('id', '!=', $id)->pluck('name', 'id');
         return view('admin.' . $this->block . '.form', compact('data', 'countries', 'seasons', 'top_sites'));
+    }
+
+    public function removeImage(int $id, int $imageId): JsonResponse
+    {
+        $this->repository->removeImage($imageId);
+        return new JsonResponse('deleted');
     }
 }
