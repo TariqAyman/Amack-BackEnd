@@ -51,6 +51,9 @@
             return false;
         }
     </script>
+
+    @include('admin.partials.map',[ 'lat' => $data->latitude ?? null , 'lng' => $data->latitude ?? null ])
+
 @stop
 @section('content')
     <section class="content-header">
@@ -105,18 +108,26 @@
                                                   placeholder="Description"> @if(isset($data)){{$data->description}} @endif</textarea>
                                     </div>
                                     <div class="form-group col-6">
-                                        <label for="latitude">Latitude</label>
-                                        <input @if(isset($data)) value="{{$data->latitude}}" @endif name="latitude"
-                                               type="number" step="any"
-                                               class="form-control" id="latitude"
-                                               placeholder="Latitude">
-                                    </div>
-                                    <div class="form-group col-6">
-                                        <label for="longitude">Longitude</label>
-                                        <input @if(isset($data)) value="{{$data->longitude}}" @endif name="longitude"
-                                               type="number" step="any"
-                                               class="form-control" id="longitude"
-                                               placeholder="Longitude">
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="latitude">Latitude</label>
+                                                <input @if(isset($data)) value="{{$data->latitude}}" @endif name="latitude"
+                                                       type="number" step="any"
+                                                       class="form-control" id="latitude"
+                                                       placeholder="Latitude">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="longitude">Longitude</label>
+                                                <input @if(isset($data)) value="{{$data->longitude}}" @endif name="longitude"
+                                                       type="number" step="any"
+                                                       class="form-control" id="longitude"
+                                                       placeholder="Longitude">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label></label>
+                                                <button type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#modal-map">Show Map</button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="max_depth">Max Depth</label>
