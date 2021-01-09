@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DivingSitesTableSeeder::class);
         $this->call(AdminTableSeeder::class);
         $this->call(EquipmentsTableSeeder::class);
+        $this->call(CenterTableSeeder::class);
     }
 }
