@@ -28,5 +28,5 @@ Route::name('center.')->middleware('auth:staff')->group(function () {
 
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-    Route::get('site/{id}', 'SitesController@show');
+    Route::resource('site','SitesController')->only(['show','update']);
 });
