@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/vendors.min.css')) }}"/>
 <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/ui/prism.min.css')) }}"/>
+<link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/extensions/toastr.min.css')) }}">
 {{-- Vendor Styles --}}
 @yield('vendor-style')
 {{-- Theme Styles --}}
@@ -18,7 +19,7 @@
 
 {{-- Page Styles --}}
 @yield('page-style')
-
+<link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/extensions/ext-component-toastr.css')) }}">
 {{-- Laravel Style --}}
 <link rel="stylesheet" href="{{ asset(mix('center-panel/css/overrides.css')) }}"/>
 

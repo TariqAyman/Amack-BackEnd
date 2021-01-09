@@ -76,6 +76,6 @@
     })
 
 </script>
+@include('center.panels.messages')
 </body>
-
 </html>

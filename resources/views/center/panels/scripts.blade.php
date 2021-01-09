@@ -8,6 +8,7 @@
 @if($configData['blankPage'] === false)
     <script src="{{ asset(mix('center-panel/js/scripts/customizer.js')) }}"></script>
 @endif
+<script src="{{ asset(mix('center-panel/vendors/js/extensions/toastr.min.js')) }}"></script>
 {{-- page script --}}
 @yield('page-script')
 {{-- page script --}}
