@@ -118,7 +118,7 @@
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="custom-control custom-control-primary custom-switch">
                                                     <input type="checkbox" {{ $info->diveSites->contains($site->id) ? 'checked' : '' }} name="sites[]" value="{{ $site->id }}" class="custom-control-input" id="sites[{{ $site->id }}]">
-                                                    <label class="custom-control-label" for="sites[{{ $site->id }}]">{{ $site->name }}</label>
+                                                    <label class="custom-control-label" for="sites[{{ $site->id }}]"> <a href="{{ route('center.site.show',$site->id) }}">{{ $site->name }}</a> </label>
                                                 </div>
                                             </div>
                                         </div>

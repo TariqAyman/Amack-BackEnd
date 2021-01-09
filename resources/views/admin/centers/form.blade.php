@@ -131,14 +131,17 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <div class="row">
-                                            <div class="form-group col-6">
+                                            <div class="form-group col-md-4">
                                                 <label for="center_lat">latitude</label>
-                                                {!! Form::number('center_lat',isset($data) ? $data->center_lat : old('center_lat'),['id' => 'center_lat','class' => 'form-control','placeholder' => 'latitude']) !!}
+                                                {!! Form::number('center_lat',isset($data) ? $data->center_lat : old('center_lat'),['id' => 'latitude','class' => 'form-control','placeholder' => 'latitude','step' => 'any']) !!}
                                             </div>
-
-                                            <div class="form-group col-6">
+                                            <div class="form-group col-md-4">
                                                 <label for="center_lng">longitude</label>
-                                                {!! Form::number('center_lng',isset($data) ? $data->center_lng : old('center_lng'),['id' => 'center_lng','class' => 'form-control','placeholder' => 'longitude']) !!}
+                                                {!! Form::number('center_lng',isset($data) ? $data->center_lng : old('center_lng'),['id' => 'longitude','class' => 'form-control','placeholder' => 'longitude','step' => 'any']) !!}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label></label>
+                                                <button type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#modal-map">Show Map</button>
                                             </div>
                                         </div>
                                     </div>
@@ -218,6 +221,7 @@
     </section>
 @endsection
 @section('scripts')
+    @parent
     <!-- date-range-picker -->
     <script src="{{asset('lte/plugins/daterangepicker/daterangepicker.js')}}"></script>
 
@@ -252,7 +256,11 @@
             $('.select2').select2()
         })
     </script>
+
+    @include('admin.partials.map',[ 'lat' => $data->center_lat ?? null , 'lng' => $data->center_lng ?? null ])
+
 @stop
+
 @section('styles')
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{asset('lte/plugins/daterangepicker/daterangepicker.css')}}">

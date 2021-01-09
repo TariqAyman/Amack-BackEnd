@@ -293,7 +293,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($equipments['extra'] as $equipment)
+                                        @foreach($equipments['extra'] ?? [] as $equipment)
                                             <tr>
                                                 <td>
                                                     <img src="{{ asset($equipment->image) }}" class="mr-75" height="20" width="20" alt="{{ $equipment->name }}">
