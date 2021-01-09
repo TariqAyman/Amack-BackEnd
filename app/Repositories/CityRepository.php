@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\City;
+use App\Models\CityImages;
 use App\Models\DiveSite;
+use Doctrine\DBAL\Exception\DatabaseObjectExistsException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Database\Eloquent\Builder;
 
 class CityRepository extends Repository
 {
-
     public function search($data): ?Collection
     {
         $cities = City::query();
@@ -26,8 +29,8 @@ class CityRepository extends Repository
         $cities = $cities->where('enabled', '=', 1)->orderBy('created_at', 'desc')->get();
 
         foreach ($cities as $index => $city) {
-            if ($data->name || $data->main_taxon_id || $data->maxDepth || $data->dayTimes || $data->activities ||
-                $data->diveEntries || $data->seasons || $data->taxons || $data->rate || $data->max_depth || $data->hide_old_dives || $data->special_sites_only) {
+            if ($data->name || $data->main_taxon_id || $data->maxDepth || $data->dayTimes || $data->activities || $data->diveEntries || $data->seasons || $data->taxons ||
+                $data->rate || $data->max_depth || $data->hide_old_dives || $data->special_sites_only) {
 
                 $site = DiveSite::query()->where('city_id', $city->id);
 
@@ -101,6 +104,7 @@ class CityRepository extends Repository
 
                 $site = $site->get();
                 if ($site) $cities[$index]->sites = $site;
+
             }
         }
 
@@ -109,7 +113,7 @@ class CityRepository extends Repository
 
     public function findByPartName($request)
     {
-        return City::query()
+        return $this->model::query()
             ->where('name', 'like', '%' . $request->get('name') . '%')
             ->where('is_dive', '=', '1')
             ->select('id', 'name')
@@ -123,7 +127,7 @@ class CityRepository extends Repository
 
     public function getDatatable()
     {
-        $data = City::select(['id', 'name', 'country_id'])->with('country:id,name');
+        $data = $this->model::select(['id', 'name', 'country_id'])->with('country:id,name');
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('options', function (City $city) {
@@ -141,7 +145,7 @@ class CityRepository extends Repository
 
     public function getWith($id, $data)
     {
-        $query = City::query()
+        $query = $this->model::query()
             ->where('id', $id);
 
         return $query
@@ -153,7 +157,7 @@ class CityRepository extends Repository
 
     public function getAllWith($data)
     {
-        $query = City::query();
+        $query = $this->model::query();
 
         return $query
             ->where('enabled', '=', 1)
@@ -165,15 +169,39 @@ class CityRepository extends Repository
     public function insert(array $data): Model
     {
         $insert = $this->model::query()->create($data);
-        $insert->top_sites()->sync($data->top_sites);
+        $this->addRelatedData($insert, $data);
     }
 
     public function update(int $id, array $data): Model
     {
         $object = $this->find($id);
         $object->update($data);
-        $object->top_sites()->sync($data->top_sites);
+        $this->addRelatedData($object, $data);
         return $object->fresh();
     }
 
+    private function uploadImages($images, City $city): void
+    {
+        foreach ($images as $imageId => $image) {
+            $file = 'images.' . $imageId;
+            $dir = 'cities/' . $city->id;
+
+            if (($image instanceof UploadedFile) && request()->hasFile($file)) {
+                CityImages::create(['image' => Storage::disk('public')->put($dir, request()->file($file)), 'city_id' => $city->id]);
+            }
+        }
+    }
+
+    public function removeImage(int $id): void
+    {
+        $image = CityImages::query()->findOrFail($id);
+        Storage::delete($image->image);
+        $image->delete();
+    }
+
+    private function addRelatedData(City $city, array $data): void
+    {
+        $city->top_sites()->sync($data['top_sites']);
+        $this->uploadImages($data['images'] ?? [], $city);
+    }
 }
