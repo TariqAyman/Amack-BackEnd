@@ -19,7 +19,7 @@ class SiteResource extends JsonResource
             "name" => $this->name,
             "rate" => $this->rate,
             "cover" => $this->images->first()->path ?? 'https://i.pinimg.com/236x/fc/7e/ce/fc7ece8e8ee1f5db97577a4622f33975--photo-icon-sad.jpg',
-            "images" => $this->images->plck('path'),
+            "images" => $this->images->pluck('path'),
             "active_info" => [
                 "visited_by" => "3 Center",
                 "next_trip_in" => "14 days"
