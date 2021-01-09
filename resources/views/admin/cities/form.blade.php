@@ -3,6 +3,26 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('lte/plugins/select2/css/select2.min.css')}}">
+    <style>
+        .thumb {
+            max-width: 150px;
+            max-height: 100px;
+        }
+
+        .img-wrap {
+            max-width: 150px;
+            max-height: 100px;
+
+            position: relative;
+        }
+
+        .img-wrap .close {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 100;
+        }
+    </style>
 @endsection
 
 @section('scripts')
@@ -146,7 +166,23 @@
                                         {!! Form::select('top_sites[]',$top_sites ,isset($data) ? $data->top_sites : old('top_sites[]'),['id' => 'top_sites','class' => 'select2','data-placeholder' => 'Select languages' , 'required' => true , 'multiple'=>true ,'style' => "width: 100%"]) !!}
                                     </div>
 
-
+                                    <div class="form-group col-6">
+                                        <label for="images">Images</label>
+                                        <input type="file" class="form-control" name="images[]" placeholder="images" multiple>
+                                        @if(isset($data) && $data->images->count())
+                                            <br>
+                                            <div style="display:inline-block">
+                                                @foreach($data->images as $image)
+                                                    <div style="display:inline-block" class="img-wrap" id="photo-wrap-{{$image->id}}">
+                                                        <button id="delete-image" onclick="removeImage({{$image->id}}); return false;" class="close">
+                                                            &times;
+                                                        </button>
+                                                        <img id="photo-img" class="thumb" src="{{ $image->image }}" alt="photo">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="enabled">Enabled</label>
                                         <div class="bootstrap-switch-square">
@@ -171,26 +207,4 @@
             </div>
         </div>
     </section>
-
-    <div class="modal fade" id="modal-map">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Large Modal</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="dvMap" style="width: 750px; height: 500px">
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
 @endsection
