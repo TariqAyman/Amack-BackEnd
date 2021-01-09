@@ -119,7 +119,21 @@ class Center extends Model
 
     public function diveSites()
     {
-        return $this->belongsToMany(DiveSite::class, 'centers_dive_sites', 'center_id', 'dive_site_id')->withTimestamps();
+        return $this->belongsToMany(DiveSite::class, 'centers_dive_sites', 'center_id', 'dive_site_id')
+            ->withPivot([
+                'custom',
+                'dates',
+                'guided',
+                'orientation',
+                'time_of_dives',
+                'max_divers',
+                'mini_days',
+                'max_days',
+                'original_price',
+                'base_price',
+                'full_equipment',
+                'half_equipment',
+            ])->withTimestamps();
     }
 
     public function getLogoAttribute($logo)

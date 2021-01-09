@@ -82,9 +82,9 @@ class DiveSiteRepository extends Repository
         return $query
             ->where('enabled', '=', 1)
             ->with(['entries', 'license:id,name', 'city'
-                , 'mainTaxon:id,name,description,photo',
-                'subTaxons', 'dayTimes',
-                'seasons', 'activities'])
+                    , 'mainTaxon:id,name,description,photo',
+                    'subTaxons', 'dayTimes',
+                    'seasons', 'activities'])
             ->orderBy('created_at', 'desc')
             ->get();
     }
@@ -94,7 +94,7 @@ class DiveSiteRepository extends Repository
         return DiveSite::query()
             ->where('id', $id)
             ->with([
-                'nearbySites','images','dayTimes','activities','equipments','subTaxons'
+                'nearbySites', 'images', 'dayTimes', 'activities', 'equipments', 'subTaxons'
             ])
             ->first();
     }

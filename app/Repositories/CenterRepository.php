@@ -70,8 +70,25 @@ class CenterRepository extends Repository
         /** @var Center $center */
         $center = $this->find($id);
         $center->update($data);
-        if(!empty($data['sites'])) $center->diveSites()->sync($data['sites']);
+        if (!empty($data['sites'])) $center->diveSites()->sync($data['sites']);
         $this->uploadLogo($data, $center);
         return $center->fresh();
+    }
+
+    public function updateCustomSiteInfo($id, $data): ?Model
+    {
+        $center = $this->find(auth()->user()->center_id);
+        $data = $this->refactorData($data);
+        $center->diveSites()->updateExistingPivot($id , $data);
+        return $center->fresh();
+    }
+
+    public function refactorData($data)
+    {
+        $new = $data;
+        $new['custom'] = true;
+        $new['guided'] = $data['guided'] ?? 'off' == 'on';
+        $new['orientation'] = $data['orientation'] ?? 'off' == 'on';
+        return $new;
     }
 }
