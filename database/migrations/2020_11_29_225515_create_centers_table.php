@@ -44,22 +44,22 @@ class CreateCentersTable extends Migration
             $table->json('amenities');
             $table->json('languages');
 
-            $table->integer('max_divers_per_trip');
-            $table->integer('max_divers_per_day');
-            $table->integer('max_day_divers');
-            $table->integer('max_night_dives');
-            $table->integer('max_em_dives');
+            $table->integer('max_divers_per_trip')->nullable();
+            $table->integer('max_divers_per_day')->nullable();
+            $table->integer('max_day_divers')->nullable();
+            $table->integer('max_night_dives')->nullable();
+            $table->integer('max_em_dives')->nullable();
 
-            $table->integer('mini_days_shore_dives');
-            $table->integer('mini_days_boat_dives');
+            $table->integer('mini_days_shore_dives')->nullable();
+            $table->integer('mini_days_boat_dives')->nullable();
 
-            $table->integer('max_days_shore_dives');
-            $table->integer('max_days_boat_dives');
+            $table->integer('max_days_shore_dives')->nullable();
+            $table->integer('max_days_boat_dives')->nullable();
 
-            $table->integer('mini_days_em_dives');
-            $table->integer('mini_days_night_dives');
-            $table->integer('max_days_em_dives');
-            $table->integer('max_days_night_dives');
+            $table->integer('mini_days_em_dives')->nullable();
+            $table->integer('mini_days_night_dives')->nullable();
+            $table->integer('max_days_em_dives')->nullable();
+            $table->integer('max_days_night_dives')->nullable();
 
             $table->string('bank_name')->nullable();
             $table->string('account_name')->nullable();

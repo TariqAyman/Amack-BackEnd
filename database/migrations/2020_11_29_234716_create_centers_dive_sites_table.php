@@ -21,6 +21,25 @@ class CreateCentersDiveSitesTable extends Migration
             $table->unsignedBigInteger('dive_site_id');
             $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
             $table->foreign('dive_site_id')->references('id')->on('dive_sites')->onDelete('cascade');
+
+            $table->boolean('custom');
+
+            $table->json('dates')->nullable();
+
+            $table->boolean('guided')->nullable();
+            $table->boolean('orientation')->nullable();
+
+            $table->json('time_of_dives')->nullable();
+
+            $table->string('max_divers')->nullable();
+            $table->string('mini_days')->nullable();
+            $table->string('max_days')->nullable();
+
+            $table->decimal('original_price')->nullable();
+            $table->decimal('base_price')->nullable();
+            $table->decimal('full_equipment')->nullable();
+            $table->decimal('half_equipment')->nullable();
+
             $table->timestamps();
         });
     }

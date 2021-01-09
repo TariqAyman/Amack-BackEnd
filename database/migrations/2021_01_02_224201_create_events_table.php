@@ -17,15 +17,17 @@ class CreateEventsTable extends Migration
 
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('center_id');
+            $table->unsignedBigInteger('staff_id');
             $table->string('type');
-            $table->boolean('guide')->default(0);
+            $table->boolean('guided')->default(0);
             $table->boolean('is_public')->default(0);
             $table->boolean('take_credit')->default(0);
             $table->dateTime('trip_date')->nullable();
             $table->integer('trip_duration')->nullable();
             $table->integer('divers_per_trip')->nullable();
-            $table->integer('min_days_to_order')->nullable();
-            $table->integer('max_days_to_order')->nullable();
+            $table->integer('min_days')->nullable();
+            $table->integer('max_days')->nullable();
             $table->time('arrival_time')->nullable();
             $table->string('transportation')->nullable();
             $table->integer('required_license')->nullable();
