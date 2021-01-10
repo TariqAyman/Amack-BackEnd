@@ -40,9 +40,9 @@ class CenterController extends ApiController
     public function find(Request $request)
     {
         $centers = $this->centerRepository->getModel()::whereHas('diveSites', function ($builder) use ($request) {
-            $builder->where(function ($sql) use ($request) {
-                $sql->where('centers_dive_sites.id', $request->get('sites'));
-            });
+            foreach ($request->get('sites') as $site) {
+                $builder->where('dive_sites.id', $site);
+            }
         })->get();
 
         foreach ($centers as $index => $center) {
