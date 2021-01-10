@@ -51,5 +51,7 @@ Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class]
 
     Route::get('filters','FilterController@index');
 
+    Route::post('find/center','CenterController@find');
+
     Route::get('settings','SettingsController@index');
 });
