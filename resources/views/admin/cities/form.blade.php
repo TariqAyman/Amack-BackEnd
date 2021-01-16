@@ -34,6 +34,24 @@
         $(function () {
             $('.select2').select2()
         })
+
+        function removeImage(id) {
+            let url = '{{route('cities.remove-image',[$data->id??0,'#'])}}'
+            url = url.replace('#', id);
+            $.ajax({
+                type: 'Delete',
+                url: url,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                },
+                encode: true
+            }).done(function (response) {
+                $('#photo-wrap-' + id).remove();
+
+            });
+            return false;
+        }
     </script>
 @stop
 

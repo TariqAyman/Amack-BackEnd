@@ -33,6 +33,7 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
 
         Route::post('cities/data', 'CitiesController@data')->name('cities.data');
         Route::resource('cities', 'CitiesController');
+        Route::delete('cities/{id}/remove-image/{imageId}', 'CitiesController@removeImage')->name('cities.remove-image');
 
         Route::post('taxons/data', 'TaxonsController@data')->name('taxons.data');
         Route::resource('taxons', 'TaxonsController');
