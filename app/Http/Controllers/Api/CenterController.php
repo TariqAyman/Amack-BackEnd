@@ -39,6 +39,8 @@ class CenterController extends ApiController
      */
     public function find(Request $request)
     {
+        $this->validator($request,['sites' => 'required|array']);
+
         $centers = $this->centerRepository->getModel()::whereHas('diveSites', function ($builder) use ($request) {
             foreach ($request->get('sites') as $site) {
                 $builder->where('dive_sites.id', $site);
