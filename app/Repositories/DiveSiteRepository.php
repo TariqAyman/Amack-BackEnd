@@ -177,6 +177,7 @@ class DiveSiteRepository extends Repository
     {
         $this->uploadImages($data['images'] ?? [], $site);
         $site->activities()->sync($data['activities'] ?? []);
+        $site->entries()->sync($data['diveEntries'] ?? []);
         $site->dayTimes()->sync($data['dayTimes'] ?? []);
         $site->seasons()->sync($data['seasons'] ?? []);
         $site->subTaxons()->sync($data['subTaxons'] ?? []);
