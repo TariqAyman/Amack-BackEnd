@@ -7,7 +7,6 @@ namespace App\Repositories;
 use App\Models\City;
 use App\Models\CityImages;
 use App\Models\DiveSite;
-use Doctrine\DBAL\Exception\DatabaseObjectExistsException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;

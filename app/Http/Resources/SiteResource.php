@@ -41,6 +41,7 @@ class SiteResource extends JsonResource
             "near_sites" => NearbySiteResource::collection($this->nearbySites),
             "isSpecial" => $this->special,
             "isAvailable" => $this->enabled,
+            "distance_from_city" => $this->distance_from_city
         ];
     }
 }

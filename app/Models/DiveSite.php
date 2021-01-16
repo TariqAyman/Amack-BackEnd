@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Traits\CalculateDistance;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -22,6 +23,8 @@ class DiveSite extends Model
     protected static $logAttributes = [
         'name', 'description', 'latitude', 'longitude', 'max_depth', 'visibility', 'current', 'city_id', 'main_taxon_id', 'license_id', 'enabled', 'special', 'rate', 'guided'
     ];
+
+    public $appends = ['distance_from_city'];
 
     public function mainTaxon()
     {
@@ -76,5 +79,10 @@ class DiveSite extends Model
     public function images()
     {
         return $this->hasMany(DiveSiteImage::class, 'dive_site_id', 'id');
+    }
+
+    public function getDistanceFromCityAttribute()
+    {
+        return CalculateDistance::distance($this->city->latitude, $this->city->longitude, $this->latitude, $this->longitude);
     }
 }

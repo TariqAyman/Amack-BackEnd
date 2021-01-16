@@ -28,7 +28,8 @@ class NearbySiteResource extends JsonResource
             "site_type" => $this->mainTaxon->name,
             "visibility" => $this->visibility,
             "rate" => $this->rate,
-            "isSpecial" => $this->special
+            "isSpecial" => $this->special,
+            "distance_from_city" => $this->distance_from_city
         ];
     }
 }
