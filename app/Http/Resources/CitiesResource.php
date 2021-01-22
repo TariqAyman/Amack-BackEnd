@@ -19,7 +19,7 @@ class CitiesResource extends JsonResource
             "name" => $this->name,
             "cover" => $this->images->first()->image ?? 'https://i.pinimg.com/236x/fc/7e/ce/fc7ece8e8ee1f5db97577a4622f33975--photo-icon-sad.jpg',
             "images" => $this->images->pluck('image'),
-            "rate" => 3.5,
+            "rate" => $this->rate,
             "dive_sites" => $this->sites->count(),
             "location" => [
                 "lat" => $this->latitude,

@@ -24,7 +24,7 @@ class NearbySiteResource extends JsonResource
                 "long" => $this->longitude
             ],
             "max_depth" => $this->max_depth,
-            "site_entry" => "Shore",
+            "site_entry" => $this->entries->pluck('name')->first() ?? 'Shore',
             "site_type" => $this->mainTaxon->name,
             "visibility" => $this->visibility,
             "rate" => $this->rate,

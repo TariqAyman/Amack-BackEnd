@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="visibility">Visibility</label>
-                                        <select class="custom-select" required id="visibility" name="current">
+                                        <select class="custom-select" required id="visibility" name="visibility">
                                             <option @if(isset($data) && $data->visibility === 'low') selected
                                                     @endif value="low"> Low
                                             </option>
