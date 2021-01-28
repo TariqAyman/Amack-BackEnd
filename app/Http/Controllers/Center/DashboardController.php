@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Center;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CityRepository;
+use App\Repositories\DiveSiteRepository;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,15 +13,21 @@ class DashboardController extends Controller
      * @var CityRepository
      */
     private $cityRepository;
+    /**
+     * @var DiveSiteRepository
+     */
+    private $diveSiteRepository;
 
     /**
      * DashboardController constructor.
      * @
      * @param CityRepository $cityRepository
+     * @param DiveSiteRepository $diveSiteRepository
      */
-    public function __construct(CityRepository $cityRepository)
+    public function __construct(CityRepository $cityRepository, DiveSiteRepository $diveSiteRepository)
     {
         $this->cityRepository = $cityRepository;
+        $this->diveSiteRepository = $diveSiteRepository;
     }
 
     /**
@@ -35,72 +42,18 @@ class DashboardController extends Controller
         ];
         $cities = $this->cityRepository->getAllWith(['sites']);
         $info = auth()->user()->center;
+        $sites = $this->diveSiteRepository->mySites()->pluck('name', 'id');
 
-        return view('center.dashboard',compact('breadcrumbs','cities','info'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('center.dashboard', compact('breadcrumbs', 'cities', 'info', 'sites'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }
