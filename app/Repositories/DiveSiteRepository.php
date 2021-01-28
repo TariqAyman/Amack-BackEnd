@@ -184,4 +184,9 @@ class DiveSiteRepository extends Repository
         $site->nearbySites()->sync($data['nearbySites'] ?? []);
         $site->equipments()->sync($data['equipments'] ?? []);
     }
+
+    public function mySites()
+    {
+        return auth()->user()->center->diveSites;
+    }
 }
