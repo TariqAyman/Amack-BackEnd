@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Center;
+use App\Models\CenterWorkingDays;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
@@ -72,6 +73,7 @@ class CenterRepository extends Repository
         $center->update($data);
         if (!empty($data['sites'])) $center->diveSites()->sync($data['sites']);
         $this->uploadLogo($data, $center);
+        $this->workingDays($center->id, $data);
         return $center->fresh();
     }
 
@@ -79,8 +81,14 @@ class CenterRepository extends Repository
     {
         $center = $this->find(auth()->user()->center_id);
         $data = $this->refactorData($data);
-        $center->diveSites()->updateExistingPivot($id , $data);
+        $center->diveSites()->updateExistingPivot($id, $data);
         return $center->fresh();
+    }
+
+    public function updateSites(int $id, array $data)
+    {
+        $center = $this->find($id);
+        if (!empty($data['sites'])) $center->diveSites()->sync($data['sites']);
     }
 
     public function refactorData($data)
@@ -88,7 +96,27 @@ class CenterRepository extends Repository
         $new = $data;
         $new['custom'] = true;
         $new['guided'] = $data['guided'] ?? 'off' == 'on';
-        $new['orientation'] = $data['orientation'] ?? 'off' == 'on';
         return $new;
+    }
+
+    public function workingDays($centerId, $request)
+    {
+        if ($days = $request['days'] ?? false) {
+            foreach ($days as $index => $day) {
+                $days[$index]['off'] = isset($day['off']);
+                $days[$index]['all'] = isset($day['all']);
+            }
+
+            CenterWorkingDays::updateOrCreate(['center_id' => $centerId],
+                [
+                    'sunday' => $days['sunday'],
+                    'monday' => $days['monday'],
+                    'tuesday' => $days['tuesday'],
+                    'wednesday' => $days['wednesday'],
+                    'thursday' => $days['thursday'],
+                    'friday' => $days['friday'],
+                    'saturday' => $days['saturday'],
+                ]);
+        }
     }
 }
