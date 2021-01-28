@@ -203,4 +203,9 @@ class CityRepository extends Repository
         $city->top_sites()->sync($data['top_sites']);
         $this->uploadImages($data['images'] ?? [], $city);
     }
+
+    public function whereIn(string $column, array $values)
+    {
+        return $this->model->whereIn($column, $values)->get();
+    }
 }
