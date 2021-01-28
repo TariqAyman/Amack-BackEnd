@@ -54,4 +54,8 @@ Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class]
     Route::post('find/center','CenterController@find');
 
     Route::get('settings','SettingsController@index');
+
+    Route::get('my-contact','UserContactController@index');
+    Route::post('save-contact','UserContactController@store');
+
 });
