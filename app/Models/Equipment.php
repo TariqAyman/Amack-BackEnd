@@ -30,7 +30,7 @@ class Equipment extends Model
         return Storage::url($image);
     }
 
-    public function season_id()
+    public function season()
     {
         return $this->belongsTo(Season::class, 'season_id');
     }
