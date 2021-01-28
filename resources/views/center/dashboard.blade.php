@@ -121,9 +121,9 @@
                                     Create Event
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="javascript:void(0);">Create shore trip</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Create boat trip</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Custom days off</a>
+                                    <a class="dropdown-item" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#shore-modal">Create shore trip</a>
+                                    <a class="dropdown-item" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#boat-modal">Create boat trip</a>
+                                    <a class="dropdown-item" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#custom-modal">Custom days off</a>
                                 </div>
                             </div>
                         </div>
@@ -288,60 +288,32 @@
     <!-- Full calendar end -->
     <section class="p-lg-50">
         <div class="row">
+            {!! Form::open(['route' => 'center.updateSites','method' => 'post','id' => 'sites']) !!}
             <div class="card col-lg-12">
-                <div class="card-header">Served sites</div>
-                <div class="card-body">
-                    @foreach($cities as $city)
-                        <div class="card shadow-none bg-transparent border-primary business-card">
-                            <div class="card-header">
-                                <div class="card-title badge badge-pill d-block badge-primary">
-                                    <span>{{ $city->name }}</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    @foreach($city->sites as $site)
-                                        <div class="col-md-4 col-12">
-                                            <div class="card shadow-none bg-transparent border-secondary">
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <div class="d-flex align-items-center justify-content-between">
-                                                            <div class="custom-control custom-control-primary custom-switch">
-                                                                <input type="checkbox" {{ $info->diveSites->contains($site->id) ? 'checked' : '' }} name="sites[]" value="{{ $site->id }}" class="custom-control-input" id="sites[{{ $site->id }}]">
-                                                                <label class="custom-control-label" for="sites[{{ $site->id }}]"><a href="{{ route('center.site.show',$site->id) }}">{{ $site->name }}</a></label>
-                                                            </div>
-                                                        </div>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                             class="feather feather-user font-medium-3 mr-1">
-                                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                            <circle cx="12" cy="7" r="4"></circle>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                             class="feather feather-user font-medium-3 mr-1">
-                                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                            <circle cx="12" cy="7" r="4"></circle>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                             class="feather feather-user font-medium-3 mr-1">
-                                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                            <circle cx="12" cy="7" r="4"></circle>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>Served sites</span>
+                    </div>
+                    <div class="heading-elements">
+                        <div class="form-group" style="min-width: 200px">
+                            <label class="form-label" for="currencies">Cities</label>
+                            {!! Form::select('cities', $cities->pluck('name','id') , $info->cities()->pluck('id'),['id'=>'cities','class' => 'select2 form-control','multiple'=>'multiple']) !!}
                         </div>
-                    @endforeach
+                    </div>
+                </div>
+                <div class="card-body">
+                    @include('center.info.section.citiesWithSites',['cities' => $cities->whereIn('id',$info->cities()->pluck('id')),'info' => $info])
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success" type="submit" value="Submit">Save</button>
                 </div>
             </div>
+            {!! Form::close() !!}
         </div>
     </section>
 
-    @include('center.event-modals.boat-model')
-    @include('center.event-modals.shore-model')
+    @include('center.event-modals.boat-modal',compact('sites'))
+    @include('center.event-modals.shore-modal')
 
 @endsection
 
