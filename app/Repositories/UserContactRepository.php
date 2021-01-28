@@ -52,6 +52,6 @@ class UserContactRepository extends Repository
     public function myContactUser()
     {
         $mobiles = $this->model->where('user_id', auth()->user()->id)->pluck('mobile');
-        return $this->userRepository->getModel()::whereIn('mobile', $mobiles)->select(['id', 'name', 'mobile']);
+        return $this->userRepository->getModel()::whereIn('mobile', $mobiles)->select(['id', 'name', 'mobile', 'photo'])->get();
     }
 }
