@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CentersResource extends JsonResource
+class CenterResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,27 +15,50 @@ class CentersResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "rate" => rand(0, 5),
+            "images" => [$this->logo],
             "cover" => $this->logo,
             "location" => $this->address_1,
-            "features" => $this->amenities,
-            "price" => [
-                "original_price" => "EGP 4,600",
-                "discount_price" => ""
+            "about_center" => [
+                "rate" => 4.5,
+                "working_days" => new WorkingDaysResource($this->working_days),
+                "languages" => $this->languages,
+                "agencies" => ["PADI", "SSL"],
+                "activities" => $this->activities
             ],
-            "center_time" => random_int(3, 100) . " mins",
+            "features" => $this->amenities,
+            "sites" => SiteResource::collection($this->sites),
+            "info" => [
+                "start_date" => "10 - 10 -2020",
+                "arrival_time" => "9=>00 AM",
+                "activity" => "SCUBA Dive",
+                "purpose" => "Recreational",
+                "dive_guid" => "Mandatory",
+                "buddies" => [
+                    "member" => [
+                        [
+                            "id" => 1,
+                            "images" => "url"
+                        ]
+                    ],
+                ],
+                "invoice" => [
+
+                ]
+            ],
             "isVerified" => random_int(0, 1)
         ];
+
 
 //        return [
 //            "id" => $this->id,
 //            "name" => $this->name,
 //            "type" => $this->type,
 //            "premises" => $this->premises,
-//            "activity_id" => $this->activity_id,
+//            "activities" => $this->activities,
 //            "mobile" => $this->mobile,
 //            "landline" => $this->landline,
 //            "email" => $this->email,
