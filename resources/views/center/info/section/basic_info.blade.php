@@ -140,17 +140,17 @@
                     <div class="form-group col-lg-12">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-outline-primary round waves-effect form-control form-control-lg">
-                                <input type="radio" name="stuff_members" id="radio_option1" {{ ($info->stuff_members && $info->stuff_members == '1-4') ? 'checked' : ''  }} value="stuff_members">
+                                <input type="radio" name="full_day" id="24_Hours" {{ $info->full_day ? 'checked' : ''  }} value="1">
                                 <span>24 Hours</span>
                             </label>
                             <label class="btn btn-outline-primary round waves-effect form-control form-control-lg">
-                                <input type="radio" name="stuff_members" id="radio_option2" {{ ($info->stuff_members && $info->stuff_members == '5-9') ? 'checked' : ''  }} value="stuff_members">
+                                <input type="radio" name="full_day" id="Custom" {{ $info->full_day ? '' : 'checked'  }} value="0">
                                 <span>Custom</span>
                             </label>
                         </div>
                     </div>
                     @php
-                        $days = ['sun','mon','tue','wed','thu','fri','sat']
+                        $days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday']
                     @endphp
                     <ul class="list-group list-group-horizontal-lg">
                         @foreach($days as $day)
@@ -158,22 +158,24 @@
                                 <h4 class="card-title">{{ \Str::upper($day) }}</h4>
                                 <div class="row">
                                     <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input allDay-switch" id="day[{{$day}}][off]" name="day[{{$day}}][off]"/>
+                                        <input type="checkbox" class="custom-control-input allDay-switch" id="day[{{$day}}][off]" name="days[{{$day}}][off]" {{ ($info->working_days &&  $info->working_days->{$day}['off'])? 'checked' : '' }}/>
                                         <label class="custom-control-label" for="day[{{$day}}][off]">Day off</label>
                                     </div>
 
                                     <div class="form-group mb-2">
-                                        <label for="payment-card-number">From</label>
-                                        <input type="text" id="day[{{$day}}][from]" name="day[{{$day}}][from]" class="form-control pickatime" placeholder="8:00 AM"/>
+                                        <label for="day[{{$day}}][from]">From</label>
+                                        <input type="text" id="day[{{$day}}][from]" name="days[{{$day}}][from]" class="form-control pickatime" placeholder="8:00 AM"
+                                               value='{{ $info->working_days ? ($info->working_days->{$day}["from"]) : old("days[".$day."][from]" ,"8:00 AM") }}'/>
                                     </div>
 
                                     <div class="form-group mb-2">
-                                        <label for="payment-expiry">To</label>
-                                        <input type="text" id="day[{{$day}}][to]" name="day[{{$day}}][to]" class="form-control pickatime" placeholder="8:00 AM"/>
+                                        <label for="day[{{$day}}][to]">To</label>
+                                        <input type="text" id="day[{{$day}}][to]" name="days[{{$day}}][to]" class="form-control pickatime" placeholder="8:00 AM"
+                                               value='{{ $info->working_days ? ($info->working_days->{$day}["to"]) : old("days[".$day."][from]" ,"8:00 AM") }}'/>
                                     </div>
                                     <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input allDay-switch" id="day[{{$day}}][all]" name="day[{{$day}}][all]"/>
-                                        <label class="custom-control-label" for="customSwitch3">All Day</label>
+                                        <input type="checkbox" class="custom-control-input allDay-switch" id="day[{{$day}}][all]" name="days[{{$day}}][all]" {{ ($info->working_days &&  $info->working_days->{$day}['all']) ? 'checked' : '' }}/>
+                                        <label class="custom-control-label" for="day[{{$day}}][all]">All Day</label>
                                     </div>
                                 </div>
                             </li>
@@ -265,7 +267,7 @@
                                         <div class="business-item">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" name="amenities[{{ $row['key'] }}][enable]"  id="amenities_{{ $row['key'] }}_enable"
+                                                    <input type="checkbox" class="custom-control-input" name="amenities[{{ $row['key'] }}][enable]" id="amenities_{{ $row['key'] }}_enable"
                                                            @if(isset($info) && isset($info->amenities[$row['key']]) && isset($info->amenities[$row['key']]['enable']) && $info->amenities[$row['key']]['enable'] == 'on') checked @endif>
                                                     <label class="custom-control-label" for="amenities_{{ $row['key'] }}_enable">{{ $row['text'] }}</label>
                                                 </div>
