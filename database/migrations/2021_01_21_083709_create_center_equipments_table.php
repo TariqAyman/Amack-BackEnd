@@ -13,6 +13,10 @@ class CreateCenterEquipmentsTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('center_equipments');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         Schema::create('center_equipments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');

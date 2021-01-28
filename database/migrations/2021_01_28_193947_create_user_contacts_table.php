@@ -13,6 +13,10 @@ class CreateUserContactsTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('user_contacts');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         Schema::create('user_contacts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');

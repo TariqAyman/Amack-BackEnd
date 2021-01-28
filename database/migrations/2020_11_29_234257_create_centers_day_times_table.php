@@ -13,7 +13,9 @@ class CreateCentersDayTimesTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('centers_day_times');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         Schema::create('centers_day_times', function (Blueprint $table) {
             $table->id();

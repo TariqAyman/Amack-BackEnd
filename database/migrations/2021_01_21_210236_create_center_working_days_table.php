@@ -13,6 +13,10 @@ class CreateCenterWorkingDaysTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('center_working_days');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         Schema::create('center_working_days', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');

@@ -13,6 +13,10 @@ class CreateEventCentersTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('event_centers');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         Schema::create('event_centers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');

@@ -13,7 +13,9 @@ class CreateCentersSchoolsTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('centers_schools');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         Schema::create('centers_schools', function (Blueprint $table) {
             $table->id();

@@ -13,7 +13,9 @@ class CreateCentersDiveSitesTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('centers_dive_sites');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         Schema::create('centers_dive_sites', function (Blueprint $table) {
             $table->id();
