@@ -59,7 +59,7 @@
             "Tests\\": "tests/",
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeds/"
         }
     },
     "minimum-stability": "dev",

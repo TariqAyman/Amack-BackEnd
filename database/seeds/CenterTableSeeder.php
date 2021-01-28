@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Center;
 use App\Models\Staff;
 use Illuminate\Database\Seeder;
@@ -13,14 +15,13 @@ class CenterTableSeeder extends Seeder
      */
     public function run()
     {
-        Center::create([
+        Center::firstOrNew(['email' => 'q5z@live.com'], [
             'name' => 'Test center',
             'type' => 'center',
             'premises' => 'standalone',
             'activity_id' => '1',
             'mobile' => '01003003200',
             'landline' => '123',
-            'email' => 'q5z@live.com',
             'website' => 'https://www.facebook.com/',
             'logo' => 'centers/1/hOJXLoICNpHwCwYRndUG26vlZicS0t1GKsMpKHyi.jpg',
             'stuff_members' => '1-4',
@@ -56,9 +57,8 @@ class CenterTableSeeder extends Seeder
 
         Center::factory()->count(100)->create();
 
-        Staff::create([
+        Staff::firstOrNew(['email' => 'admin@admin.com'], [
             'name' => 'Test Staff',
-            'email' => 'admin@admin.com',
             'mobile' => '+201091923922',
             'password' => '123123',
             'photo' => '',

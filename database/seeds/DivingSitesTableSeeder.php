@@ -1,10 +1,8 @@
 <?php
+namespace Database\Seeders;
 
 use App\Models\City;
 use App\Models\Course;
-use App\Models\DayTime;
-use App\Models\DiveActivity;
-use App\Models\Season;
 use App\Models\Taxon;
 use Illuminate\Database\Seeder;
 use App\Models\DiveSite;
