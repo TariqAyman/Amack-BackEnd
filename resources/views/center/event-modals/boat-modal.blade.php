@@ -1,5 +1,5 @@
 <!-- Calendar Add/Update/Delete event modal-->
-<div class="modal event-sidebar fade" id="shore-model">
+<div class="modal fade" id="boat-modal">
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content p-0">
             <div class="modal-header mb-1">
@@ -13,7 +13,7 @@
                         <line x1="3" y1="12" x2="3.01" y2="12"></line>
                         <line x1="3" y1="18" x2="3.01" y2="18"></line>
                     </svg>
-                    <h5 class="modal-title">New Event (Shore)</h5>
+                    <h5 class="modal-title">New Event (Boat)</h5>
                 </div>
                 <p class="modal-title"> : Create a new trip</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
@@ -57,15 +57,7 @@
                             <line x1="16" y1="6" x2="16" y2="22"></line>
                         </svg>
                         <label for="title" class="form-label">Dive site </label>
-                        <select class="select2 form-control" multiple="multiple" id="default-select-multi">
-                            <option value="square" selected>Dahab</option>
-                            <option value="rectangle">Rectangle</option>
-                            <option value="rombo">Rombo</option>
-                            <option value="romboid">Romboid</option>
-                            <option value="trapeze">Trapeze</option>
-                            <option value="traible">Triangle</option>
-                            <option value="polygon">Polygon</option>
-                        </select>
+                        {!! Form::select('sites', $sites , old('sites'),['id'=>'sites','class' => 'select2 form-control','multiple'=>'multiple']) !!}
                     </div>
 
                     <div class="form-group position-relative">
@@ -130,15 +122,32 @@
                         </div>
                     </div>
 
-                    <div class="form-group position-relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        <label for="start-date" class="form-label">Center arrival time</label>
-                        <input type="text" id="pt-default" class="form-control pickatime" placeholder="8:00 AM"/>
+
+                    <div class="form-group row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-group position-relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <label for="start-date" class="form-label">Center arrival time</label>
+                                <input type="text" id="pt-default" class="form-control pickatime" placeholder="8:00 AM"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group position-relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <label for="start-date" class="form-label">Voyage time</label>
+                                <input type="text" id="pt-default" class="form-control pickatime" placeholder="8:00 AM"/>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group row">
@@ -151,15 +160,51 @@
                                     <circle cx="5.5" cy="18.5" r="2.5"></circle>
                                     <circle cx="18.5" cy="18.5" r="2.5"></circle>
                                 </svg>
-                                <label for="selectDefault">Transportation</label>
-                                <select class="form-control mb-1" id="selectDefault">
-                                    <option selected="">Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                <label for="selectDefault">Boat name</label>
+                                <input type="text" class="form-control" id="start-date" name="start-date" placeholder="Boat name"/>
                             </div>
                         </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-truck">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                                <label for="selectDefault">Total boat capacity</label>
+                                <input type="number" class="form-control" id="start-date" name="start-date" placeholder="Day/s"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-truck">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                                <label for="selectDefault">Departs from</label>
+                                <input type="number" class="form-control" id="start-date" name="start-date" placeholder="Departs from"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-truck">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                                <label for="selectDefault">Arrives at</label>
+                                <input type="number" class="form-control" id="start-date" name="start-date" placeholder="Arrives at"/>
+                            </div>
+                        </div>
+
+
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -178,6 +223,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase">
@@ -207,7 +253,7 @@
                             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                         </svg>
                         <label for="selectDefault">Choose recommended equipment (optional)</label>
-                        <select class="select2 form-control" multiple="multiple" id="default-select-multi-3-3">
+                        <select class="select2 form-control" multiple="multiple" id="default-select-multi-2">
                             <option value="square">BCD</option>
                             <option value="rectangle">Bodysuit</option>
                             <option value="rombo">Regulator</option>
@@ -217,24 +263,6 @@
                             <option value="polygon" selected>Fins</option>
                             <option value="polygon" selected>Buoy & line</option>
                         </select>
-                    </div>
-
-                    <div class="form-group">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                        </svg>
-                        <label for="selectDefault">NITROX (optional)</label>
-                        <div class="demo-inline-spacing">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
-                                <label class="custom-control-label" for="customRadio1">45%</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
-                                <label class="custom-control-label" for="customRadio1">32%</label>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -298,7 +326,7 @@
                     <!-- accepted file upload ends -->
 
                     <div class="form-group d-flex">
-                        <button type="submit" class="btn btn-primary add-event-btn mr-1">Submit</button>
+                        <button type="submit" class="btn btn-primary add-event-btn mr-1">Add</button>
                         <button type="button" class="btn btn-outline-secondary btn-cancel" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary update-event-btn d-none mr-1">Update</button>
                         <button class="btn btn-outline-danger btn-delete-event d-none">Delete</button>

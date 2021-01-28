@@ -24,10 +24,10 @@ if ($('body').attr('data-framework') === 'laravel') {
 $(document).on('click', '.fc-sidebarToggle-button', function (e) {
   $('.app-calendar-sidebar, .body-content-overlay').addClass('show');
 });
-
-$(document).on('click', '.body-content-overlay', function (e) {
-  $('.app-calendar-sidebar, .body-content-overlay').removeClass('show');
-});
+//
+// $(document).on('click', '.body-content-overlay', function (e) {
+//   $('.app-calendar-sidebar, .body-content-overlay').removeClass('show');
+// });
 
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar'),
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // ETC: 'info'
     },
     eventForm = $('.event-form'),
-    addEventBtn = $('.add-event-btn'),
+    // addEventBtn = $('.add-event-btn'),
     cancelBtn = $('.btn-cancel'),
     updateEventBtn = $('.update-event-btn'),
     toggleSidebarBtn = $('.btn-toggle-sidebar'),
@@ -62,11 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // --------------------------------------------
   // On add new item, clear sidebar-right field fields
   // --------------------------------------------
-  $('.add-event button').on('click', function (e) {
-    $('.event-sidebar').addClass('show');
-    $('.sidebar-left').removeClass('show');
-    $('.app-calendar .body-content-overlay').addClass('show');
-  });
+  // $('.add-event button').on('click', function (e) {
+  //   $('.event-sidebar').addClass('show');
+  //   $('.sidebar-left').removeClass('show');
+  //   $('.app-calendar .body-content-overlay').addClass('show');
+  // });
 
   // Label  select
   if (eventLabel.length) {
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     sidebar.modal('show');
-    addEventBtn.addClass('d-none');
+    // addEventBtn.addClass('d-none');
     cancelBtn.addClass('d-none');
     updateEventBtn.removeClass('d-none');
     btnDeleteEvent.removeClass('d-none');
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var date = moment(info.date).format('YYYY-MM-DD');
       resetValues();
       sidebar.modal('show');
-      addEventBtn.removeClass('d-none');
+      // addEventBtn.removeClass('d-none');
       updateEventBtn.addClass('d-none');
       btnDeleteEvent.addClass('d-none');
       startDate.val(date);
@@ -389,32 +389,32 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Add new event
-  $(addEventBtn).on('click', function () {
-    if (eventForm.valid()) {
-      var newEvent = {
-        id: calendar.getEvents().length + 1,
-        title: eventTitle.val(),
-        start: startDate.val(),
-        end: endDate.val(),
-        startStr: startDate.val(),
-        endStr: endDate.val(),
-        display: 'block',
-        extendedProps: {
-          location: eventLocation.val(),
-          guests: eventGuests.val(),
-          calendar: eventLabel.val(),
-          description: calendarEditor.val()
-        }
-      };
-      if (eventUrl.val().length) {
-        newEvent.url = eventUrl.val();
-      }
-      if (allDaySwitch.prop('checked')) {
-        newEvent.allDay = true;
-      }
-      addEvent(newEvent);
-    }
-  });
+  // $(addEventBtn).on('click', function () {
+  //   if (eventForm.valid()) {
+  //     var newEvent = {
+  //       id: calendar.getEvents().length + 1,
+  //       title: eventTitle.val(),
+  //       start: startDate.val(),
+  //       end: endDate.val(),
+  //       startStr: startDate.val(),
+  //       endStr: endDate.val(),
+  //       display: 'block',
+  //       extendedProps: {
+  //         location: eventLocation.val(),
+  //         guests: eventGuests.val(),
+  //         calendar: eventLabel.val(),
+  //         description: calendarEditor.val()
+  //       }
+  //     };
+  //     if (eventUrl.val().length) {
+  //       newEvent.url = eventUrl.val();
+  //     }
+  //     if (allDaySwitch.prop('checked')) {
+  //       newEvent.allDay = true;
+  //     }
+  //     addEvent(newEvent);
+  //   }
+  // });
 
   // Update new event
   updateEventBtn.on('click', function () {
@@ -461,8 +461,8 @@ document.addEventListener('DOMContentLoaded', function () {
   $('.btn-toggle-sidebar').on('click', function () {
     btnDeleteEvent.addClass('d-none');
     updateEventBtn.addClass('d-none');
-    addEventBtn.removeClass('d-none');
-    $('.app-calendar-sidebar, .body-content-overlay').removeClass('show');
+    // addEventBtn.removeClass('d-none');
+    // $('.app-calendar-sidebar, .body-content-overlay').removeClass('show');
   });
 
   // Select all & filter functionality
