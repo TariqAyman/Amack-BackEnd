@@ -29,4 +29,9 @@ Route::name('center.')->middleware('auth:staff')->group(function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::resource('site','SitesController')->only(['show','update']);
+
+    Route::get('getCitiesAJAX','CenterController@getCitiesAJAX')->name('getCitiesAJAX');
+
+    Route::post('updateSites','CenterController@updateSites')->name('updateSites');
+
 });
