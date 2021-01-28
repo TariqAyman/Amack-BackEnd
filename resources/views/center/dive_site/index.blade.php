@@ -157,15 +157,6 @@
                                 <label class="custom-control-label" for="guided">Guided Dive</label>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="custom-control custom-switch custom-control-inline">
-                                @php
-                                    $orientation = $pivot['orientation'] ?? false;
-                                @endphp
-                                <input type="checkbox" class="custom-control-input" name="orientation" id="orientation" {{ $orientation ? 'checked' : '' }}/>
-                                <label class="custom-control-label" for="orientation">Orientation Dive</label>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row">
