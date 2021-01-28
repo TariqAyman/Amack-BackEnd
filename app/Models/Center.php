@@ -34,22 +34,46 @@ class Center extends Model
         'owner_name',
         'owner_mobile',
         'full_day',
-        'working_days',
         'languages',
         'amenities',
+
         'max_divers_per_trip',
         'max_divers_per_day',
         'max_day_divers',
         'max_night_dives',
         'max_em_dives',
-        'mini_days_shore_dives',
-        'mini_days_boat_dives',
         'max_days_shore_dives',
         'max_days_boat_dives',
-        'mini_days_em_dives',
-        'mini_days_night_dives',
         'max_days_em_dives',
         'max_days_night_dives',
+
+        'mini_days_shore_dives',
+        'mini_days_boat_dives',
+        'mini_days_em_dives',
+        'mini_days_night_dives',
+
+        'currency',
+        'currencies',
+        'foreigner_rate',
+
+        'shore_original_price',
+        'shore_base_price',
+        'boat_dives_original_price',
+        'boat_base_price',
+
+        'early_m_dive_price',
+        'night_dive_price',
+
+        'deduct_price_half_equipment',
+        'deduct_price_full_equipment',
+
+        'discounted_dives',
+        'discounted_dives_roc',
+        'discounted_dives_overseen',
+        'discounted_divers',
+        'discounted_divers_roc',
+        'discounted_divers_overseen',
+
         'bank_name',
         'account_name',
         'account_number',
@@ -77,22 +101,46 @@ class Center extends Model
         'owner_name',
         'manager_mobile',
         'full_day',
-        'working_days',
         'languages',
         'amenities',
+
         'max_divers_per_trip',
         'max_divers_per_day',
         'max_day_divers',
         'max_night_dives',
         'max_em_dives',
-        'mini_days_shore_dives',
-        'mini_days_boat_dives',
         'max_days_shore_dives',
         'max_days_boat_dives',
-        'mini_days_em_dives',
-        'mini_days_night_dives',
         'max_days_em_dives',
         'max_days_night_dives',
+
+        'mini_days_shore_dives',
+        'mini_days_boat_dives',
+        'mini_days_em_dives',
+        'mini_days_night_dives',
+
+        'currency',
+        'currencies',
+        'foreigner_rate',
+
+        'shore_original_price',
+        'shore_base_price',
+        'boat_dives_original_price',
+        'boat_base_price',
+
+        'early_m_dive_price',
+        'night_dive_price',
+
+        'deduct_price_half_equipment',
+        'deduct_price_full_equipment',
+
+        'discounted_dives',
+        'discounted_dives_roc',
+        'discounted_dives_overseen',
+        'discounted_divers',
+        'discounted_divers_roc',
+        'discounted_divers_overseen',
+
         'bank_name',
         'account_name',
         'account_number',
@@ -100,9 +148,8 @@ class Center extends Model
     ];
 
     protected $casts = [
-        'working_days' => 'json',
         'amenities' => 'json',
-        'full_day' => 'boolean',
+        'currencies' => 'json',
         'enabled' => 'boolean',
         'languages' => 'json',
     ];
@@ -124,7 +171,6 @@ class Center extends Model
                 'custom',
                 'dates',
                 'guided',
-                'orientation',
                 'time_of_dives',
                 'max_divers',
                 'mini_days',
@@ -136,11 +182,30 @@ class Center extends Model
             ])->withTimestamps();
     }
 
+    public function cities()
+    {
+        return City::whereIn('id', $this->diveSites()->pluck('city_id'))->get();
+    }
+
     public function getLogoAttribute($logo)
     {
         if (!$logo) {
             return null;
         }
         return Storage::url($logo);
+    }
+
+    public function equipment()
+    {
+        return $this->belongsToMany(Equipment::class, 'center_equipments', 'center_id', 'equipment_id')->withPivot([
+            'price_per_dive',
+            'base_price',
+            'specials'
+        ])->withTimestamps();
+    }
+
+    public function working_days()
+    {
+        return $this->hasOne(CenterWorkingDays::class, 'center_id');
     }
 }
