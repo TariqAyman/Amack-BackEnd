@@ -15,7 +15,7 @@ class CenterTableSeeder extends Seeder
      */
     public function run()
     {
-        Center::firstOrNew(['email' => 'q5z@live.com'], [
+        Center::firstOrCreate(['email' => 'q5z@live.com'], [
             'name' => 'Test center',
             'type' => 'center',
             'premises' => 'standalone',
@@ -57,7 +57,7 @@ class CenterTableSeeder extends Seeder
 
         Center::factory()->count(100)->create();
 
-        Staff::firstOrNew(['email' => 'admin@admin.com'], [
+        Staff::firstOrCreate(['email' => 'admin@admin.com'], [
             'name' => 'Test Staff',
             'mobile' => '+201091923922',
             'password' => '123123',
