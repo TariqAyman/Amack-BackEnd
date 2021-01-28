@@ -18,7 +18,7 @@ class Center extends Model
         'name',
         'type',
         'premises',
-        'activities',
+        'activity_id',
         'mobile',
         'landline',
         'email',
@@ -85,7 +85,7 @@ class Center extends Model
         'name',
         'type',
         'premises',
-        'activities',
+        'activity_id',
         'mobile',
         'landline',
         'email',
@@ -153,6 +153,12 @@ class Center extends Model
         'enabled' => 'boolean',
         'languages' => 'json',
     ];
+
+    public function activity()
+    {
+        dd($this->belongsTo(DiveActivity::class, 'activity_id'));
+        return $this->belongsTo(DiveActivity::class, 'activity_id');
+    }
 
     public function schools()
     {

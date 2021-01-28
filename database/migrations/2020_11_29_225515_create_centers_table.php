@@ -21,7 +21,7 @@ class CreateCentersTable extends Migration
             $table->string('name');
             $table->string('type');
             $table->string('premises');
-            $table->string('activities');
+            $table->string('activity_id');
             $table->string('mobile')->nullable();
             $table->string('landline')->nullable();
             $table->string('email')->nullable();

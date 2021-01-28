@@ -13,11 +13,11 @@ class CenterTableSeeder extends Seeder
      */
     public function run()
     {
-        $center = Center::create([
+        Center::create([
             'name' => 'Test center',
             'type' => 'center',
             'premises' => 'standalone',
-            'activities' => '1',
+            'activity_id' => '1',
             'mobile' => '01003003200',
             'landline' => '123',
             'email' => 'q5z@live.com',
@@ -54,6 +54,8 @@ class CenterTableSeeder extends Seeder
             'enabled' => 1,
         ]);
 
+        Center::factory()->count(100)->create();
+
         Staff::create([
             'name' => 'Test Staff',
             'email' => 'admin@admin.com',
@@ -61,7 +63,7 @@ class CenterTableSeeder extends Seeder
             'password' => '123123',
             'photo' => '',
             'gender' => 'u',
-            'center_id' => $center->id,
+            'center_id' => Center::first()->id,
         ]);
     }
 }

@@ -89,8 +89,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
-                                        <label for="activities">Activities Offered</label>
-                                        {!! Form::select('activities',$activities ,isset($data) ? $data->activities : old('activities'),['id'=>'activities','class' => 'custom-select','placeholder' => 'Select Activities Offered' , 'required'=>true]) !!}
+                                        <label for="activity_id">Activities Offered</label>
+                                        {!! Form::select('activity_id',$activities ,isset($data) ? $data->activity_id : old('activity_id'),['id'=>'activity_id','class' => 'custom-select','placeholder' => 'Select Activities Offered' , 'required'=>true]) !!}
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="type">Staff Members : </label>
