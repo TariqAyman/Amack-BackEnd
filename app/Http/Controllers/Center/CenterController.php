@@ -38,7 +38,7 @@ class CenterController extends Controller
      * @param CenterRepository $repository
      * @param EquipmentRepository $equipmentRepository
      */
-    public function __construct(CityRepository $cityRepository, DiveActivity $diveActivity, CenterRepository $repository,EquipmentRepository $equipmentRepository)
+    public function __construct(CityRepository $cityRepository, DiveActivity $diveActivity, CenterRepository $repository, EquipmentRepository $equipmentRepository)
     {
         $this->cityRepository = $cityRepository;
         $this->diveActivity = $diveActivity;
@@ -63,19 +63,29 @@ class CenterController extends Controller
         $activities = $this->diveActivity->getModel()::pluck('name', 'id');
         $languages = ['ar' => 'Arabic', 'esp' => 'Spanish', 'en' => 'English', 'ru' => 'Russian', 'deu' => 'Deutsch', 'fra' => 'French', 'ita' => 'Italian'];
         $currencies = Currencies::list();
-        $equipments = $this->equipmentRepository->getModel()::all()->groupBy('state');
+        $equipments = $this->equipmentRepository->getModel()::all();
+        $equipment_groups = $equipments->groupBy('state');
 
-        return view('center.info.index', compact('breadcrumbs', 'cities', 'info', 'activities', 'languages','currencies','equipments'));
-    }
+        $miniIntegers = [
+            ['key' => 'mini_days_shore_dives', 'text' => 'Minimum Days for SHORE DIVES'],
+            ['key' => 'mini_days_boat_dives', 'text' => 'Minimum Days for BOAT DIVES'],
+            ['key' => 'mini_days_em_dives', 'text' => 'Minimum Days for EM DIVES'],
+            ['key' => 'mini_days_night_dives', 'text' => 'Minimum Days for NIGHT DIVES'],
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $maxIntegers = [
+            ['key' => 'max_divers_per_trip', 'text' => 'MAX DIVERS / TRIP'],
+            ['key' => 'max_divers_per_day', 'text' => 'MAX DIVERS / DAY'],
+            ['key' => 'max_day_divers', 'text' => 'MAX DIVERS / DAY '],
+            ['key' => 'max_night_dives', 'text' => 'MAX NIGHT DIVES'],
+            ['key' => 'max_em_dives', 'text' => 'MAX EM DIVES'],
+            ['key' => 'max_days_shore_dives', 'text' => 'Maximum Days for SHORE DIVES'],
+            ['key' => 'max_days_boat_dives', 'text' => 'Maximum Days for BOAT DIVES'],
+            ['key' => 'max_days_em_dives', 'text' => 'Maximum Days for EM DIVES'],
+            ['key' => 'max_days_night_dives', 'text' => 'Maximum Days for NIGHT DIVES']
+        ];
+
+        return view('center.info.index', compact('breadcrumbs', 'cities', 'info', 'activities', 'languages', 'currencies', 'equipments', 'equipment_groups', 'miniIntegers', 'maxIntegers'));
     }
 
     /**
@@ -86,52 +96,20 @@ class CenterController extends Controller
      */
     public function store(Request $request)
     {
-        $this->repository->update(auth()->user()->center_id, $request->all());
+        $this->repository->update(auth()->user()->center_id, $request->except('_token'));
         return redirect()->route('center.info')->with('status', 'Updated Successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function getCitiesAJAX(Request $request)
     {
-        //
+        $cities = $this->cityRepository->whereIn('id', $request->get('ids'));
+        $info = auth()->user()->center;
+        return view('center.info.section.citiesWithSites', compact('info','cities'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function updateSites(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->repository->updateSites(auth()->user()->center_id, $request->except('_token'));
+        return redirect()->back()->with('status', 'Updated Successfully!');
     }
 }
