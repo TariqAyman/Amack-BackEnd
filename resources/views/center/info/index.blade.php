@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/forms/wizard/bs-stepper.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/forms/select/select2.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/extensions/swiper.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/pickers/pickadate/pickadate.css')) }}">
 @endsection
 
 @section('page-style')
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/form-validation.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/form-wizard.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/extensions/ext-component-swiper.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/pickers/form-pickadate.css')) }}">
 @endsection
 
 @section('content')
@@ -23,13 +25,11 @@
             <div class="bs-stepper-header">
                 <div class="step" data-target="#basic_info">
                     <button type="button" class="step-trigger">
-                                        <span class="bs-stepper-box">
-                                            <i data-feather="file-text" class="font-medium-3"></i>
-                                        </span>
+                        <span class="bs-stepper-box"><i data-feather="file-text" class="font-medium-3"></i></span>
                         <span class="bs-stepper-label">
-                                            <span class="bs-stepper-title">BASIC INFO</span>
-                                            <span class="bs-stepper-subtitle">BASIC INFO</span>
-                                        </span>
+                            <span class="bs-stepper-title">BASIC INFO</span>
+                            <span class="bs-stepper-subtitle">BASIC INFO</span>
+                        </span>
                     </button>
                 </div>
                 <div class="line">
@@ -93,17 +93,22 @@
     <script src="{{ asset(mix('center-panel/vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
     <script src="{{ asset(mix('center-panel/vendors/js/forms/select/select2.full.min.js')) }}"></script>
     <script src="{{ asset(mix('center-panel/vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
-
+    <script src="{{ asset(mix('center-panel/vendors/js/pickers/pickadate/picker.js')) }}"></script>
+    <script src="{{ asset(mix('center-panel/vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+    <script src="{{ asset(mix('center-panel/vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
 @endsection
 @section('page-script')
+    @parent
     <!-- Page js files -->
     <script type="application/javascript">
 
         $(function () {
             'use strict';
 
-            var select = $('.select2'),
-                modernWizard = document.querySelector('.modern-wizard-example');
+            // Basic time
+            $('.pickatime').pickatime();
+
+            var select = $('.select2'), modernWizard = document.querySelector('.modern-wizard-example');
 
             // select2
             select.each(function () {
