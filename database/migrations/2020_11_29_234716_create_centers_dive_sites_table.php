@@ -27,7 +27,6 @@ class CreateCentersDiveSitesTable extends Migration
             $table->json('dates')->nullable();
 
             $table->boolean('guided')->nullable();
-            $table->boolean('orientation')->nullable();
 
             $table->json('time_of_dives')->nullable();
 

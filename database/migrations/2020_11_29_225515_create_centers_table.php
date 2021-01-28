@@ -39,7 +39,6 @@ class CreateCentersTable extends Migration
             $table->string('owner_mobile')->nullable();
 
             $table->boolean('full_day')->default(0);
-            $table->json('working_days');
 
             $table->json('amenities');
             $table->json('languages');
@@ -49,21 +48,41 @@ class CreateCentersTable extends Migration
             $table->integer('max_day_divers')->nullable();
             $table->integer('max_night_dives')->nullable();
             $table->integer('max_em_dives')->nullable();
+            $table->integer('max_days_shore_dives')->nullable();
+            $table->integer('max_days_boat_dives')->nullable();
+            $table->integer('max_days_em_dives')->nullable();
+            $table->integer('max_days_night_dives')->nullable();
 
             $table->integer('mini_days_shore_dives')->nullable();
             $table->integer('mini_days_boat_dives')->nullable();
-
-            $table->integer('max_days_shore_dives')->nullable();
-            $table->integer('max_days_boat_dives')->nullable();
-
             $table->integer('mini_days_em_dives')->nullable();
             $table->integer('mini_days_night_dives')->nullable();
-            $table->integer('max_days_em_dives')->nullable();
-            $table->integer('max_days_night_dives')->nullable();
 
             $table->string('bank_name')->nullable();
             $table->string('account_name')->nullable();
             $table->string('account_number')->nullable();
+
+            $table->string('currency')->nullable();
+            $table->json('currencies')->nullable();
+            $table->decimal('foreigner_rate')->nullable();
+
+            $table->decimal('shore_original_price')->nullable();
+            $table->decimal('shore_base_price')->nullable();
+            $table->decimal('boat_dives_original_price')->nullable();
+            $table->decimal('boat_base_price')->nullable();
+
+            $table->decimal('early_m_dive_price')->nullable();
+            $table->decimal('night_dive_price')->nullable();
+
+            $table->decimal('deduct_price_half_equipment')->nullable();
+            $table->decimal('deduct_price_full_equipment')->nullable();
+
+            $table->decimal('discounted_dives')->nullable();
+            $table->decimal('discounted_dives_roc')->nullable();
+            $table->decimal('discounted_dives_overseen')->nullable();
+            $table->decimal('discounted_divers')->nullable();
+            $table->decimal('discounted_divers_roc')->nullable();
+            $table->decimal('discounted_divers_overseen')->nullable();
 
             $table->boolean('enabled');
             $table->softDeletes();
