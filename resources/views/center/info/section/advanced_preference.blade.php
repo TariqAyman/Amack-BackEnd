@@ -31,72 +31,25 @@
         <div class="card col-md-12">
             <div class="card-header">Served sites</div>
             <div class="card-body business-card">
-                @php
-                    $integers = [
-                        [
-                            'key' => 'max_divers_per_trip',
-                            'text' => 'max divers / trip'
-                        ],
-                        [
-                            'key' => 'max_divers_per_day',
-                            'text' => 'Max divers / day'
-                        ],
-                        [
-                            'key' => 'max_day_divers',
-                            'text' => 'max divers / day '
-                        ],
-                        [
-                            'key' => 'max_night_dives',
-                            'text' => 'max night dives'
-                        ],
-                        [
-                            'key' => 'max_em_dives',
-                            'text' => 'max em dives'
-                        ],
-                        [
-                            'key' => 'mini_days_shore_dives',
-                            'text' => 'mini days shore dives'
-                        ],
-                        [
-                            'key' => 'mini_days_boat_dives',
-                            'text' => 'mini days boat dives'
-                        ],
-                         [
-                            'key' => 'mini_days_em_dives',
-                            'text' => 'mini days EM dives'
-                        ],
-                        [
-                            'key' => 'mini_days_night_dives',
-                            'text' => 'mini days night dives'
-                        ],
-                        [
-                            'key' => 'max_days_shore_dives',
-                            'text' => 'max days shore dives'
-                        ],
-                        [
-                            'key' => 'max_days_boat_dives',
-                            'text' => 'max days boat dives'
-                        ],
-                        [
-                            'key' => 'max_days_em_dives',
-                            'text' => 'max days EM dives'
-                        ],
-                        [
-                            'key' => 'max_days_night_dives',
-                            'text' => 'max days night dives'
-                        ]
-                    ];
-                @endphp
                 <div class="row">
-                    @foreach(collect($integers)->chunk(2) as $chunks)
-                        @foreach($chunks as $integer)
-                            <div class="col-md-6 col-12">
-                                <div class="form-group">
-                                    <label for="{{ $integer['key'] }}">{{ $integer['text'] }}</label>
-                                    {!! Form::number($integer['key'],isset($info) ? $info->{$integer['key']} : old($integer['key']),['id' => $integer['key'],'class' => 'form-control numeral-mask','placeholder' => $integer['text'] ,'value'=>0]) !!}
-                                </div>
+                    @foreach($maxIntegers as $integer)
+                        <div class="col-md-3 col-6">
+                            <div class="form-group">
+                                <label for="{{ $integer['key'] }}">{{ $integer['text'] }}</label>
+                                {!! Form::number($integer['key'],isset($info) ? $info->{$integer['key']} : old($integer['key']),['id' => $integer['key'],'class' => 'form-control numeral-mask','placeholder' => $integer['text'] ,'value'=>old($integer['key'])]) !!}
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="row">
+                    @foreach($miniIntegers as $integer)
+                        <div class="col-md-3 col-6">
+                            <div class="form-group">
+                                <label for="{{ $integer['key'] }}">{{ $integer['text'] }}</label>
+                                {!! Form::number($integer['key'],isset($info) ? $info->{$integer['key']} : old($integer['key']),['id' => $integer['key'],'class' => 'form-control numeral-mask','placeholder' => $integer['text'] ,'value'=>old($integer['key'])]) !!}
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -105,29 +58,19 @@
 
     <div class="row">
         <div class="card col-lg-12">
-            <div class="card-header">Served sites</div>
-            <div class="card-body">
-                @foreach($cities as $city)
-                    <div class="card shadow-none bg-transparent border-primary business-card">
-                        <div class="card-body">
-                            <h4 class="card-title">{{ $city->name }}</h4>
-                            <div class="row">
-                                @foreach($city->sites as $site)
-                                    <div class="col-md-3 col-12">
-                                        <div class="form-group">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="custom-control custom-control-primary custom-switch">
-                                                    <input type="checkbox" {{ $info->diveSites->contains($site->id) ? 'checked' : '' }} name="sites[]" value="{{ $site->id }}" class="custom-control-input" id="sites[{{ $site->id }}]">
-                                                    <label class="custom-control-label" for="sites[{{ $site->id }}]"> <a href="{{ route('center.site.show',$site->id) }}">{{ $site->name }}</a> </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+            <div class="card-header">
+                <div class="card-title">
+                    <span>Served sites</span>
+                </div>
+                <div class="heading-elements">
+                    <div class="form-group" style="min-width: 200px">
+                        <label class="form-label" for="currencies">Cities</label>
+                        {!! Form::select('cities', $cities->pluck('name','id') , $info->cities()->pluck('id'),['id'=>'cities','class' => 'select2 form-control','multiple'=>'multiple']) !!}
                     </div>
-                @endforeach
+                </div>
+            </div>
+            <div class="card-body">
+                @include('center.info.section.citiesWithSites',['cities' => $cities->whereIn('id',$info->cities()->pluck('id')),'info' => $info])
             </div>
         </div>
     </div>
