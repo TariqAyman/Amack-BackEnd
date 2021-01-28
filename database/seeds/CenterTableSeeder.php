@@ -33,7 +33,6 @@ class CenterTableSeeder extends Seeder
             'owner_name' => 'dqwd',
             'owner_mobile' => '+201091923922',
             'full_day' => 0,
-            'working_days' => '{\"fri\": {\"to\": \"9:00 PM\", \"from\": \"9:00 AM\"}, \"mon\": {\"to\": \"9:00 PM\", \"from\": \"9:00 AM\"}, \"sat\": {\"to\": \"9:00 PM\", \"from\": \"9:00 AM\"}, \"sun\": {\"to\": \"9:00 PM\", \"from\": \"9:00 AM\"}, \"thu\": {\"to\": \"9:00 PM\", \"from\": \"9:00 AM\"}, \"tue\": {\"to\": \"9:00 PM\", \"from\": \"9:00 AM\"}, \"wed\": {\"to\": \"9:00 PM\", \"from\": \"9:00 AM\"}}',
             'amenities' => '{\"pool\": {\"value\": null, \"enable\": \"on\"}, \"wifi\": {\"value\": null}, \"near_beach\": {\"value\": null}, \"pets_allowed\": {\"value\": null}, \"hotel_transport\": {\"value\": null}, \"orientation_dive\": {\"value\": null}, \"airport_transport\": {\"value\": null}}',
             'languages' => '[\"en\", \"ru\"]',
             'max_divers_per_trip' => 1,
