@@ -51,12 +51,22 @@ class EventsRepository extends Repository
 //        $center->save();
 //    }
 
-    public function insertShore(array $data): Model
+    public function insertShore(array $data): ?Model
+    {
+        return $this->insertAll($data, 'shore');
+    }
+
+    public function insertBoat(array $data): ?Model
+    {
+        return $this->insertAll($data, 'boat');
+    }
+
+    public function insertAll(array $data, string $type)
     {
         /** @var Event $event */
         $data['center_id'] = auth()->user()->center_id;
         $data['staff_id'] = auth()->user()->id;
-        $data['type'] = 'shore';
+        $data['type'] = $type;
         $data = $this->refactorData($data);
         $event = $this->model::query()->create($data);
         if (!empty($data['sites'])) $event->sites()->sync($data['sites']);
