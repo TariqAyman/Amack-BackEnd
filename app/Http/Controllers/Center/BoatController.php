@@ -3,28 +3,23 @@
 namespace App\Http\Controllers\Center;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\EventsRepository;
 use Illuminate\Http\Request;
 
 class BoatController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var EventsRepository
      */
-    public function index()
-    {
-        //
-    }
+    private $eventsRepository;
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * ShoreController constructor.
+     * @param EventsRepository $eventsRepository
      */
-    public function create()
+    public function __construct(EventsRepository $eventsRepository)
     {
-        //
+        $this->eventsRepository = $eventsRepository;
     }
 
     /**
@@ -35,7 +30,8 @@ class BoatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->eventsRepository->insertBoat($request->all());
+        return redirect()->back()->withSuccess(trans('app.success'));
     }
 
     /**
