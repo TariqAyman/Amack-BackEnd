@@ -37,7 +37,7 @@ class UserContactRepository extends Repository
         $userId = auth()->user()->id;
 
         foreach ($data['mobile'] as $number) {
-            if (!$this->model::where('user_id', $userId)->where('mobile', $data['mobile'])->exists()) {
+            if (!$this->model::where('user_id', $userId)->where('mobile', $number)->exists()) {
                 $insertData[] =
                     [
                         'user_id' => $userId,
@@ -46,7 +46,7 @@ class UserContactRepository extends Repository
             }
         }
 
-        $this->model::query()->upsert($insertData, []);
+        $this->model::query()->insert($insertData);
     }
 
     public function myContactUser()
