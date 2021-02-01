@@ -32,8 +32,8 @@ class Event extends Model
         'type_of_dives',
         'nitrox',
 
-        'shore_original_price',
-        'shore_base_price',
+        'original_price',
+        'base_price',
         'deduct_half_equipment',
         'deduct_half_equipment',
 
