@@ -135,34 +135,16 @@
                                 <input type="checkbox" class="custom-control-input select-all" id="select-all" checked/>
                                 <label class="custom-control-label" for="select-all">View All</label>
                             </div>
-                            {{--                            <div class="calendar-events-filter">--}}
-                            {{--                                <div class="custom-control custom-control-danger custom-checkbox mb-1">--}}
-                            {{--                                    <input--}}
-                            {{--                                        type="checkbox"--}}
-                            {{--                                        class="custom-control-input input-filter"--}}
-                            {{--                                        id="personal"--}}
-                            {{--                                        data-value="personal"--}}
-                            {{--                                        checked--}}
-                            {{--                                    />--}}
-                            {{--                                    <label class="custom-control-label" for="personal">Personal</label>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="custom-control custom-control-primary custom-checkbox mb-1">--}}
-                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="business" data-value="business" checked/>--}}
-                            {{--                                    <label class="custom-control-label" for="business">Business</label>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="custom-control custom-control-warning custom-checkbox mb-1">--}}
-                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="family" data-value="family" checked/>--}}
-                            {{--                                    <label class="custom-control-label" for="family">Family</label>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="custom-control custom-control-success custom-checkbox mb-1">--}}
-                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="holiday" data-value="holiday" checked/>--}}
-                            {{--                                    <label class="custom-control-label" for="holiday">Holiday</label>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="custom-control custom-control-info custom-checkbox">--}}
-                            {{--                                    <input type="checkbox" class="custom-control-input input-filter" id="etc" data-value="etc" checked/>--}}
-                            {{--                                    <label class="custom-control-label" for="etc">ETC</label>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
+                            <div class="calendar-events-filter">
+                                <div class="custom-control custom-control-danger custom-checkbox mb-1">
+                                    <input type="checkbox" class="custom-control-input input-filter" id="shore" data-value="shore" checked/>
+                                    <label class="custom-control-label" for="shore">shore</label>
+                                </div>
+                                <div class="custom-control custom-control-primary custom-checkbox mb-1">
+                                    <input type="checkbox" class="custom-control-input input-filter" id="boat" data-value="boat" checked/>
+                                    <label class="custom-control-label" for="boat">Boat</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="mt-auto">
@@ -313,7 +295,7 @@
     </section>
 
     @include('center.event-modals.boat-modal',compact('sites'))
-    @include('center.event-modals.shore-modal')
+    @include('center.event-modals.shore-modal',compact('sites'))
 
 @endsection
 
@@ -344,7 +326,7 @@
 @section('page-script')
     @parent
     <!-- Page js files -->
-    <script src="{{ asset(mix('center-panel/js/scripts/pages/app-calendar-events.js')) }}"></script>
+    {{--    <script src="{{ asset(mix('center-panel/js/scripts/pages/app-calendar-events.js')) }}"></script>--}}
     <script src="{{ asset(mix('center-panel/js/scripts/pages/app-calendar.js')) }}"></script>
 
     <script src="{{ asset(mix('center-panel/js/scripts/forms/form-select2.js')) }}"></script>
@@ -352,15 +334,5 @@
     <script src="{{ asset(mix('center-panel/js/scripts/forms/pickers/form-pickers.js')) }}"></script>
 
     <script src="{{ asset(mix('center-panel/js/scripts/forms/form-file-uploader.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/js/scripts/extensions/ext-component-swiper.js')) }}"></script>
-
-    {{--    <script>--}}
-    {{--        $(function () {--}}
-    {{--            'use strict';--}}
-    {{--            // $('#add-new-sidebar').modal('show');--}}
-    {{--            // $('#model-1').modal('show');--}}
-    {{--            $('#model-2').modal('show');--}}
-    {{--        });--}}
-    {{--    </script>--}}
 
 @endsection
