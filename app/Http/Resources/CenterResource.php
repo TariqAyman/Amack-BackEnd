@@ -27,14 +27,15 @@ class CenterResource extends JsonResource
                 "working_days" => new WorkingDaysResource($this->working_days),
                 "languages" => $this->languages,
                 "agencies" => ["PADI", "SSL"],
-                "activities" => $this->activities
+                // fix this
+                "activities" => $this->activity->name
             ],
             "features" => $this->amenities,
             "sites" => SiteResource::collection($this->sites),
             "info" => [
                 "start_date" => "10 - 10 -2020",
                 "arrival_time" => "9=>00 AM",
-                "activity" => "SCUBA Dive",
+                "activity" => "SCUBA Dive Dummy", // todo: dummy data
                 "purpose" => "Recreational",
                 "dive_guid" => "Mandatory",
                 "buddies" => [

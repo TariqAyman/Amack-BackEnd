@@ -156,7 +156,6 @@ class Center extends Model
 
     public function activity()
     {
-        dd($this->belongsTo(DiveActivity::class, 'activity_id'));
         return $this->belongsTo(DiveActivity::class, 'activity_id');
     }
 
