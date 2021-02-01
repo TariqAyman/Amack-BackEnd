@@ -39,8 +39,8 @@ class CreateEventsTable extends Migration
             $table->string('type_of_dives')->nullable();
             $table->string('nitrox')->nullable();
 
-            $table->decimal('shore_original_price')->nullable();
-            $table->decimal('shore_base_price')->nullable();
+            $table->decimal('original_price')->nullable();
+            $table->decimal('base_price')->nullable();
             $table->decimal('deduct_half_equipment')->nullable();
             $table->decimal('deduct_full_equipment')->nullable();
 
