@@ -28,10 +28,18 @@ Route::name('center.')->middleware('auth:staff')->group(function () {
 
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-    Route::resource('site','SitesController')->only(['show','update']);
+    Route::resource('site', 'SitesController')->only(['show', 'update']);
 
-    Route::get('getCitiesAJAX','CenterController@getCitiesAJAX')->name('getCitiesAJAX');
+    Route::get('getCitiesAJAX', 'CenterController@getCitiesAJAX')->name('getCitiesAJAX');
 
-    Route::post('updateSites','CenterController@updateSites')->name('updateSites');
+    Route::post('updateSites', 'CenterController@updateSites')->name('updateSites');
+
+    Route::get('myEvents', 'EventController@index')->name('myEvents');
+
+    Route::prefix('events')->name('events.')->group(function () {
+
+        Route::resource('shore', 'ShoreController')->only(['store','show']);
+        Route::resource('boat', 'BoatController')->only(['store','show']);
+    });
 
 });
