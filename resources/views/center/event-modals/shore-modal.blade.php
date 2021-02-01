@@ -222,13 +222,13 @@
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group mb-2">
                                             <label for="shore_original_price">Original price</label>
-                                            <input type="number" id="shore_original_price" name="shore_original_price" class="form-control" placeholder="100 EGP">
+                                            <input type="number" id="shore_original_price" name="original_price" class="form-control" placeholder="100 EGP">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group mb-2">
                                             <label for="shore_base_price">Base price</label>
-                                            <input type="number" id="shore_base_price" class="form-control" name="shore_base_price" placeholder="100 EGP">
+                                            <input type="number" id="shore_base_price" class="form-control" name="base_price" placeholder="100 EGP">
                                         </div>
                                     </div>
                                 </div>
@@ -236,14 +236,14 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group mb-2">
-                                            <label for="deduct_half_equipment">Half equipment</label>
-                                            <input type="number" id="deduct_half_equipment" class="form-control" name="deduct_half_equipment" placeholder="100 EGP">
+                                            <label for="shore_deduct_half_equipment">Half equipment</label>
+                                            <input type="number" id="shore_deduct_half_equipment" class="form-control" name="deduct_half_equipment" placeholder="100 EGP">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group mb-2">
-                                            <label for="deduct_full_equipment">Full equipment</label>
-                                            <input type="number" id="deduct_full_equipment" class="form-control" name="deduct_full_equipment" placeholder="100 EGP">
+                                            <label for="shore_deduct_full_equipment">Full equipment</label>
+                                            <input type="number" id="shore_deduct_full_equipment" class="form-control" name="deduct_full_equipment" placeholder="100 EGP">
                                         </div>
                                     </div>
                                 </div>
@@ -280,16 +280,13 @@
 <!--/ Calendar Add/Update/Delete event modal-->
 
 
-@section('page-se')
+@section('page-script')
     @parent
-
     <script type="application/javascript">
         $(function () {
             'use strict';
-
             // Basic time
             $('.pickatime').pickatime();
-
         });
     </script>
 @stop
