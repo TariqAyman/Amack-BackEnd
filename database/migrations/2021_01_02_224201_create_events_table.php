@@ -20,7 +20,9 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');
+            $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
             $table->unsignedBigInteger('staff_id');
+            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->string('type');
             $table->boolean('guided')->default(0);
             $table->boolean('is_public')->default(0);
