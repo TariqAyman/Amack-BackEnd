@@ -1,644 +1,308 @@
-@extends('admin.layouts.master')
-@section('scripts')
-    <!-- ChartJS -->
-    <script src="{{asset('lte/plugins/chart.js/Chart.min.js')}}"></script>
-    <!-- Sparkline -->
-    <script src="{{asset('lte/plugins/sparklines/sparkline.js')}}"></script>
-    <!-- JQVMap -->
-    <script src="{{asset('lte/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-    <script src="{{asset('lte/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="{{asset('lte/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
-    <script src="{{asset('lte/js/pages/dashboard.js')}}"></script>
+@extends('admin/layouts/contentLayoutMaster')
 
-@stop
+@section('title', 'Dashboard')
+
+@section('vendor-style')
+    <!-- Vendor css files -->
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/calendars/fullcalendar.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/forms/select/select2.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/forms/select/select2.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
+
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/pickers/pickadate/pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/file-uploaders/dropzone.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/extensions/swiper.min.css')) }}">
+
+@endsection
+
+@section('page-style')
+    <!-- Page css files -->
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/pages/app-calendar.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/form-validation.css')) }}">
+
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/form-file-uploader.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/extensions/ext-component-swiper.css')) }}">
+
+@endsection
+
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Dashboard</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>150</h3>
-
-                            <p>New Orders</p>
+    <section>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="avatar bg-light-danger p-50 m-0">
+                            <div class="avatar-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-activity font-medium-5">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
+                        <div>
+                            <h2 class="font-weight-bolder mb-0">EGP 40,000</h2>
+                            <p class="card-text">Total revenue</p>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                            <p>Bounce Rate</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>44</h3>
-
-                            <p>User Registrations</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>65</h3>
-
-                            <p>Unique Visitors</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
             </div>
-            <!-- /.row -->
-            <!-- Main row -->
-            <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
-                    <!-- Custom tabs (Charts with tabs)-->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-chart-pie mr-1"></i>
-                                Sales
-                            </h3>
-                            <div class="card-tools">
-                                <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                     style="position: relative; height: 300px;">
-                                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                                <div class="chart tab-pane" id="sales-chart"
-                                     style="position: relative; height: 300px;">
-                                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                            </div>
-                        </div><!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-
-                    <!-- DIRECT CHAT -->
-                    <div class="card direct-chat direct-chat-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Direct Chat</h3>
-
-                            <div class="card-tools">
-                                    <span data-toggle="tooltip" title="3 New Messages"
-                                          class="badge badge-primary">3</span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                                        data-widget="chat-pane-toggle">
-                                    <i class="fas fa-comments"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                        class="fas fa-times"></i>
-                                </button>
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="avatar bg-light-danger p-50 m-0">
+                            <div class="avatar-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-activity font-medium-5">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
                             </div>
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <!-- Conversations are loaded here -->
-                            <div class="direct-chat-messages">
-                                <!-- Message. Default to the left -->
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
-                                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{asset('lte/img/user1-128x128.jpg')}}"
-                                         alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        Is this template really for free? That's unbelievable!
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
-
-                                <!-- Message to the right -->
-                                <div class="direct-chat-msg right">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{asset('lte/img/user3-128x128.jpg')}}"
-                                         alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        You better believe it!
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
-
-                                <!-- Message. Default to the left -->
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
-                                        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{asset('lte/img/user1-128x128.jpg')}}"
-                                         alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        Working with AdminLTE on a great new app! Wanna join?
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
-
-                                <!-- Message to the right -->
-                                <div class="direct-chat-msg right">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                        <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{asset('lte/img/user3-128x128.jpg')}}"
-                                         alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        I would love to.
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
-
-                            </div>
-                            <!--/.direct-chat-messages-->
-
-                            <!-- Contacts are loaded here -->
-                            <div class="direct-chat-contacts">
-                                <ul class="contacts-list">
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img"
-                                                 src="{{asset('lte/img/user1-128x128.jpg')}}">
-
-                                            <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Count Dracula
-                            <small class="contacts-list-date float-right">2/28/2015</small>
-                          </span>
-                                                <span class="contacts-list-msg">How have you been? I was...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img"
-                                                 src="{{asset('lte/img/user7-128x128.jpg')}}">
-
-                                            <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Sarah Doe
-                            <small class="contacts-list-date float-right">2/23/2015</small>
-                          </span>
-                                                <span class="contacts-list-msg">I will be waiting for...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img"
-                                                 src="{{asset('lte/img/user7-128x128.jpg')}}">
-
-                                            <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Nadia Jolie
-                            <small class="contacts-list-date float-right">2/20/2015</small>
-                          </span>
-                                                <span class="contacts-list-msg">I'll call you back at...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img"
-                                                 src="{{asset('lte/img/user5-128x128.jpg')}}">
-
-                                            <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Nora S. Vans
-                            <small class="contacts-list-date float-right">2/10/2015</small>
-                          </span>
-                                                <span class="contacts-list-msg">Where is your new...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img"
-                                                 src="{{asset('lte/img/user6-128x128.jpg')}}">
-
-                                            <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            John K.
-                            <small class="contacts-list-date float-right">1/27/2015</small>
-                          </span>
-                                                <span class="contacts-list-msg">Can I take a look at...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img"
-                                                 src="{{asset('lte/img/user8-128x128.jpg')}}">
-
-                                            <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            Kenneth M.
-                            <small class="contacts-list-date float-right">1/4/2015</small>
-                          </span>
-                                                <span class="contacts-list-msg">Never mind I found...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                </ul>
-                                <!-- /.contacts-list -->
-                            </div>
-                            <!-- /.direct-chat-pane -->
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <form action="#" method="post">
-                                <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type Message ..."
-                                           class="form-control">
-                                    <span class="input-group-append">
-                      <button type="button" class="btn btn-primary">Send</button>
-                    </span>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.card-footer-->
-                    </div>
-                    <!--/.direct-chat -->
-
-                    <!-- TO DO List -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="ion ion-clipboard mr-1"></i>
-                                To Do List
-                            </h3>
-
-                            <div class="card-tools">
-                                <ul class="pagination pagination-sm">
-                                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <ul class="todo-list" data-widget="todo-list">
-                                <li>
-                                    <!-- drag handle -->
-                                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                                    <!-- checkbox -->
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                                        <label for="todoCheck1"></label>
-                                    </div>
-                                    <!-- todo text -->
-                                    <span class="text">Design a nice theme</span>
-                                    <!-- Emphasis label -->
-                                    <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
-                                    <!-- General tools such as edit or delete-->
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
-                                        <label for="todoCheck2"></label>
-                                    </div>
-                                    <span class="text">Make the theme responsive</span>
-                                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                                        <label for="todoCheck3"></label>
-                                    </div>
-                                    <span class="text">Let theme shine like a star</span>
-                                    <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo4" id="todoCheck4">
-                                        <label for="todoCheck4"></label>
-                                    </div>
-                                    <span class="text">Let theme shine like a star</span>
-                                    <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo5" id="todoCheck5">
-                                        <label for="todoCheck5"></label>
-                                    </div>
-                                    <span class="text">Check your messages and notifications</span>
-                                    <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo6" id="todoCheck6">
-                                        <label for="todoCheck6"></label>
-                                    </div>
-                                    <span class="text">Let theme shine like a star</span>
-                                    <small class="badge badge-secondary"><i class="far fa-clock"></i> 1
-                                        month</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <button type="button" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add
-                                item
-                            </button>
+                        <div>
+                            <h2 class="font-weight-bolder mb-0">EGP 40,000</h2>
+                            <p class="card-text">Total revenue</p>
                         </div>
                     </div>
-                    <!-- /.card -->
-                </section>
-                <!-- /.Left col -->
-                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                <section class="col-lg-5 connectedSortable">
-
-                    <!-- Map card -->
-                    <div class="card bg-gradient-primary">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                Visitors
-                            </h3>
-                            <!-- card tools -->
-                            <div class="card-tools">
-                                <button type="button"
-                                        class="btn btn-primary btn-sm daterange"
-                                        data-toggle="tooltip"
-                                        title="Date range">
-                                    <i class="far fa-calendar-alt"></i>
-                                </button>
-                                <button type="button"
-                                        class="btn btn-primary btn-sm"
-                                        data-card-widget="collapse"
-                                        data-toggle="tooltip"
-                                        title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <div class="card-body">
-                            <div id="world-map" style="height: 250px; width: 100%;"></div>
-                        </div>
-                        <!-- /.card-body-->
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-1"></div>
-                                    <div class="text-white">Visitors</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-2"></div>
-                                    <div class="text-white">Online</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-3"></div>
-                                    <div class="text-white">Sales</div>
-                                </div>
-                                <!-- ./col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                    </div>
-                    <!-- /.card -->
-
-                    <!-- solid sales graph -->
-                    <div class="card bg-gradient-info">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-th mr-1"></i>
-                                Sales Graph
-                            </h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas class="chart" id="line-chart"
-                                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60"
-                                           data-height="60"
-                                           data-fgColor="#39CCCC">
-
-                                    <div class="text-white">Mail-Orders</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60"
-                                           data-height="60"
-                                           data-fgColor="#39CCCC">
-
-                                    <div class="text-white">Online</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="30" data-width="60"
-                                           data-height="60"
-                                           data-fgColor="#39CCCC">
-
-                                    <div class="text-white">In-Store</div>
-                                </div>
-                                <!-- ./col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.card-footer -->
-                    </div>
-                    <!-- /.card -->
-
-                    <!-- Calendar -->
-                    <div class="card bg-gradient-success">
-                        <div class="card-header border-0">
-
-                            <h3 class="card-title">
-                                <i class="far fa-calendar-alt"></i>
-                                Calendar
-                            </h3>
-                            <!-- tools card -->
-                            <div class="card-tools">
-                                <!-- button with a dropdown -->
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success btn-sm dropdown-toggle"
-                                            data-toggle="dropdown" data-offset="-52">
-                                        <i class="fas fa-bars"></i></button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a href="#" class="dropdown-item">Add new event</a>
-                                        <a href="#" class="dropdown-item">Clear events</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item">View calendar</a>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                            <!-- /. tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body pt-0">
-                            <!--The calendar -->
-                            <div id="calendar" style="width: 100%"></div>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </section>
-                <!-- right col -->
+                </div>
             </div>
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="avatar bg-light-danger p-50 m-0">
+                            <div class="avatar-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-activity font-medium-5">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="font-weight-bolder mb-0">EGP 40,000</h2>
+                            <p class="card-text">Total revenue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="avatar bg-light-danger p-50 m-0">
+                            <div class="avatar-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-activity font-medium-5">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="font-weight-bolder mb-0">EGP 40,000</h2>
+                            <p class="card-text">Total revenue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <!-- Full calendar start -->
+    <section>
+        <div class="app-calendar overflow-hidden border">
+            <div class="row no-gutters">
+                <!-- Sidebar -->
+                <div class="col app-calendar-sidebar flex-grow-0 overflow-hidden d-flex flex-column" id="app-calendar-sidebar">
+                    <div class="sidebar-wrapper">
+                        <div class="card-body d-flex justify-content-center">
+
+                            <div class="btn-group">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Create Event
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#shore-modal">Create shore trip</a>
+                                    <a class="dropdown-item" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#boat-modal">Create boat trip</a>
+                                    <a class="dropdown-item" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#custom-modal">Custom days off</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pb-0">
+                            <h5 class="section-label mb-1">
+                                <span class="align-middle">Filter</span>
+                            </h5>
+                            <div class="custom-control custom-checkbox mb-1">
+                                <input type="checkbox" class="custom-control-input select-all" id="select-all" checked/>
+                                <label class="custom-control-label" for="select-all">View All</label>
+                            </div>
+                            <div class="calendar-events-filter">
+                                <div class="custom-control custom-control-danger custom-checkbox mb-1">
+                                    <input type="checkbox" class="custom-control-input input-filter" id="shore" data-value="shore" checked/>
+                                    <label class="custom-control-label" for="shore">shore</label>
+                                </div>
+                                <div class="custom-control custom-control-primary custom-checkbox mb-1">
+                                    <input type="checkbox" class="custom-control-input input-filter" id="boat" data-value="boat" checked/>
+                                    <label class="custom-control-label" for="boat">Boat</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <img
+                            src="{{ asset('dashboard/images/pages/calendar-illustration.png') }}"
+                            alt="Calendar illustration"
+                            class="img-fluid"
+                        />
+                    </div>
+                </div>
+                <!-- /Sidebar -->
+
+                <!-- Calendar -->
+                <div class="col position-relative">
+                    <div class="card shadow-none border-0 mb-0 rounded-0">
+                        <div class="card-body pb-0">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Calendar -->
+                <div class="body-content-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="p-lg-50">
+        <div class="row" style="display: block; overflow-x: auto; white-space: nowrap;">
+            <!-- Transaction card -->
+            @for($i = 0 ; $i <= 5; $i ++)
+                <div class="col-lg-4 col-md-6 col-12" style="display: inline-block;">
+                    <div class="card card-transaction">
+                        <div class="card-header">
+                            <h4 class="card-title">Trip #00000</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="transaction-item">
+                                <div class="media">
+                                    <div class="avatar bg-light-primary rounded">
+                                        <div class="avatar-content">
+                                            <i data-feather="pocket" class="avatar-icon font-medium-3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="transaction-title">Number of divers</h6>
+                                    </div>
+                                </div>
+                                <div class="font-weight-bolder text-danger">5</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="media">
+                                    <div class="avatar bg-light-success rounded">
+                                        <div class="avatar-content">
+                                            <i data-feather="check" class="avatar-icon font-medium-3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="transaction-title">Special dives</h6>
+                                    </div>
+                                </div>
+                                <div class="font-weight-bolder text-success">480</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="media">
+                                    <div class="avatar bg-light-danger rounded">
+                                        <div class="avatar-content">
+                                            <i data-feather="dollar-sign" class="avatar-icon font-medium-3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="transaction-title">Shore dives</h6>
+                                    </div>
+                                </div>
+                                <div class="font-weight-bolder text-success">590</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="media">
+                                    <div class="avatar bg-light-warning rounded">
+                                        <div class="avatar-content">
+                                            <i data-feather="credit-card" class="avatar-icon font-medium-3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="transaction-title">Boat dives</h6>
+                                    </div>
+                                </div>
+                                <div class="font-weight-bolder text-danger">23</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="media">
+                                    <div class="avatar bg-light-info rounded">
+                                        <div class="avatar-content">
+                                            <i data-feather="trending-up" class="avatar-icon font-medium-3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="transaction-title">Date </h6>
+                                    </div>
+                                </div>
+                                <div class="font-weight-bolder text-success">20/10/20</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="media">
+                                    <div class="avatar bg-light-info rounded">
+                                        <div class="avatar-content">
+                                            <i data-feather="trending-up" class="avatar-icon font-medium-3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="transaction-title">Payment</h6>
+                                    </div>
+                                </div>
+                                <div class="font-weight-bolder text-success">EGP 10,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        @endfor
+        <!--/ Transaction card -->
+        </div>
+    </section>
+
+@endsection
+
+@section('vendor-script')
+    @parent
+    <!-- Vendor js files -->
+    <script src="{{ asset(mix('dashboard/vendors/js/calendar/fullcalendar.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/extensions/moment.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/select/select2.full.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/select/select2.full.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js')) }}"></script>
+
+    <!-- vendor files -->
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/pickadate/picker.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/pickadate/legacy.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+
+    <!-- vendor files -->
+    <script src="{{ asset(mix('dashboard/vendors/js/extensions/dropzone.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/extensions/swiper.min.js')) }}"></script>
+
+@endsection
+@section('page-script')
+    @parent
+    <!-- Page js files -->
+    {{--    <script src="{{ asset(mix('dashboard/js/scripts/pages/app-calendar-events.js')) }}"></script>--}}
+    <script src="{{ asset(mix('dashboard/js/scripts/pages/app-calendar.js')) }}"></script>
+
+    <script src="{{ asset(mix('dashboard/js/scripts/forms/form-select2.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/js/scripts/forms/form-number-input.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+
+    <script src="{{ asset(mix('dashboard/js/scripts/forms/form-file-uploader.js')) }}"></script>
+
 @endsection
