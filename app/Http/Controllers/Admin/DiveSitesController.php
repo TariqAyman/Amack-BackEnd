@@ -23,6 +23,8 @@ class DiveSitesController extends AdminController
     /** @var DiveSiteRepository */
     protected $repository = DiveSiteRepository::class;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/dive-sites', 'name' => "Dive Site"]];
+
     /** @var CityRepository */
     protected $cityRepository;
 
@@ -57,7 +59,8 @@ class DiveSitesController extends AdminController
         SeasonRepository $seasonRepository,
         CourseRepository $courseRepository,
         EquipmentRepository $equipmentRepository
-    ) {
+    )
+    {
         $this->cityRepository = $cityRepository;
         $this->taxonRepository = $taxonRepository;
         $this->diveEntryRepository = $diveEntryRepository;
@@ -81,6 +84,7 @@ class DiveSitesController extends AdminController
         $dayTimes = $this->datTimeRepository->findAll(['id', 'name']);
         $sites = $this->repository->findAll(['id', 'name']);
         $equipments = $this->equipmentRepository->findAll(['name', 'id']);
+        $breadcrumbs = $this->createBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Create New"]]);
         return view(
             'admin.' . $this->block . '.form',
             compact(
@@ -92,7 +96,8 @@ class DiveSitesController extends AdminController
                 'entries',
                 'dayTimes',
                 'sites',
-                'equipments'
+                'equipments',
+                'breadcrumbs'
             )
         );
     }
@@ -109,7 +114,8 @@ class DiveSitesController extends AdminController
         $dayTimes = $this->datTimeRepository->findAll(['id', 'name']);
         $sites = $this->repository->findAll(['id', 'name']);
         $equipments = $this->equipmentRepository->findAll(['name', 'id']);
-        return view('admin.' . $this->block . '.form', compact('data', 'seasons', 'cities', 'taxons', 'activities', 'licenses', 'entries', 'dayTimes', 'sites', 'equipments'));
+        $breadcrumbs = $this->editBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Edit #{$data->id}"]]);
+        return view('admin.' . $this->block . '.form', compact('data', 'seasons', 'cities', 'taxons', 'activities', 'licenses', 'entries', 'dayTimes', 'sites', 'equipments','breadcrumbs'));
     }
 
     public function removeImage(int $id, int $imageId): JsonResponse
