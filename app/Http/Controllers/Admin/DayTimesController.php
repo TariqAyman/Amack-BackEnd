@@ -12,6 +12,8 @@ class DayTimesController extends AdminController
     protected $block = 'day-times';
     protected $repository = DayTimeRepository::class;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/dive-times', 'name' => "Dive times"]];
+
     public function removePhoto(int $id): JsonResponse
     {
         $this->repository->removeImage($id);
