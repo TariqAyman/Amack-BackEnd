@@ -19,6 +19,8 @@ class EquipmentsController extends AdminController
     /** @var SeasonRepository */
     protected $seasonRepository;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/equipments', 'name' => "Equipments"]];
+
     public function __construct(SeasonRepository $seasonRepository)
     {
         $this->seasonRepository = $seasonRepository;
@@ -35,13 +37,15 @@ class EquipmentsController extends AdminController
     public function create(): View
     {
         $seasons = $this->seasonRepository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('seasons'));
+        $breadcrumbs = $this->createBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Create New"]]);
+        return view('admin.' . $this->block . '.form', compact('seasons','breadcrumbs'));
     }
 
     public function edit(int $id): View
     {
         $data = $this->repository->find($id);
         $seasons = $this->seasonRepository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('data', 'seasons'));
+        $breadcrumbs = $this->editBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Edit #{$data->id}"]]);
+        return view('admin.' . $this->block . '.form', compact('data', 'seasons','breadcrumbs'));
     }
 }
