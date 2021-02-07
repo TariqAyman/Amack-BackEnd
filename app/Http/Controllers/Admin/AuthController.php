@@ -14,7 +14,9 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('admin.auth.login');
+        $pageConfigs = ['blankPage' => true];
+
+        return view('admin.auth.login',compact('pageConfigs'));
     }
 
     public function redirectPath()
