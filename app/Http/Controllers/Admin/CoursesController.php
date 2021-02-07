@@ -18,6 +18,9 @@ class CoursesController extends AdminController
     /** @var SchoolRepository */
     protected $schoolsRepository;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/dive-sites', 'name' => "Dive Site"]];
+
+
     public function __construct(SchoolRepository $schoolsRepository)
     {
         $this->schoolsRepository = $schoolsRepository;
@@ -29,7 +32,8 @@ class CoursesController extends AdminController
     {
         $schools = $this->schoolsRepository->findAll(['id', 'name']);
         $licenses = $this->repository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('schools', 'licenses'));
+        $breadcrumbs = $this->createBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Create New"]]);
+        return view('admin.' . $this->block . '.form', compact('schools', 'licenses', 'breadcrumbs'));
     }
 
     public function edit(int $id): View
@@ -37,6 +41,7 @@ class CoursesController extends AdminController
         $data = $this->repository->find($id);
         $schools = $this->schoolsRepository->findAll(['id', 'name']);
         $licenses = $this->repository->findAll(['id', 'name']);
-        return view('admin.' . $this->block . '.form', compact('data', 'schools', 'licenses'));
+        $breadcrumbs = $this->editBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Edit #{$data->id}"]]);
+        return view('admin.' . $this->block . '.form', compact('data', 'schools', 'licenses', 'breadcrumbs'));
     }
 }
