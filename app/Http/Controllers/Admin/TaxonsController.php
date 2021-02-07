@@ -13,6 +13,8 @@ class TaxonsController extends AdminController
     /** @var TaxonRepository */
     protected $repository = TaxonRepository::class;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/taxons', 'name' => "Taxons"]];
+
     public function removePhoto(int $id): JsonResponse
     {
         $this->repository->removeImage($id);
