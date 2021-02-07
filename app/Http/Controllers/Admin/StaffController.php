@@ -21,6 +21,7 @@ class StaffController extends AdminController
      */
     private $centerRepository;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/staff', 'name' => "staff"]];
 
     public function __construct(CenterRepository $centerRepository)
     {
@@ -32,13 +33,14 @@ class StaffController extends AdminController
     {
         $data = $this->repository->find($id);
         $centers = $this->centerRepository->getModel()::pluck('name', 'id');
-
-        return view('admin.' . $this->block . '.form', compact('data', 'centers'));
+        $breadcrumbs = $this->editBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Edit #{$data->id}"]]);
+        return view('admin.' . $this->block . '.form', compact('data', 'centers', 'breadcrumbs'));
     }
 
     public function create(): View
     {
         $centers = $this->centerRepository->getModel()::pluck('name', 'id');
-        return view('admin.' . $this->block . '.form', compact('centers'));
+        $breadcrumbs = $this->createBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Create New"]]);
+        return view('admin.' . $this->block . '.form', compact('centers', 'breadcrumbs'));
     }
 }
