@@ -1,8 +1,13 @@
-@extends('admin.layouts.master')
+@extends('admin/layouts/contentLayoutMaster')
 
+@section('title', isset($data)? 'Edit Cities' : 'New Cities')
 
-@section('styles')
-    <link rel="stylesheet" href="{{asset('lte/plugins/select2/css/select2.min.css')}}">
+@section('vendor-style')
+    <!-- vendor css files -->
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/forms/select/select2.min.css')) }}">
+@stop
+
+@section('page-style')
     <style>
         .thumb {
             max-width: 150px;
@@ -25,11 +30,14 @@
     </style>
 @endsection
 
-@section('scripts')
-    @parent
-    @include('admin.partials.map',[ 'lat' => $data->latitude ?? null , 'lng' => $data->latitude ?? null ])
+@section('vendor-script')
+    <!-- vendor files -->
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/select/select2.full.min.js')) }}"></script>
+@stop
 
-    <script src="{{asset('lte/plugins/select2/js/select2.full.min.js')}}"></script>
+@section('page-script')
+    @parent
+    @include('admin.panels.map',[ 'lat' => $data->latitude ?? null , 'lng' => $data->latitude ?? null ])
     <script>
         $(function () {
             $('.select2').select2()
@@ -56,35 +64,14 @@
 @stop
 
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>{{isset($data)? 'Edit City '.$data->id : 'New City'}}</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('cities.index')}}">Cities</a></li>
-                        <li class="breadcrumb-item active">{{isset($data)? 'Edit City' : 'New City'}}</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card card-primary">
-                        @if(session('status'))
-                            <div class="alert alert-success alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                                </button>
-                                <h5><i class="icon fas fa-check"></i> Success!</h5>
-                                {{ session('status') }}
-                            </div>
-                        @endif
+    <section id="multiple-column-form">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">{{isset($data)? 'Edit City '.$data->id : 'New City'}}</h4>
+                    </div>
+                    <div class="card-body">
                         <form method="post" enctype="multipart/form-data"
                               action="{{isset($data)? route('cities.update',$data->id):route('cities.store')}}"
                               role="form">
@@ -142,7 +129,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label></label>
-                                                <button type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#modal-map">Show Map</button>
+                                                <button type="button" class="btn btn-outline-secondary round waves-effect" data-toggle="modal" data-target="#modal-map">Show Map</button>
                                             </div>
                                         </div>
                                     </div>
@@ -215,13 +202,24 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="row justify-content-between">
+                                    <div class="demo-inline-spacing">
+                                        <button type="button" class="btn btn-success">Save & Close</button>
+                                    </div>
+                                    <div class="demo-inline-spacing">
+                                        <button type="submit" value="submit" class="btn btn-primary">Save</button>
+                                        @if($data->prev())
+                                            <a type="button" href="{{ route('dive-sites.edit',$data->prev()) }}" class="btn btn-secondary">Pervious</a>
+                                        @endif
+                                        @if($data->next())
+                                            <a type="button" href="{{ route('dive-sites.edit',$data->next()) }}" class="btn btn-warning">Next</a>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </section>
