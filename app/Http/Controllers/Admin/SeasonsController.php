@@ -12,6 +12,8 @@ class SeasonsController extends AdminController
     protected $block = 'seasons';
     protected $repository = SeasonRepository::class;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/seasons', 'name' => "Seasons"]];
+
     public function removePhoto(int $id): JsonResponse
     {
         $this->repository->removeImage($id);
