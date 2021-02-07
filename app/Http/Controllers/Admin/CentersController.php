@@ -19,6 +19,8 @@ class CentersController extends AdminController
     /** @var CenterRepository */
     protected $repository = CenterRepository::class;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/centers', 'name' => "Centers"]];
+
     /**
      * @var DiveActivity
      */
@@ -41,7 +43,8 @@ class CentersController extends AdminController
     {
         $activities = $this->diveActivity->getModel()::pluck('name', 'id');
         $languages = ['ar' => 'Arabic', 'esp' => 'Spanish', 'en' => 'English', 'ru' => 'Russian', 'deu' => 'Deutsch', 'fra' => 'French', 'ita' => 'Italian'];
-        return view('admin.' . $this->block . '.form', compact('activities', 'languages'));
+        $breadcrumbs = $this->createBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Create New"]]);
+        return view('admin.' . $this->block . '.form', compact('activities', 'languages', 'breadcrumbs'));
     }
 
     public function store(Request $request)
@@ -55,6 +58,7 @@ class CentersController extends AdminController
         $activities = $this->diveActivity->getModel()::pluck('name', 'id');
         $languages = ['ar' => 'Arabic', 'esp' => 'Spanish', 'en' => 'English', 'ru' => 'Russian', 'deu' => 'Deutsch', 'fra' => 'French', 'ita' => 'Italian'];
         $data = $this->repository->find($id);
-        return view('admin.' . $this->block . '.form', compact('data', 'activities', 'languages'));
+        $breadcrumbs = $this->editBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Edit #{$data->id}"]]);
+        return view('admin.' . $this->block . '.form', compact('data', 'activities', 'languages', 'breadcrumbs'));
     }
 }
