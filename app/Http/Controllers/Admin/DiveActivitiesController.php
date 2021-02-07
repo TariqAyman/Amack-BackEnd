@@ -13,6 +13,8 @@ class DiveActivitiesController extends AdminController
 
     protected $repository = DiveActivityRepository::class;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/dive-activities', 'name' => "Dive activities"]];
+
     public function removePhoto(int $id): JsonResponse
     {
         $this->repository->removeImage($id);
