@@ -14,6 +14,8 @@ class DiveEntriesController extends AdminController
     /** @var DiveEntryRepository */
     protected $repository = DiveEntryRepository::class;
 
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/dive-entries', 'name' => "Dive entries"]];
+
     public function removePhoto(int $id): JsonResponse
     {
         $this->repository->removeImage($id);
