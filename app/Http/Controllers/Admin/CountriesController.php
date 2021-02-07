@@ -10,4 +10,7 @@ class CountriesController extends AdminController
 {
     protected $block = 'countries';
     protected $repository = CountryRepository::class;
+
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/countries', 'name' => "Countries"]];
+
 }
