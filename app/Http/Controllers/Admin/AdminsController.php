@@ -11,4 +11,7 @@ class AdminsController extends AdminController
     protected $block = 'admins';
 
     protected $repository = AdminRepository::class;
+
+    protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/admins', 'name' => "Admins"]];
+
 }
