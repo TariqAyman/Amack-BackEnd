@@ -10,6 +10,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class City extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'cities';
 

@@ -13,6 +13,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Equipment extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'equipments';
     protected $fillable = ['name', 'image', 'night_dive', 'nitrox', 'state', 'season_id'];

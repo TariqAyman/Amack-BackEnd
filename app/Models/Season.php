@@ -12,6 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Season extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'seasons';
 

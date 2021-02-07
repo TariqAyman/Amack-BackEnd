@@ -12,6 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Taxon extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'taxons';
 

@@ -15,6 +15,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Staff extends Authenticatable
 {
     use HasFactory, LogsActivity, SoftDeletes, HasApiTokens, Notifiable;
+    use CustomModelTrait;
 
     protected $table = 'staff';
 

@@ -12,6 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class DiveEntry extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'dive_entries';
 

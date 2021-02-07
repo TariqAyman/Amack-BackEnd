@@ -11,6 +11,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class School extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'diving_schools';
 

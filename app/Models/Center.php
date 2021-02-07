@@ -12,6 +12,8 @@ class Center extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
+    use CustomModelTrait;
+
     protected $table = 'centers';
 
     protected $fillable = [

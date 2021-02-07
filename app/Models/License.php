@@ -9,6 +9,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class License extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'licenses';
 

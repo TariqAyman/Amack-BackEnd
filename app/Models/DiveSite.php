@@ -13,6 +13,8 @@ class DiveSite extends Model
 {
     use LogsActivity, SoftDeletes;
 
+    use CustomModelTrait;
+
     protected $table = 'dive_sites';
 
     protected $fillable = [

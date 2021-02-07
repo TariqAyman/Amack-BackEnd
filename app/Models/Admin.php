@@ -14,6 +14,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Admin extends Authenticatable
 {
     use Notifiable, LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'admins';
 

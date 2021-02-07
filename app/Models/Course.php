@@ -10,6 +10,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Course extends Model
 {
     use LogsActivity , SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'diving_courses';
 

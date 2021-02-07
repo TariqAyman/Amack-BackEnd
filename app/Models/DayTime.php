@@ -12,6 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class DayTime extends Model
 {
     use LogsActivity, SoftDeletes;
+    use CustomModelTrait;
 
     protected $table = 'day_times';
     protected $fillable = ['name', 'icon'];

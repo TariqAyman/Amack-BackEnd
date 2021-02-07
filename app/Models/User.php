@@ -19,6 +19,7 @@ class User extends Authenticatable
     use LogsActivity, SoftDeletes;
 
     use HasApiTokens, Notifiable;
+    use CustomModelTrait;
 
     protected $table = 'users';
     /**
