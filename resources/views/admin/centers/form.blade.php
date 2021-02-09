@@ -192,14 +192,22 @@
                                 </div>
                             </div>
                             <!-- /.card-body -->
-                            <div class="card-footer">
-                                <div class="demo-inline-spacing justify-content-end">
-                                    <button type="button" class="btn btn-secondary">Pervious</button>
-                                    <button type="submit" value="submit" class="btn btn-primary">Save</button>
-                                    <button type="button" class="btn btn-success">Save & Close</button>
-                                    <button type="button" class="btn btn-warning">Next</button>
+                                <div class="card-footer">
+                                    <div class="row justify-content-between">
+                                        <div class="demo-inline-spacing">
+                                            <button type="button" class="btn btn-success">Save & Close</button>
+                                        </div>
+                                        <div class="demo-inline-spacing">
+                                            <button type="submit" value="submit" class="btn btn-primary">Save</button>
+                                            @if(isset($data) && $data->prev())
+                                                <a type="button" href="{{ route('dive-sites.edit',$data->prev()) }}" class="btn btn-secondary">Pervious</a>
+                                            @endif
+                                            @if(isset($data) && $data->next())
+                                                <a type="button" href="{{ route('dive-sites.edit',$data->next()) }}" class="btn btn-warning">Next</a>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>

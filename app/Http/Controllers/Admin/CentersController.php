@@ -26,6 +26,10 @@ class CentersController extends AdminController
      */
     private $diveActivity;
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
 
     public function __construct(DiveActivity $diveActivity)
     {
