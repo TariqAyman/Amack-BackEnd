@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 class Staff extends Authenticatable
 {
     use HasFactory, LogsActivity, SoftDeletes, HasApiTokens, Notifiable;
     use CustomModelTrait;
+    use HasRoles;
 
     protected $table = 'staff';
 

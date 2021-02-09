@@ -10,18 +10,20 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
     use Notifiable, LogsActivity, SoftDeletes;
     use CustomModelTrait;
+    use HasRoles;
 
     protected $table = 'admins';
 
     protected $guard = 'admin';
-    protected $guard_name = 'admin';
+    protected $guard_name = 'web';
 
-    protected $fillable = ['email', 'password', 'name', 'photo','gender'];
+    protected $fillable = ['email', 'password', 'name', 'photo', 'gender'];
 
     protected static $logName = 'admins';
     protected static $logAttributes = ['name', 'email', 'photo'];
@@ -36,7 +38,7 @@ class Admin extends Authenticatable
     ];
 
 
-    protected $dates = ['create_at', 'updated_at','email_verified_at'];
+    protected $dates = ['create_at', 'updated_at', 'email_verified_at'];
 
     public function setPasswordAttribute($value)
     {
@@ -49,5 +51,11 @@ class Admin extends Authenticatable
     {
         return Storage::url($value);
     }
+
     // todo: title , permissions & role
+
+    public function guardName()
+    {
+        return 'web';
+    }
 }

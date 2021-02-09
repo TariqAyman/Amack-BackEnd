@@ -80,5 +80,16 @@ Route::prefix('admin/')->namespace('Admin')->group(function () {
         Route::post('staff/data', 'StaffController@data')->name('staff.data');
         Route::resource('staff', 'StaffController');
 
+        /**
+         * Roles & Permissions
+         */
+        Route::resource('role', 'RolesController');
+        Route::post('role/destroy', ['as' => 'role.destroy', 'uses' => 'RolesController@destroy']);
+
+        Route::post('permission/save', [
+            'as' => 'permission.save',
+            'uses' => 'PermissionsController@saveRolePermissions'
+        ]);
+        Route::resource('permission', 'PermissionsController');
     });
 });
