@@ -18,7 +18,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header border-bottom">
-                        <h4 class="card-title">sites</h4>
+                        <h4 class="card-title">Equipments</h4>
                         <div class="dt-action-buttons text-right">
                             <div class="dt-buttons flex-wrap d-inline-flex">
                                 <div class="">
@@ -34,7 +34,8 @@
                                         </span>
                                     </button>
                                 </div>
-                                <a class="btn create-new btn-primary" tabindex="0" aria-controls="DataTables_Table_0" type="button" href="{{route('equipments.create')}}">
+                                @if(Auth::user()->can('equipments.create'))
+                                    <a class="btn create-new btn-primary" tabindex="0" aria-controls="DataTables_Table_0" type="button" href="{{route('equipments.create')}}">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                              class="feather feather-plus mr-50 font-small-4">
@@ -43,7 +44,8 @@
                                         </svg>
                                         Add New Record
                                     </span>
-                                </a>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>

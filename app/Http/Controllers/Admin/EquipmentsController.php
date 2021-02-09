@@ -21,6 +21,11 @@ class EquipmentsController extends AdminController
 
     protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/equipments', 'name' => "Equipments"]];
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
+
     public function __construct(SeasonRepository $seasonRepository)
     {
         $this->seasonRepository = $seasonRepository;
