@@ -66,7 +66,7 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="form-label" for="login-email">Email</label>
-                            <input class="form-control" id="login-email" type="text" name="email" placeholder="john@example.com" aria-describedby="login-email" autofocus="" tabindex="1" {{ (env('APP_ENV') === 'local') ? "value=admin@admin.com" : '' }} />
+                            <input class="form-control" id="login-email" type="text" name="email" placeholder="john@example.com" aria-describedby="login-email" autofocus="" tabindex="1" {{ (env('APP_ENV') === 'dev') ? "value=admin@admin.com" : '' }} />
                         </div>
                         <div class="form-group">
                             <div class="d-flex justify-content-between">
@@ -76,7 +76,7 @@
                                 </a>
                             </div>
                             <div class="input-group input-group-merge form-password-toggle">
-                                <input class="form-control form-control-merge" id="login-password" type="password" name="password" placeholder="***********" aria-describedby="login-password" tabindex="2" {{ (env('APP_ENV') === 'local') ? "value=123123" : '' }} />
+                                <input class="form-control form-control-merge" id="login-password" type="password" name="password" placeholder="***********" aria-describedby="login-password" tabindex="2" {{ (env('APP_ENV') === 'dev') ? "value=123123" : '' }} />
                                 <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                 </div>
                             </div>
