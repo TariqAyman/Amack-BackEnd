@@ -23,6 +23,11 @@ class StaffController extends AdminController
 
     protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/staff', 'name' => "staff"]];
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
+
     public function __construct(CenterRepository $centerRepository)
     {
         parent::__construct();
