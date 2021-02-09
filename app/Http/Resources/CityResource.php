@@ -31,7 +31,7 @@ class CityResource extends JsonResource
                 [
                     "id" => 1,
                     "title" => "TOURIMS POLICE",
-                    "icon" => asset('center-panel/images/icon-call.png'),
+                    "icon" => asset('dashboard/images/icon-call.png'),
                     "number" => "01117724287",
                     "location" => [
                         "lat" => "30.303",
