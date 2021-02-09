@@ -13,4 +13,9 @@ class UsersController extends AdminController
 
     protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/users', 'name' => "Users"]];
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
+
 }

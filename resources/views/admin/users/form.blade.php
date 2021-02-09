@@ -63,10 +63,10 @@
                                     </div>
                                     <div class="demo-inline-spacing">
                                         <button type="submit" value="submit" class="btn btn-primary">Save</button>
-                                        @if($data->prev())
+                                        @if(isset($data) && $data->prev())
                                             <a type="button" href="{{ route('dive-sites.edit',$data->prev()) }}" class="btn btn-secondary">Pervious</a>
                                         @endif
-                                        @if($data->next())
+                                        @if(isset($data) && $data->next())
                                             <a type="button" href="{{ route('dive-sites.edit',$data->next()) }}" class="btn btn-warning">Next</a>
                                         @endif
                                     </div>
