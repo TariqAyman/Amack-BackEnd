@@ -25,6 +25,11 @@ class DiveSitesController extends AdminController
 
     protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/dive-sites', 'name' => "Dive Site"]];
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
+
     /** @var CityRepository */
     protected $cityRepository;
 
