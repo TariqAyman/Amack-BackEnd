@@ -59,4 +59,7 @@ Route::middleware(['auth:api', \App\Http\Middleware\IdentifierMiddleware::class]
     Route::get('my-contact','UserContactController@index');
     Route::post('save-contact','UserContactController@store');
 
+    Route::post('save-for-later','SaveForLaterController@store');
+    Route::get('get-my-saved-list','SaveForLaterController@index');
+    Route::delete('delete-saved-list/{hash}','SaveForLaterController@destroy');
 });
