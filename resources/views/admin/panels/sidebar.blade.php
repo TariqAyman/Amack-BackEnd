@@ -103,162 +103,212 @@
                 </a>
             </li>
 
-            <li class="nav-item  {{ Route::is('dive-sites.*') ? 'active' : '' }}">
-                <a href="{{ route('dive-sites.index') }}" class="d-flex align-items-center " target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <span class="menu-title text-truncate">Sites</span>
-                </a>
-            </li>
+            @if(Auth::user()->can('dive-sites.index'))
+                <li class="nav-item  {{ Route::is('dive-sites.*') ? 'active' : '' }}">
+                    <a href="{{ route('dive-sites.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span class="menu-title text-truncate">Sites</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="nav-item  {{ Route::is('cities.*') ? 'active' : '' }}">
-                <a href="{{ route('cities.index') }}" class="d-flex align-items-center " target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map">
-                        <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
-                        <line x1="8" y1="2" x2="8" y2="18"></line>
-                        <line x1="16" y1="6" x2="16" y2="22"></line>
-                    </svg>
-                    <span class="menu-title text-truncate">Cities</span>
-                </a>
-            </li>
+            @if(Auth::user()->can('cities.index'))
+                <li class="nav-item  {{ Route::is('cities.*') ? 'active' : '' }}">
+                    <a href="{{ route('cities.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map">
+                            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                            <line x1="8" y1="2" x2="8" y2="18"></line>
+                            <line x1="16" y1="6" x2="16" y2="22"></line>
+                        </svg>
+                        <span class="menu-title text-truncate">Cities</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="nav-item  {{ Route::is('equipments.*') ? 'active' : '' }}">
-                <a href="{{ route('equipments.index') }}" class="d-flex align-items-center " target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-life-buoy">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
-                        <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
-                        <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
-                        <line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line>
-                        <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
-                    </svg>
-                    <span class="menu-title text-truncate">Equipments</span>
-                </a>
-            </li>
+            @if(Auth::user()->can('equipments.index'))
+                <li class="nav-item  {{ Route::is('equipments.*') ? 'active' : '' }}">
+                    <a href="{{ route('equipments.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-life-buoy">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+                            <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+                            <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
+                            <line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line>
+                            <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+                        </svg>
+                        <span class="menu-title text-truncate">Equipments</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="nav-item  {{ Route::is('users.*') ? 'active' : '' }}">
-                <a href="{{ route('users.index') }}" class="d-flex align-items-center " target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="8.5" cy="7" r="4"></circle>
-                        <line x1="20" y1="8" x2="20" y2="14"></line>
-                        <line x1="23" y1="11" x2="17" y2="11"></line>
-                    </svg>
-                    <span class="menu-title text-truncate">users</span>
-                </a>
-            </li>
+            @if(Auth::user()->can('users.index'))
+                <li class="nav-item  {{ Route::is('users.*') ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                        </svg>
+                        <span class="menu-title text-truncate">users</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="nav-item  {{ Route::is('centers.*') ? 'active' : '' }}">
-                <a href="{{ route('centers.index') }}" class="d-flex align-items-center " target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-anchor">
-                        <circle cx="12" cy="5" r="3"></circle>
-                        <line x1="12" y1="22" x2="12" y2="8"></line>
-                        <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
-                    </svg>
-                    <span class="menu-title text-truncate">Centers</span>
-                </a>
-            </li>
+            @if(Auth::user()->can('centers.index'))
+                <li class="nav-item  {{ Route::is('centers.*') ? 'active' : '' }}">
+                    <a href="{{ route('centers.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-anchor">
+                            <circle cx="12" cy="5" r="3"></circle>
+                            <line x1="12" y1="22" x2="12" y2="8"></line>
+                            <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+                        </svg>
+                        <span class="menu-title text-truncate">Centers</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="nav-item  {{ Route::is('staff.*') ? 'active' : '' }}">
-                <a href="{{ route('staff.index') }}" class="d-flex align-items-center " target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                    <span class="menu-title text-truncate">Staff</span>
-                </a>
-            </li>
+            @if(Auth::user()->can('staff.index'))
+                <li class="nav-item  {{ Route::is('staff.*') ? 'active' : '' }}">
+                    <a href="{{ route('staff.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <span class="menu-title text-truncate">Staff</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="nav-item has-sub {{ Route::is(['taxons.*','dive-activities.*','dive-entries.*','dive-entries.*','schools.*','seasons.*','countries.*','courses.*']) ? 'active' : '' }}" style="">
-                <a href="javascript:void(0)" class="d-flex align-items-center" target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive">
-                        <polyline points="21 8 21 21 3 21 3 8"></polyline>
-                        <rect x="1" y="3" width="22" height="5"></rect>
-                        <line x1="10" y1="12" x2="14" y2="12"></line>
-                    </svg>
-                    <span class="menu-title text-truncate">Dive Data (Advanced)</span>
-                </a>
-                <ul class="menu-content">
-                    <li class="{{ Route::is('taxons.*') ? 'active' : '' }}">
-                        <a href="{{ route('taxons.index') }}" class="d-flex align-items-center" target="_self">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            <span class="menu-item text-truncate">Taxons</span>
-                        </a>
-                    </li>
+            @if(Auth::user()->can(['taxons.index','dive-activities.index','dive-entries.index','dive-entries.index','schools.index','seasons.index','countries.index','courses.index']))
+                <li class="nav-item has-sub {{ Route::is(['taxons.*','dive-activities.*','dive-entries.*','dive-entries.*','schools.*','seasons.*','countries.*','courses.*']) ? 'active' : '' }}" style="">
+                    <a href="javascript:void(0)" class="d-flex align-items-center" target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive">
+                            <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                            <rect x="1" y="3" width="22" height="5"></rect>
+                            <line x1="10" y1="12" x2="14" y2="12"></line>
+                        </svg>
+                        <span class="menu-title text-truncate">Dive Data (Advanced)</span>
+                    </a>
+                    <ul class="menu-content">
+                        @if(Auth::user()->can('taxons.index'))
+                            <li class="{{ Route::is('taxons.*') ? 'active' : '' }}">
+                                <a href="{{ route('taxons.index') }}" class="d-flex align-items-center" target="_self">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span class="menu-item text-truncate">Taxons</span>
+                                </a>
+                            </li>
+                        @endif
 
-                    <li class="{{ Route::is('dive-activities.*') ? 'active' : '' }}">
-                        <a href="{{ route('dive-activities.index') }}" class="d-flex align-items-center" target="_self">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            <span class="menu-item text-truncate">Activities</span>
-                        </a>
-                    </li>
+                        @if(Auth::user()->can('dive-activities.index'))
+                            <li class="{{ Route::is('dive-activities.*') ? 'active' : '' }}">
+                                <a href="{{ route('dive-activities.index') }}" class="d-flex align-items-center" target="_self">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span class="menu-item text-truncate">Activities</span>
+                                </a>
+                            </li>
+                        @endif
 
-                    <li class="{{ Route::is('dive-entries.*') ? 'active' : '' }}">
-                        <a href="{{ route('dive-entries.index') }}" class="d-flex align-items-center" target="_self">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            <span class="menu-item text-truncate">Entries</span>
-                        </a>
-                    </li>
+                        @if(Auth::user()->can('dive-entries.index'))
+                            <li class="{{ Route::is('dive-entries.*') ? 'active' : '' }}">
+                                <a href="{{ route('dive-entries.index') }}" class="d-flex align-items-center" target="_self">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span class="menu-item text-truncate">Entries</span>
+                                </a>
+                            </li>
+                        @endif
 
-                    <li class="{{ Route::is('schools.*') ? 'active' : '' }}">
-                        <a href="{{ route('schools.index') }}" class="d-flex align-items-center" target="_self">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            <span class="menu-item text-truncate">schools</span>
-                        </a>
-                    </li>
+                        @if(Auth::user()->can('schools.index'))
+                            <li class="{{ Route::is('schools.*') ? 'active' : '' }}">
+                                <a href="{{ route('schools.index') }}" class="d-flex align-items-center" target="_self">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span class="menu-item text-truncate">schools</span>
+                                </a>
+                            </li>
+                        @endif
 
-                    <li class="{{ Route::is('seasons.*') ? 'active' : '' }}">
-                        <a href="{{ route('seasons.index') }}" class="d-flex align-items-center" target="_self">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            <span class="menu-item text-truncate">Seasons</span>
-                        </a>
-                    </li>
+                        @if(Auth::user()->can('seasons.index'))
+                            <li class="{{ Route::is('seasons.*') ? 'active' : '' }}">
+                                <a href="{{ route('seasons.index') }}" class="d-flex align-items-center" target="_self">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span class="menu-item text-truncate">Seasons</span>
+                                </a>
+                            </li>
+                        @endif
 
-                    <li class="{{ Route::is('countries.*') ? 'active' : '' }}">
-                        <a href="{{ route('countries.index') }}" class="d-flex align-items-center" target="_self">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            <span class="menu-item text-truncate">countries</span>
-                        </a>
-                    </li>
+                        @if(Auth::user()->can('countries.index'))
+                            <li class="{{ Route::is('countries.*') ? 'active' : '' }}">
+                                <a href="{{ route('countries.index') }}" class="d-flex align-items-center" target="_self">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span class="menu-item text-truncate">countries</span>
+                                </a>
+                            </li>
+                        @endif
 
-                    <li class="{{ Route::is('courses.*') ? 'active' : '' }}">
-                        <a href="{{ route('courses.index') }}" class="d-flex align-items-center" target="_self">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            <span class="menu-item text-truncate">Courses</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                        @if(Auth::user()->can('courses.index'))
+                            <li class="{{ Route::is('courses.*') ? 'active' : '' }}">
+                                <a href="{{ route('courses.index') }}" class="d-flex align-items-center" target="_self">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                    </svg>
+                                    <span class="menu-item text-truncate">Courses</span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
 
-            <li class="nav-item  {{ Route::is('admins.*') ? 'active' : '' }}">
-                <a href="{{ route('admins.index') }}" class="d-flex align-items-center " target="_self">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                    <span class="menu-title text-truncate">Admins</span>
-                </a>
-            </li>
+            @if(Auth::user()->can('admins.index'))
+                <li class="nav-item  {{ Route::is('admins.*') ? 'active' : '' }}">
+                    <a href="{{ route('admins.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span class="menu-title text-truncate">Admins</span>
+                    </a>
+                </li>
+            @endif
 
-            {{-- Foreach menu item ends --}}
+            @if(Auth::user()->can('roles.index'))
+                <li class="nav-item  {{ Route::is('role.*') ? 'active' : '' }}">
+                    <a href="{{ route('role.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span class="menu-title text-truncate">Roles</span>
+                    </a>
+                </li>
+            @endif
+
+            @if(Auth::user()->can('permissions.index'))
+                <li class="nav-item  {{ Route::is('permission.*') ? 'active' : '' }}">
+                    <a href="{{ route('permission.index') }}" class="d-flex align-items-center " target="_self">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span class="menu-title text-truncate">Permission</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </div>
