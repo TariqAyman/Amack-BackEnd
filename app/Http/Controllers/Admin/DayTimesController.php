@@ -14,6 +14,11 @@ class DayTimesController extends AdminController
 
     protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/dive-times', 'name' => "Dive times"]];
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
+
     public function removePhoto(int $id): JsonResponse
     {
         $this->repository->removeImage($id);
