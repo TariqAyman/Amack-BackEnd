@@ -32,6 +32,8 @@ abstract class AdminController extends Controller
      */
     protected $createBreadcrumbs;
 
+    protected $permission;
+
     /**
      * AdminController constructor.
      */
@@ -40,6 +42,21 @@ abstract class AdminController extends Controller
         $current = $this->block;
         view()->share('current', $current);
         $this->repository = app($this->repository);
+
+        $this->middleware('auth');
+
+        if (in_array('index', $this->permission)) {
+            $this->middleware("permission:{$this->block}.index", ['only' => ['index']]);
+        }
+        if (in_array('create', $this->permission)) {
+            $this->middleware("permission:{$this->block}.create", ['only' => ['create', 'store']]);
+        }
+        if (in_array('edit', $this->permission)) {
+            $this->middleware("permission:{$this->block}.edit", ['only' => ['edit', 'update']]);
+        }
+        if (in_array('destroy', $this->permission)) {
+            $this->middleware("permission:{$this->block}.destroy", ['only' => ['destroy']]);
+        }
     }
 
     /**
