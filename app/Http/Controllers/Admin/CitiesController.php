@@ -33,6 +33,10 @@ class CitiesController extends AdminController
      */
     private $diveSiteRepository;
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
 
     public function __construct(CountryRepository $countryRepository, SeasonRepository $seasonRepository, DiveSiteRepository $diveSiteRepository)
     {
@@ -48,7 +52,7 @@ class CitiesController extends AdminController
         $seasons = $this->seasonRepository->findAll(['id', 'name']);
         $top_sites = $this->diveSiteRepository->getModel()::pluck('name', 'id');
         $breadcrumbs = $this->createBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Create New"]]);
-        return view('admin.' . $this->block . '.form', compact('countries', 'seasons', 'top_sites','breadcrumbs'));
+        return view('admin.' . $this->block . '.form', compact('countries', 'seasons', 'top_sites', 'breadcrumbs'));
     }
 
     public function edit(int $id): View
@@ -58,7 +62,7 @@ class CitiesController extends AdminController
         $seasons = $this->seasonRepository->findAll(['id', 'name']);
         $top_sites = $this->diveSiteRepository->getModel()::where('id', '!=', $id)->pluck('name', 'id');
         $breadcrumbs = $this->editBreadcrumbs = array_merge($this->indexBreadcrumbs, [['name' => "Edit #{$data->id}"]]);
-        return view('admin.' . $this->block . '.form', compact('data', 'countries', 'seasons', 'top_sites','breadcrumbs'));
+        return view('admin.' . $this->block . '.form', compact('data', 'countries', 'seasons', 'top_sites', 'breadcrumbs'));
     }
 
     public function removeImage(int $id, int $imageId): JsonResponse
