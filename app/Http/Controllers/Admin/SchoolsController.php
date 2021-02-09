@@ -17,6 +17,11 @@ class SchoolsController extends AdminController
 
     protected $indexBreadcrumbs = [['link' => "admin/dashboard", 'name' => "Dashboard"], ['link' => 'admin/schools', 'name' => "Schools"]];
 
+    /**
+     * @var string[]
+     */
+    protected $permission = ['index', 'create', 'edit', 'destroy'];
+
     public function removeLogo(int $id)
     {
         $this->repository->removeLogo($id);
