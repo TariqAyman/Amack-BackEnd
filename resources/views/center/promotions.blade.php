@@ -4,7 +4,7 @@
 
 @section('page-style')
     {{-- Page Css files --}}
-    <link rel="stylesheet" type="text/css" href="{{asset('center-panel/css/base/pages/page-pricing.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/css/base/pages/page-pricing.css')}}">
 @endsection
 
 @section('content')
@@ -34,7 +34,7 @@
                     <div class="col-12 col-md-4">
                         <div class="card basic-pricing text-center">
                             <div class="card-body">
-                                <img src="{{asset('center-panel/images/illustration/Pot1.svg')}}" class="mb-2 mt-5" alt="svg img" />
+                                <img src="{{asset('dashboard/images/illustration/Pot1.svg')}}" class="mb-2 mt-5" alt="svg img" />
                                 <h3>Basic</h3>
                                 <p class="card-text">A simple start for everyone</p>
                                 <div class="annual-plan">
@@ -65,7 +65,7 @@
                                 <div class="pricing-badge text-right">
                                     <div class="badge badge-pill badge-light-primary">Popular</div>
                                 </div>
-                                <img src="{{asset('center-panel/images/illustration/Pot2.svg')}}" class="mb-1" alt="svg img" />
+                                <img src="{{asset('dashboard/images/illustration/Pot2.svg')}}" class="mb-1" alt="svg img" />
                                 <h3>Standard</h3>
                                 <p class="card-text">For small to medium businesses</p>
                                 <div class="annual-plan">
@@ -93,7 +93,7 @@
                     <div class="col-12 col-md-4">
                         <div class="card enterprise-pricing text-center">
                             <div class="card-body">
-                                <img src="{{asset('center-panel/images/illustration/Pot3.svg')}}" class="mb-2" alt="svg img" />
+                                <img src="{{asset('dashboard/images/illustration/Pot3.svg')}}" class="mb-2" alt="svg img" />
                                 <h3>Enterprise</h3>
                                 <p class="card-text">Solution for big organizations</p>
                                 <div class="annual-plan">
@@ -134,7 +134,7 @@
 
                         <!-- image -->
                         <img
-                            src="{{asset('center-panel/images/illustration/pricing-Illustration.svg')}}"
+                            src="{{asset('dashboard/images/illustration/pricing-Illustration.svg')}}"
                             class="pricing-trial-img img-fluid"
                             alt="svg img"
                         />
@@ -225,5 +225,5 @@
 
 @section('page-script')
     {{-- Page js files --}}
-    <script src="{{asset('center-panel/js/scripts/pages/page-pricing.js')}}"></script>
+    <script src="{{asset('dashboard/js/scripts/pages/page-pricing.js')}}"></script>
 @endsection

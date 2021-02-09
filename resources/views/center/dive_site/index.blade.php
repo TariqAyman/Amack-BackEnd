@@ -5,16 +5,16 @@
 @section('vendor-style')
     @parent
     <!-- Vendor css files -->
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/extensions/swiper.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/extensions/swiper.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 
 @endSection
 
 @section('page-style')
     @parent
     <!-- Page css files -->
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/extensions/ext-component-swiper.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/extensions/ext-component-swiper.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
 
 @endSection
 
@@ -308,14 +308,14 @@
 
 @section('vendor-script')
     @parent
-    <script src="{{ asset(mix('center-panel/vendors/js/extensions/swiper.min.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/extensions/swiper.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/repeater/jquery.repeater.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 @endSection
 
 @section('page-script')
     @parent
-    <script src="{{ asset(mix('center-panel/js/scripts/extensions/ext-component-swiper.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/js/scripts/extensions/ext-component-swiper.js')) }}"></script>
 
     <script type="application/javascript">
         $(function () {

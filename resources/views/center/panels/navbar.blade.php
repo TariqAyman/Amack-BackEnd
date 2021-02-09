@@ -106,7 +106,7 @@
                                     </div>
                                 </li>
                                 <li class="scrollable-container media-list">
-                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('center-panel/images/pages/eCommerce/1.png')}}" alt="donuts" width="62">
+                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/images/pages/eCommerce/1.png')}}" alt="donuts" width="62">
                                         <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                             <div class="media-heading">
                                                 <h6 class="cart-item-title"><a class="text-body" href="{{url('app/ecommerce/details')}}"> Apple watch 5</a></h6><small class="cart-item-by">By Apple</small>
@@ -119,7 +119,7 @@
                                             <h5 class="cart-item-price">$374.90</h5>
                                         </div>
                                     </div>
-                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('center-panel/images/pages/eCommerce/7.png')}}" alt="donuts" width="62">
+                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/images/pages/eCommerce/7.png')}}" alt="donuts" width="62">
                                         <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                             <div class="media-heading">
                                                 <h6 class="cart-item-title"><a class="text-body" href="{{url('app/ecommerce/details')}}"> Google Home Mini</a></h6><small class="cart-item-by">By Google</small>
@@ -132,7 +132,7 @@
                                             <h5 class="cart-item-price">$129.40</h5>
                                         </div>
                                     </div>
-                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('center-panel/images/pages/eCommerce/2.png')}}" alt="donuts" width="62">
+                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/images/pages/eCommerce/2.png')}}" alt="donuts" width="62">
                                         <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                             <div class="media-heading">
                                                 <h6 class="cart-item-title"><a class="text-body" href="{{url('app/ecommerce/details')}}"> iPhone 11 Pro</a></h6><small class="cart-item-by">By Apple</small>
@@ -145,7 +145,7 @@
                                             <h5 class="cart-item-price">$699.00</h5>
                                         </div>
                                     </div>
-                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('center-panel/images/pages/eCommerce/3.png')}}" alt="donuts" width="62">
+                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/images/pages/eCommerce/3.png')}}" alt="donuts" width="62">
                                         <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                             <div class="media-heading">
                                                 <h6 class="cart-item-title"><a class="text-body" href="{{url('app/ecommerce/details')}}"> iMac Pro</a></h6><small class="cart-item-by">By Apple</small>
@@ -158,7 +158,7 @@
                                             <h5 class="cart-item-price">$4,999.00</h5>
                                         </div>
                                     </div>
-                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('center-panel/images/pages/eCommerce/5.png')}}" alt="donuts" width="62">
+                                    <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/images/pages/eCommerce/5.png')}}" alt="donuts" width="62">
                                         <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                             <div class="media-heading">
                                                 <h6 class="cart-item-title"><a class="text-body" href="{{url('app/ecommerce/details')}}"> MacBook Pro</a></h6><small class="cart-item-by">By Apple</small>
@@ -193,7 +193,7 @@
                                 <li class="scrollable-container media-list"><a class="d-flex" href="javascript:void(0)">
                                         <div class="media d-flex align-items-start">
                                             <div class="media-left">
-                                                <div class="avatar"><img src="{{asset('center-panel/images/portrait/small/avatar-s-15.jpg')}}" alt="avatar" width="32" height="32"></div>
+                                                <div class="avatar"><img src="{{asset('dashboard/images/portrait/small/avatar-s-15.jpg')}}" alt="avatar" width="32" height="32"></div>
                                             </div>
                                             <div class="media-body">
                                                 <p class="media-heading"><span class="font-weight-bolder">Congratulation Sam 🎉</span>winner!</p><small class="notification-text"> Won the monthly best seller badge.</small>
@@ -202,7 +202,7 @@
                                     </a><a class="d-flex" href="javascript:void(0)">
                                         <div class="media d-flex align-items-start">
                                             <div class="media-left">
-                                                <div class="avatar"><img src="{{asset('center-panel/images/portrait/small/avatar-s-3.jpg')}}" alt="avatar" width="32" height="32"></div>
+                                                <div class="avatar"><img src="{{asset('dashboard/images/portrait/small/avatar-s-3.jpg')}}" alt="avatar" width="32" height="32"></div>
                                             </div>
                                             <div class="media-body">
                                                 <p class="media-heading"><span class="font-weight-bolder">New message</span>&nbsp;received</p><small class="notification-text"> You have 10 unread messages</small>
@@ -272,7 +272,7 @@
                                     <span class="user-status">Staff</span>
                                 </div>
                                 <span class="avatar">
-              <img class="round" src="{{asset('center-panel/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40">
+              <img class="round" src="{{asset('dashboard/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40">
               <span class="avatar-status-online"></span>
             </span>
                             </a>
@@ -319,7 +319,7 @@
                     <a class="d-flex align-items-center justify-content-between w-100" href="{{url('app/file-manager')}}">
                         <div class="d-flex">
                             <div class="mr-75">
-                                <img src="{{asset('center-panel/images/icons/xls.png')}}" alt="png" height="32">
+                                <img src="{{asset('dashboard/images/icons/xls.png')}}" alt="png" height="32">
                             </div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">Two new item submitted</p>
@@ -333,7 +333,7 @@
                     <a class="d-flex align-items-center justify-content-between w-100" href="{{url('app/file-manager')}}">
                         <div class="d-flex">
                             <div class="mr-75">
-                                <img src="{{asset('center-panel/images/icons/jpg.png')}}" alt="png" height="32">
+                                <img src="{{asset('dashboard/images/icons/jpg.png')}}" alt="png" height="32">
                             </div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">52 JPG file Generated</p>
@@ -347,7 +347,7 @@
                     <a class="d-flex align-items-center justify-content-between w-100" href="{{url('app/file-manager')}}">
                         <div class="d-flex">
                             <div class="mr-75">
-                                <img src="{{asset('center-panel/images/icons/pdf.png')}}" alt="png" height="32">
+                                <img src="{{asset('dashboard/images/icons/pdf.png')}}" alt="png" height="32">
                             </div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">25 PDF File Uploaded</p>
@@ -361,7 +361,7 @@
                     <a class="d-flex align-items-center justify-content-between w-100" href="{{url('app/file-manager')}}">
                         <div class="d-flex">
                             <div class="mr-75">
-                                <img src="{{asset('center-panel/images/icons/doc.png')}}" alt="png" height="32"></div>
+                                <img src="{{asset('dashboard/images/icons/doc.png')}}" alt="png" height="32"></div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">Anna_Strong.doc</p>
                                 <small class="text-muted">Web Designer</small>
@@ -379,7 +379,7 @@
                     <a class="d-flex align-items-center justify-content-between py-50 w-100" href="{{url('app/user/view')}}">
                         <div class="d-flex align-items-center">
                             <div class="avatar mr-75">
-                                <img src="{{asset('center-panel/images/portrait/small/avatar-s-8.jpg')}}" alt="png" height="32">
+                                <img src="{{asset('dashboard/images/portrait/small/avatar-s-8.jpg')}}" alt="png" height="32">
                             </div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">{{ Auth::user()->name }}</p>
@@ -392,7 +392,7 @@
                     <a class="d-flex align-items-center justify-content-between py-50 w-100" href="{{url('app/user/view')}}">
                         <div class="d-flex align-items-center">
                             <div class="avatar mr-75">
-                                <img src="{{asset('center-panel/images/portrait/small/avatar-s-1.jpg')}}" alt="png" height="32">
+                                <img src="{{asset('dashboard/images/portrait/small/avatar-s-1.jpg')}}" alt="png" height="32">
                             </div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">Michal Clark</p>
@@ -405,7 +405,7 @@
                     <a class="d-flex align-items-center justify-content-between py-50 w-100" href="{{url('app/user/view')}}">
                         <div class="d-flex align-items-center">
                             <div class="avatar mr-75">
-                                <img src="{{asset('center-panel/images/portrait/small/avatar-s-14.jpg')}}" alt="png" height="32">
+                                <img src="{{asset('dashboard/images/portrait/small/avatar-s-14.jpg')}}" alt="png" height="32">
                             </div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">Milena Gibson</p>
@@ -418,7 +418,7 @@
                     <a class="d-flex align-items-center justify-content-between py-50 w-100" href="{{url('app/user/view')}}">
                         <div class="d-flex align-items-center">
                             <div class="avatar mr-75">
-                                <img src="{{asset('center-panel/images/portrait/small/avatar-s-6.jpg')}}" alt="png" height="32">
+                                <img src="{{asset('dashboard/images/portrait/small/avatar-s-6.jpg')}}" alt="png" height="32">
                             </div>
                             <div class="search-data">
                                 <p class="search-data-title mb-0">Anna Strong</p>

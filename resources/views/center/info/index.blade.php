@@ -4,18 +4,18 @@
 
 @section('vendor-style')
     <!-- vendor css files -->
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/forms/wizard/bs-stepper.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/forms/select/select2.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/extensions/swiper.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/vendors/css/pickers/pickadate/pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/forms/wizard/bs-stepper.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/forms/select/select2.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/extensions/swiper.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/vendors/css/pickers/pickadate/pickadate.css')) }}">
 @endsection
 
 @section('page-style')
     <!-- Page css files -->
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/form-validation.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/form-wizard.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/extensions/ext-component-swiper.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/form-validation.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/form-wizard.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/extensions/ext-component-swiper.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/pickers/form-pickadate.css')) }}">
 @endsection
 
 @section('content')
@@ -90,12 +90,12 @@
 
 @section('vendor-script')
     <!-- vendor files -->
-    <script src="{{ asset(mix('center-panel/vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/vendors/js/forms/select/select2.full.min.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/vendors/js/pickers/pickadate/picker.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
-    <script src="{{ asset(mix('center-panel/vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/select/select2.full.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/pickadate/picker.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+    <script src="{{ asset(mix('dashboard/vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
 @endsection
 @section('page-script')
     @parent

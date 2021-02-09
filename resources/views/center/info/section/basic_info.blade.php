@@ -12,7 +12,7 @@
             <!-- header media -->
             <div class="media">
                 <a href="javascript:void(0);" class="mr-25">
-                    <img src="{{asset($info->logo ?: 'center-panel/images/portrait/small/avatar-s-11.jpg')}}"
+                    <img src="{{asset($info->logo ?: 'dashboard/images/portrait/small/avatar-s-11.jpg')}}"
                          id="account-upload-img"
                          class="rounded mr-50" alt="profile image" height="100" width="100"/>
                 </a>

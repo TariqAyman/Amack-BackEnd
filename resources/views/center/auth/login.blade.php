@@ -7,8 +7,8 @@
 
 @section('page-style')
     {{-- Page Css files --}}
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/form-validation.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/pages/page-auth.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/form-validation.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/pages/page-auth.css')) }}">
 @endsection
 
 @section('content')
@@ -50,9 +50,9 @@
             <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
                 <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
                     @if($configData['theme'] === 'dark')
-                        <img class="img-fluid" src="{{asset('center-panel/images/pages/login-v2-dark.svg')}}" alt="Login V2"/>
+                        <img class="img-fluid" src="{{asset('dashboard/images/pages/login-v2-dark.svg')}}" alt="Login V2"/>
                     @else
-                        <img class="img-fluid" src="{{asset('center-panel/images/pages/login-v2.svg')}}" alt="Login V2"/>
+                        <img class="img-fluid" src="{{asset('dashboard/images/pages/login-v2.svg')}}" alt="Login V2"/>
                     @endif
                 </div>
             </div>
@@ -66,7 +66,7 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="form-label" for="login-email">Email</label>
-                            <input class="form-control" id="login-email" type="text" name="email" placeholder="john@example.com" aria-describedby="login-email" autofocus="" tabindex="1" {{ (env('APP_ENV') === 'local') ? "value=admin@admin.com" : '' }} />
+                            <input class="form-control" id="login-email" type="text" name="email" placeholder="john@example.com" aria-describedby="login-email" autofocus="" tabindex="1" {{ (env('APP_ENV') === 'dev') ? "value=admin@admin.com" : '' }} />
                         </div>
                         <div class="form-group">
                             <div class="d-flex justify-content-between">
@@ -76,7 +76,7 @@
                                 </a>
                             </div>
                             <div class="input-group input-group-merge form-password-toggle">
-                                <input class="form-control form-control-merge" id="login-password" type="password" name="password" placeholder="***********" aria-describedby="login-password" tabindex="2" {{ (env('APP_ENV') === 'local') ? "value=123123" : '' }} />
+                                <input class="form-control form-control-merge" id="login-password" type="password" name="password" placeholder="***********" aria-describedby="login-password" tabindex="2" {{ (env('APP_ENV') === 'dev') ? "value=123123" : '' }} />
                                 <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                 </div>
                             </div>
@@ -97,9 +97,9 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{asset(mix('center-panel/vendors/js/forms/validation/jquery.validate.min.js'))}}"></script>
+    <script src="{{asset(mix('dashboard/vendors/js/forms/validation/jquery.validate.min.js'))}}"></script>
 @endsection
 
 @section('page-script')
-    <script src="{{asset(mix('center-panel/js/scripts/pages/page-auth-login.js'))}}"></script>
+    <script src="{{asset(mix('dashboard/js/scripts/pages/page-auth-login.js'))}}"></script>
 @endsection

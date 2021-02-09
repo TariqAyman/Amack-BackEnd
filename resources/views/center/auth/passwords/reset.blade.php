@@ -4,8 +4,8 @@
 
 @section('page-style')
     {{-- Page Css files --}}
-    {{-- <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/plugins/forms/form-validation.css')) }}"> --}}
-    <link rel="stylesheet" href="{{ asset(mix('center-panel/css/base/pages/page-auth.css')) }}">
+    {{-- <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/plugins/forms/form-validation.css')) }}"> --}}
+    <link rel="stylesheet" href="{{ asset(mix('dashboard/css/base/pages/page-auth.css')) }}">
 @endsection
 
 @section('content')
@@ -109,9 +109,9 @@
 @endsection
 
 @section('vendor-script')
-    {{-- <script src="{{asset(mix('center-panel/vendors/js/forms/validation/jquery.validate.min.js'))}}"></script> --}}
+    {{-- <script src="{{asset(mix('dashboard/vendors/js/forms/validation/jquery.validate.min.js'))}}"></script> --}}
 @endsection
 
 @section('page-script')
-    {{-- <script src="{{asset(mix('center-panel/js/scripts/pages/page-auth-reset-password.js'))}}"></script> --}}
+    {{-- <script src="{{asset(mix('dashboard/js/scripts/pages/page-auth-reset-password.js'))}}"></script> --}}
 @endsection
